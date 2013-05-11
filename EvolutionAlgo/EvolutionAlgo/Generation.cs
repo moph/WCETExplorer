@@ -18,8 +18,8 @@ namespace EvolutionAlgo
 
         public Genom getBestGenom()
         {
-
-
+            Genom dummy = new Genom(null);
+            return dummy;
         }
 
         public double getAverageFitness()
