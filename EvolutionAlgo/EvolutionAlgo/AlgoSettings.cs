@@ -13,7 +13,7 @@ namespace EvolutionAlgo
         public uint populationSize;
         public uint crossoverCount;
         public float mutationRate;
-        
+        // Dies ist ein Kommentar
         public AlgoSettings() { }
 
     }
