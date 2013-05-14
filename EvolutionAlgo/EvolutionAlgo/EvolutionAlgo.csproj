@@ -43,12 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgoSettings.cs" />
     <Compile Include="EvolutionAlgo.cs" />
+    <Compile Include="Fitness.cs" />
+    <Compile Include="FittPropSelection.cs" />
     <Compile Include="Generation.cs" />
     <Compile Include="Genom.cs" />
+    <Compile Include="maxGeneration.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangSelection.cs" />
+    <Compile Include="Runtime.cs" />
+    <Compile Include="SelectionStrategy.cs" />
+    <Compile Include="StopCriterion.cs" />
+    <Compile Include="TournamentSelection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
