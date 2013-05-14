@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    class TournamentSelection
+    class TournamentSelection : StopCriterion
     {
 
         public void select() { }
