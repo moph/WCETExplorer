@@ -59,6 +59,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\DigitPreset.cs" />
+    <Compile Include="Classes\DllLoader.cs" />
+    <Compile Include="Classes\EnumPreset.cs" />
+    <Compile Include="Classes\FloatPreset.cs" />
+    <Compile Include="Classes\Function.cs" />
+    <Compile Include="Classes\LoadSaveSettings.cs" />
+    <Compile Include="Classes\SaveResult.cs" />
     <Compile Include="WManualSettings.xaml.cs">
       <DependentUpon>WManualSettings.xaml</DependentUpon>
     </Compile>
