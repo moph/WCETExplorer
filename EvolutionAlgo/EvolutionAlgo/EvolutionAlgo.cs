@@ -5,7 +5,6 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    //Test Kommentar
     class EvolutionAlgo
     {
         private uint _startSize;
