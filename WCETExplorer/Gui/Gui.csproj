@@ -154,6 +154,12 @@
     <Resource Include="Images\save.png" />
     <Resource Include="Images\SmallIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvolutionAlgo\EvolutionAlgo.csproj">
+      <Project>{D8F3D8CC-1C2A-4D93-A69A-A26C84E36E8B}</Project>
+      <Name>EvolutionAlgo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.

@@ -26,13 +26,13 @@
            </ribbon:Ribbon.ApplicationMenu>
            <ribbon:RibbonTab x:Name="HomeTab" Header="Settings">
                 <ribbon:RibbonGroup x:Name="Load" Header="">
-                    <ribbon:RibbonButton x:Name="SaveConf" LargeImageSource="Images/save.png"  Label="Save Config" Background="#00CDCDCD" />
-                    <ribbon:RibbonButton x:Name="LoadConf" LargeImageSource="Images/load2.png" Label="Load Config" Background="#00CDCDCD" />
-                    <ribbon:RibbonButton x:Name="Run_Copy" LargeImageSource="Images/add.png"   Label="Load ES" />
+                    <ribbon:RibbonButton x:Name="SaveConf" LargeImageSource="Images/save.png"  Label="Save Config" Background="#00CDCDCD" Click="SaveConf_Click" />
+                    <ribbon:RibbonButton x:Name="LoadConf" LargeImageSource="Images/load2.png" Label="Load Config" Background="#00CDCDCD" Click="LoadConf_Click" />
+                    <ribbon:RibbonButton x:Name="Run_Copy" LargeImageSource="Images/add.png"   Label="Load ES" Click="Run_Copy_Click" />
                 </ribbon:RibbonGroup>
                 <ribbon:RibbonGroup      x:Name="RunGroup" Header="" Margin="0">
-                	<ribbon:RibbonButton x:Name="Manual"   LargeImageSource="Images/manuell.png" Label="Manual Optimization" Height="Auto" />
-                	<ribbon:RibbonButton x:Name="Run"      LargeImageSource="Images/runfile.png" Label="Run" Height="Auto" />
+                	<ribbon:RibbonButton x:Name="Manual"   LargeImageSource="Images/manuell.png" Label="Manual Optimization" Height="Auto" Click="Manual_Click" />
+                	<ribbon:RibbonButton x:Name="Run"      LargeImageSource="Images/runfile.png" Label="Run" Height="Auto" Click="Run_Click" />
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
         </ribbon:Ribbon>

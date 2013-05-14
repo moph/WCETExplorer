@@ -26,5 +26,62 @@ namespace Gui
 
 			// Insert code required on object creation below this point.
         }
+
+        /// <summary>
+        /// Author: Philipp Klein
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveConf_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Author: Philipp Klein
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoadConf_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Switch to Algo
+        /// Author: Philipp Klein
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Manual_Click(object sender, RoutedEventArgs e)
+        {
+            Gui.RibbonWindow4 WAlgo = new Gui.RibbonWindow4();
+            this.Hide();
+            WAlgo.Show();
+        }
+
+        /// <summary>
+        /// Run
+        /// Author: Philipp Klein
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Run_Click(object sender, RoutedEventArgs e)
+        {
+            Gui.RunWindow WRun = new Gui.RunWindow();
+            WRun.Show();
+        }
+
+        /// <summary>
+        /// LoadES
+        /// Author: Philipp Klein
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Run_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            Gui.Window2 WDll = new Gui.Window2();
+            WDll.Show();
+        }
     }
 }
