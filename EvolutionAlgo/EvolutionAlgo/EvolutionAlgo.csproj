@@ -43,22 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlgoSettings.cs" />
-    <Compile Include="EvolutionAlgo.cs" />
-    <Compile Include="Fitness.cs" />
-    <Compile Include="FittPropSelection.cs" />
-    <Compile Include="Generation.cs" />
-    <Compile Include="Genom.cs" />
-    <Compile Include="maxGeneration.cs" />
-    <Compile Include="Parameter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Algo\AlgoSettings.cs" />
+    <Compile Include="Algo\EvolutionAlgo.cs" />
+    <Compile Include="Algo\Fitness.cs" />
+    <Compile Include="Algo\FittPropSelection.cs" />
+    <Compile Include="Algo\Generation.cs" />
+    <Compile Include="Algo\Genom.cs" />
+    <Compile Include="Algo\maxGeneration.cs" />
+    <Compile Include="Algo\Parameter.cs" />
+    <Compile Include="Algo\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RangSelection.cs" />
-    <Compile Include="Runtime.cs" />
-    <Compile Include="SelectionStrategy.cs" />
-    <Compile Include="StopCriterion.cs" />
-    <Compile Include="TournamentSelection.cs" />
+    <Compile Include="Algo\RangSelection.cs" />
+    <Compile Include="Algo\Runtime.cs" />
+    <Compile Include="Algo\SelectionStrategy.cs" />
+    <Compile Include="Algo\StopCriterion.cs" />
+    <Compile Include="Algo\TournamentSelection.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
