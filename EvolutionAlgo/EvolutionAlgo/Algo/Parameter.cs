@@ -5,12 +5,15 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
+    /// <summary>
+    /// Author: David Schreiner
+    /// </summary>
     class Parameter
     {
         public float[] analog;
         public bool[] digital;
         public int[] enums;
-        int test12;
+        
         
         public Parameter(float[] analog, bool[] digital,int[] enums) {
             this.analog = analog;

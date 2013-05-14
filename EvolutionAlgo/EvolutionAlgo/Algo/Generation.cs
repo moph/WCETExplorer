@@ -5,6 +5,9 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
+    /// <summary>
+    /// Author: David Schreiner
+    /// </summary>
     class Generation
     {
 

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
+    
     abstract class StopCriterion
     {
     }
