@@ -1,0 +1,77 @@
+﻿<ribbon:RibbonWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+		xmlns:Microsoft_Windows_Controls_Ribbon_Primitives="clr-namespace:Microsoft.Windows.Controls.Ribbon.Primitives;assembly=RibbonControlsLibrary" 
+		mc:Ignorable="d" 
+		x:Class="Gui.MainWindow"
+        Title="MainWindow"
+		x:Name="RibbonWindow"
+		Width="640" 
+		Height="480">
+
+	<Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+        	<RowDefinition Height="Auto"/>
+        	<RowDefinition Height="Auto" MinHeight="305"/>
+        </Grid.RowDefinitions>
+
+        <ribbon:Ribbon x:Name="Ribbon">
+            <ribbon:Ribbon.ApplicationMenu>
+                <ribbon:RibbonApplicationMenu SmallImageSource="Images\SmallIcon.png">
+                    <ribbon:RibbonApplicationMenuItem Header="Hello_Ribbon" x:Name="MenuItem1" ImageSource="Images\LargeIcon.png"/>
+                </ribbon:RibbonApplicationMenu>
+           </ribbon:Ribbon.ApplicationMenu>
+           <ribbon:RibbonTab x:Name="HomeTab" Header="Settings">
+                <ribbon:RibbonGroup x:Name="Load" Header="">
+                    <ribbon:RibbonButton x:Name="SaveConf" LargeImageSource="Images/save.png"  Label="Save Config" Background="#00CDCDCD" />
+                    <ribbon:RibbonButton x:Name="LoadConf" LargeImageSource="Images/load2.png" Label="Load Config" Background="#00CDCDCD" />
+                    <ribbon:RibbonButton x:Name="Run_Copy" LargeImageSource="Images/add.png"   Label="Load ES" />
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup      x:Name="RunGroup" Header="" Margin="0">
+                	<ribbon:RibbonButton x:Name="Manual"   LargeImageSource="Images/manuell.png" Label="Manual Optimization" Height="Auto" />
+                	<ribbon:RibbonButton x:Name="Run"      LargeImageSource="Images/runfile.png" Label="Run" Height="Auto" />
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+        </ribbon:Ribbon>
+        <GroupBox Header="Selection Procedure" HorizontalAlignment="Left" Margin="8,8,0,0" Grid.Row="1" Width="304" Height="58" VerticalAlignment="Top">
+        	<ComboBox Margin="57,8,65,0" SelectedIndex="0" Height="25" VerticalAlignment="Top" Width="170">
+        		<ComboBoxItem Content="Elitism" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsSelected="True"/>
+        		<ComboBoxItem Content="Fitness proportionate selection"/>
+        		<ComboBoxItem Content="Tournament selection"/>
+        	</ComboBox>
+        </GroupBox>
+        <GroupBox Header="Population" HorizontalAlignment="Left" Margin="8,70,0,0" Grid.Row="1" Width="304" VerticalAlignment="Top">
+        	<Grid Margin="8,0,-4,-4.96">
+        		<Slider Margin="48,8,70,0" RenderTransformOrigin="1.235,0.44" Height="26.92" VerticalAlignment="Top"/>
+        		<Label Content="Size" HorizontalAlignment="Left" Margin="8,8,0,0" Width="36" Height="26.92" VerticalAlignment="Top"/>
+        		<Label Content="10" HorizontalAlignment="Right" Height="25" Margin="0,8,16,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.58,-0.198"/>
+        	</Grid>
+        </GroupBox>
+        <GroupBox Header="Mutation degree" HorizontalAlignment="Left" Margin="8,126.92,0,0" Grid.Row="1" VerticalAlignment="Top" Width="304">
+        	<Grid Margin="0,0,-4,-3.92">
+        		<Slider Margin="57,8,69,12" RenderTransformOrigin="1.235,0.44" Width="170" Height="25"/>
+        		<Label Content="0" HorizontalAlignment="Right" Margin="0,8,17,12" Width="48"/>
+        	</Grid>
+        </GroupBox>
+        <GroupBox Header="Crossover" HorizontalAlignment="Left" Margin="8,195.92,0,0" Grid.Row="1" Width="304" VerticalAlignment="Top">
+        	<Grid Margin="0,0,-4,0">
+        		<Label Content="Amount" Margin="18,8,0,0" HorizontalAlignment="Left" Width="57" Height="25" VerticalAlignment="Top"/>
+        		<TextBox Margin="71,8,104,8" TextWrapping="Wrap" Text="2" TextAlignment="Right" Height="25" VerticalAlignment="Top"/>
+        	</Grid>
+        </GroupBox>
+        <GroupBox Header="Truncation condition" HorizontalAlignment="Right" Margin="0,8,8,0" Grid.Row="1" Width="300" Height="251.88" VerticalAlignment="Top">
+        	<Grid Margin="0,0,-4,-1.04">
+        		<CheckBox x:Name="Number_of_generations" Content="Number of generations" VerticalAlignment="Top" Margin="8,13.901,140.481,0" d:LayoutOverrides="Width"/>
+        		<TextBox HorizontalAlignment="Left" Height="25" Margin="26,33,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="108" TextAlignment="Right"/>
+        		<CheckBox x:Name="Runtime__s_" Content="Runtime (s)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,93.901,0,0"/>
+        		<TextBox HorizontalAlignment="Left" Margin="26,113,0,0" TextWrapping="Wrap" Text="7.5" Width="108" TextAlignment="Right" Height="25" VerticalAlignment="Top"/>
+        		<CheckBox x:Name="Fitness__ms_" Content="Fitness (ms)" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,0,0,37.96"/>
+        		<TextBox HorizontalAlignment="Left" Height="25" Margin="26,196,0,0" TextWrapping="Wrap" Text="258.5" VerticalAlignment="Top" Width="108" TextAlignment="Right"/>
+        	</Grid>
+        </GroupBox> 
+        
+    </Grid>
+</ribbon:RibbonWindow>

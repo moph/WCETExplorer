@@ -1,0 +1,24 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.FunktionNames" mc:Ignorable="d"
+	x:Class="Gui.Window2"
+	x:Name="Load_ES"
+	Title="Load ES"
+	Width="355" Height="155"
+	>
+
+	<Grid x:Name="LayoutRoot">
+		<Grid>
+			<Label Content="Please select the &quot;*.xml&quot; File of the System you like to &#xa;simulate." Height="44" Margin="8,8,8,0" VerticalAlignment="Top"/>
+			<TextBox TextWrapping="Wrap" Text="D:\Documents\ES\config.xml" VerticalAlignment="Top" Margin="8,56,45.447,0"/>
+			<Button Content="..." HorizontalAlignment="Right" VerticalAlignment="Top" Width="33.447" Margin="0,56,8,0" />
+			<Label Content="Function" HorizontalAlignment="Left" Margin="8,79.96,0,0" VerticalAlignment="Top"/>
+			<ComboBox SelectedIndex="0" Margin="67.777,81.96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="225.776">
+				<ComboBoxItem Content="Two-params-function"/>
+				<ComboBoxItem Content="Three-params-function"/>
+			</ComboBox>
+			<Button Content="OK" HorizontalAlignment="Right" VerticalAlignment="Top" Width="33.447" Margin="0,81.96,8,0" />
+		</Grid>
+	</Grid>
+</Window>
