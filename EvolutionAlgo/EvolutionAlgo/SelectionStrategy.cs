@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    static class SelectionStrategy
+    abstract class SelectionStrategy
     {
 
         public void select(){}
