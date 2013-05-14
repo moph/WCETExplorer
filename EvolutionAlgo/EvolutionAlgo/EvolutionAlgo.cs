@@ -13,6 +13,7 @@ namespace EvolutionAlgo
         private bool[] _digital;
         private int[] _enmus;
         // Andreas Engel blabla
+        //Andreas Engel blabla2
         EvolutionAlgo(Parameter param);
     }
 }
