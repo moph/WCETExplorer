@@ -15,5 +15,6 @@ namespace EvolutionAlgo
         // Andreas Engel blabla
         //Andreas Engel blabla2
         EvolutionAlgo(Parameter param);
+        EvolutionAlgo(Parameter param, Parameter param);
     }
 }
