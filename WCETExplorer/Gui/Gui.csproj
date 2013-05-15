@@ -140,7 +140,6 @@
     <DesignTimeOnly Include="SampleData\WCETLine\WCETLine.xsd" />
     <DesignTimeOnly Include="SampleData\AVGLine\AVGLine.xsd" />
     <DesignTimeOnly Include="SampleData\FunktionNames\FunktionNames.xsd" />
-    <None Include="ClassDiagram1.cd" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\auto.png" />
     <Resource Include="Images\auto2.png" />
