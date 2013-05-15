@@ -159,6 +159,12 @@
     <Resource Include="Images\save.png" />
     <Resource Include="Images\SmallIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvolutionAlgo\EvolutionAlgo.csproj">
+      <Project>{D8F3D8CC-1C2A-4D93-A69A-A26C84E36E8B}</Project>
+      <Name>EvolutionAlgo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy $(SolutionDir)ES\Es_config.xml $(ProjectDir)$(OutDir)
