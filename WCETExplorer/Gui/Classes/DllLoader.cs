@@ -5,18 +5,28 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
+
+/// Author: Maximilian Krög
+
 namespace Gui.Classes
 {
+    /// <summary>
+    /// Loads the xml file describing an ES and after that also loads the dll.
+    /// </summary>
     class DllLoader
     {
         private static string xsdPath = "es_config.xsd";
 
-        private Dictionary<string, esFunction> functions = new Dictionary<string,esFunction>();
+        private Dictionary<string, esFunction> functions = new Dictionary<string, esFunction>();
         private es theEs;
         private bool success;
         private IntPtr hModule = IntPtr.Zero;
 
-
+        /// <summary>
+        /// Parses the xml and stores every function contained inside for later usage.
+        /// </summary>
+        /// <param name="file">The name of the ES-config-xml.</param>
+        /// <returns>A list of function names available for this ES.</returns>
         public string[] loadDll(string file){
             if (IntPtr.Zero!= hModule)
             {
@@ -50,7 +60,6 @@ namespace Gui.Classes
                     esFunction function = theEs.function[i];
                     ret[i] = name;
                     functions.Add(name, function);
-
                     IntPtr pPtr = GetProcAddress(hModule, name);
                     if (IntPtr.Zero == pPtr)
                     {
@@ -64,38 +73,63 @@ namespace Gui.Classes
             }
         }
 
+        /// <summary>
+        /// Get the Function with the supplied name.
+        /// </summary>
+        /// <param name="name">The name of the function.</param>
+        /// <returns>The esFunction object</returns>
+        /// <exception cref="System.ArgumentException">Thrown for an invalid name.</exception>
+        /// <exception cref="System.NullReferenceException">Thrown when name is null.</exception>
         public esFunction loadFunction(string name)
         {
-            esFunction ret;
-            if (!functions.TryGetValue(name, out ret))
+            if (null == name)
+            {
+                throw new NullReferenceException("name must not be null.");
+            }
+            esFunction func;
+            if (!functions.TryGetValue(null, out func))
             {
                 throw new ArgumentException("Function " + name + " doesn't exist.");
             }
-            return ret;
+            return func;
         }
 
+        /// <summary>
+        /// May be called to unload the currently loaded dll.
+        /// </summary>
         public void unloadDll()
         {
+            if (IntPtr.Zero == hModule)
+            {
+                return;
+            }
             FreeLibrary(hModule);
             hModule = IntPtr.Zero;
         }
 
+        /// <summary>
+        /// Sets success to false when an xsd violation happens.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void settings_ValidationEventHandler(Object sender, ValidationEventArgs e)
         {
             success = false;
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, ExactSpelling = true)]
-        public static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
+        public extern static IntPtr GetProcAddress(IntPtr hModule, string procName);
 
-        [DllImport("kernel32")]
+        [DllImport("kernel32.dll")]
         public extern static IntPtr LoadLibrary(string lpLibFileName);
 
-        [DllImport("kernel32")]
+        [DllImport("kernel32.dll")]
         public extern static Int32 FreeLibrary(IntPtr hModule);
 
 
-
+        /// <summary>
+        /// Simple test to see if the call to the dll fails or not. (It works!)
+        /// </summary>
         private void quickTest()
         {
             string[] fNames = loadDll("Es_config.xml");
@@ -108,6 +142,9 @@ namespace Gui.Classes
             }
         }
 
+        /// <summary>
+        /// Ignore this
+        /// </summary>
         static void Main()
         {
             new DllLoader().quickTest();

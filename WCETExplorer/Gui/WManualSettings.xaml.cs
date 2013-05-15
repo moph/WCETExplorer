@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +28,7 @@ namespace Gui
             InitializeComponent();
             
             // Insert code required on object creation below this point.
-            Function func = new Function();
+            esFunction func;
             
         }
         /// <summary>
