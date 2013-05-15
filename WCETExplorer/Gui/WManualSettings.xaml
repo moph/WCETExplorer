@@ -5,8 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		x:Class="Gui.RibbonWindow4"
-        Title="RibbonWindow4" 
+		x:Class="Gui.WManualSettings"
+        Title="WManualSettings" 
         x:Name="Window"
         Width="640"
 		Height="580">
