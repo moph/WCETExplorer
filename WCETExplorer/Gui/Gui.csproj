@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,6 +36,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Gui.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -59,11 +63,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\DigitPreset.cs" />
     <Compile Include="Classes\DllLoader.cs" />
-    <Compile Include="Classes\EnumPreset.cs" />
-    <Compile Include="Classes\FloatPreset.cs" />
-    <Compile Include="Classes\Function.cs" />
+    <Compile Include="Classes\esFunction.cs" />
+    <Compile Include="Classes\es_config.cs">
+      <SubType>code</SubType>
+    </Compile>
     <Compile Include="Classes\LoadSaveSettings.cs" />
     <Compile Include="Classes\SaveResult.cs" />
     <Compile Include="WManualSettings.xaml.cs">
@@ -136,6 +140,7 @@
     <DesignTimeOnly Include="SampleData\WCETLine\WCETLine.xsd" />
     <DesignTimeOnly Include="SampleData\AVGLine\AVGLine.xsd" />
     <DesignTimeOnly Include="SampleData\FunktionNames\FunktionNames.xsd" />
+    <None Include="ClassDiagram1.cd" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\auto.png" />
     <Resource Include="Images\auto2.png" />
@@ -155,6 +160,12 @@
     <Resource Include="Images\SmallIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy $(SolutionDir)ES\Es_config.xml $(ProjectDir)$(OutDir)
+copy $(SolutionDir)ES\Es_config.xsd $(ProjectDir)$(OutDir)
+copy $(SolutionDir)ES\Simulated_ES.dll $(ProjectDir)$(OutDir)
+</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.
 	<Target Name="BeforeBuild">

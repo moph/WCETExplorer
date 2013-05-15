@@ -1,0 +1,38 @@
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="es">
+    <complexType>
+      <sequence>
+        <element type="string" name="dll"/>
+        <element name="function" maxOccurs="unbounded" minOccurs="0">
+          <complexType>
+            <sequence>
+              <element type="string" name="name"/>
+              <element name="enum" minOccurs="0" maxOccurs="10">
+                <complexType>
+                  <sequence>
+                    <element type="string" name="name"/>
+                    <element type="string" name="value" maxOccurs="10" minOccurs="2"/>
+                  </sequence>
+                </complexType>
+              </element>
+              <element name="float" maxOccurs="10" minOccurs="0">
+                <complexType>
+                  <sequence>
+                    <element type="string" name="name"/>
+                  </sequence>
+                </complexType>
+              </element>
+              <element name="binary" maxOccurs="40" minOccurs="0">
+                <complexType>
+                  <sequence>
+                    <element type="string" name="name"/>
+                  </sequence>
+                </complexType>
+              </element>
+            </sequence>
+          </complexType>
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+</schema>
