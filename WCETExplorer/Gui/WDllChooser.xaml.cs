@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace Gui
 {
 	/// <summary>
-	/// Interaktionslogik für Window2.xaml
+	/// Interaktionslogik für WDllChooser.xaml
 	/// </summary>
-	public partial class Window2 : Window
+	public partial class WDllChooser : Window
 	{
-		public Window2()
+		public WDllChooser()
 		{
 			this.InitializeComponent();
 			

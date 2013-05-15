@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	xmlns:System="clr-namespace:System;assembly=mscorlib" 
 	mc:Ignorable="d"
-	x:Class="Gui.RunWindow"
+	x:Class="Gui.WResult"
 	x:Name="Window"
 	Title="RunWindow"
 	Width="640" Height="480">
@@ -18,7 +18,7 @@
 		</Grid.RowDefinitions>
 		<GroupBox Header="Worst Case Execution Time" Margin="8,8,8,0" VerticalAlignment="Top">
 			<Grid Grid.Row="0">
-				<Image Margin="8,16,0,8" Source="pack://siteoforigin:,,,/Images/es.png" HorizontalAlignment="Left" Width="218"/>
+				<Image Margin="8,16,0,8" Source="Images/es.png" HorizontalAlignment="Left" Width="218"/>
 				<Rectangle Fill="#FFF4F4F5" Margin="226,25.13,118,26.87" Stroke="Black" RadiusX="2" RadiusY="2" Opacity="0.5"/>
 				<Label Content="34.045 ms" Margin="0,38,130,36" FontSize="26.667" FontWeight="Bold" HorizontalAlignment="Right"/>
 				<Button HorizontalAlignment="Right" d:LayoutOverrides="Height" Margin="0,24.26,8,26.87">

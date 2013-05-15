@@ -18,12 +18,12 @@ namespace Gui
     /// <summary>
     /// Interaction logic for RibbonWindow3.xaml
     /// </summary>
-    public partial class RibbonWindow4 : RibbonWindow
+    public partial class WManualSettings : RibbonWindow
     {
         /// <summary>
         /// Aufruf von Window
         /// </summary>
-        public RibbonWindow4()
+        public WManualSettings()
         {
             InitializeComponent();
             
@@ -39,7 +39,7 @@ namespace Gui
         /// <param name="e"></param>
         private void Run_Click(object sender, RoutedEventArgs e)
         {
-            Gui.RunWindow WRun = new Gui.RunWindow();
+            Gui.WResult WRun = new Gui.WResult();
             WRun.Show();
         }
 
@@ -51,7 +51,7 @@ namespace Gui
         /// <param name="e"></param>
         private void Automatic_Click(object sender, RoutedEventArgs e)
         {
-            Gui.MainWindow WAuto = new Gui.MainWindow();
+            Gui.WAlgorithmSettings WAuto = new Gui.WAlgorithmSettings();
             this.Hide();
             WAuto.Show();
         }
@@ -73,7 +73,7 @@ namespace Gui
         /// <param name="e"></param>
         private void Run_Copy_Click(object sender, RoutedEventArgs e)
         {
-            Gui.Window2 WDll = new Gui.Window2();
+            Gui.WDllChooser WDll = new Gui.WDllChooser();
             WDll.Show();
         }
 

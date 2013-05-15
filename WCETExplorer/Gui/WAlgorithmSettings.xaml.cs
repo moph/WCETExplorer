@@ -16,11 +16,11 @@ using Microsoft.Windows.Controls.Ribbon;
 namespace Gui
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WAlgorithmSettings.xaml
     /// </summary>
-    public partial class MainWindow : RibbonWindow
+    public partial class WAlgorithmSettings : RibbonWindow
     {
-        public MainWindow()
+        public WAlgorithmSettings()
         {
             InitializeComponent();
 
@@ -55,7 +55,7 @@ namespace Gui
         /// <param name="e"></param>
         private void Manual_Click(object sender, RoutedEventArgs e)
         {
-            Gui.RibbonWindow4 WAlgo = new Gui.RibbonWindow4();
+            Gui.WManualSettings WAlgo = new Gui.WManualSettings();
             this.Hide();
             WAlgo.Show();
         }
@@ -68,7 +68,7 @@ namespace Gui
         /// <param name="e"></param>
         private void Run_Click(object sender, RoutedEventArgs e)
         {
-            Gui.RunWindow WRun = new Gui.RunWindow();
+            Gui.WResult WRun = new Gui.WResult();
             WRun.Show();
         }
 
@@ -80,7 +80,7 @@ namespace Gui
         /// <param name="e"></param>
         private void Run_Copy_Click(object sender, RoutedEventArgs e)
         {
-            Gui.Window2 WDll = new Gui.Window2();
+            Gui.WDllChooser WDll = new Gui.WDllChooser();
             WDll.Show();
         }
     }

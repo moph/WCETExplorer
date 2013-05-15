@@ -6,7 +6,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 		xmlns:Microsoft_Windows_Controls_Ribbon_Primitives="clr-namespace:Microsoft.Windows.Controls.Ribbon.Primitives;assembly=RibbonControlsLibrary" 
 		mc:Ignorable="d" 
-		x:Class="Gui.MainWindow"
+		x:Class="Gui.WAlgorithmSettings"
         Title="MainWindow"
 		x:Name="RibbonWindow"
 		Width="640" 

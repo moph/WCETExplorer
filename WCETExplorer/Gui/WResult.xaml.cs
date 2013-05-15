@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace Gui
 {
 	/// <summary>
-	/// Interaktionslogik für RunWindow.xaml
+	/// Interaktionslogik für WResult.xaml
 	/// </summary>
-	public partial class RunWindow : Window
+	public partial class WResult : Window
 	{
-		public RunWindow()
+		public WResult()
 		{
 			this.InitializeComponent();
 			
