@@ -108,9 +108,9 @@ namespace Gui.Classes
             }
         }
 
-        //static void Main()
-        //{
-        //    new DllLoader().quickTest();
-        //}
+        static void Main()
+        {
+            new DllLoader().quickTest();
+        }
     }
 }
