@@ -50,8 +50,7 @@ namespace Gui.Classes
                 hModule = LoadLibrary(theEs.dll);
                 if (IntPtr.Zero == hModule)
                 {
-                    Console.WriteLine("Error: " + Marshal.GetLastWin32Error().ToString());
-                    return null;
+                    throw new Exception("Error: " + Marshal.GetLastWin32Error().ToString());
                 }
                 string[] ret = new string[theEs.function.Length];
                 for (int i = 0; i < theEs.function.Length; i++)
@@ -84,10 +83,10 @@ namespace Gui.Classes
         {
             if (null == name)
             {
-                throw new NullReferenceException("name must not be null.");
+                throw new NullReferenceException("Name must not be null.");
             }
             esFunction func;
-            if (!functions.TryGetValue(null, out func))
+            if (!functions.TryGetValue(name, out func))
             {
                 throw new ArgumentException("Function " + name + " doesn't exist.");
             }
@@ -136,9 +135,10 @@ namespace Gui.Classes
             foreach (string name in fNames)
             {
                 esFunction func = loadFunction(name);
-                float[] bla = new float[1];
-                bla[0] = 0.5f;
-                Console.WriteLine(func.f(1, bla, 0, null, 0, null));
+                float[] bla = new float[func.@float.Length];
+                bool[] blub = new bool[func.binary.Length];
+                int[] blurp = new int[func.@enum.Length];
+                Console.WriteLine(name + ": " + func.f(bla.Length, bla, blub.Length, blub, blurp.Length, blurp));
             }
         }
 

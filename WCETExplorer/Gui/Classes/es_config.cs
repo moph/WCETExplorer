@@ -83,6 +83,10 @@ namespace Gui.Classes {
                 return this.enumField;
             }
             set {
+                if (null == value)
+                {
+                    return;
+                }
                 this.enumField = value;
             }
         }
@@ -94,6 +98,10 @@ namespace Gui.Classes {
                 return this.floatField;
             }
             set {
+                if (null == value)
+                {
+                    return;
+                }
                 this.floatField = value;
             }
         }
@@ -105,6 +113,10 @@ namespace Gui.Classes {
                 return this.binaryField;
             }
             set {
+                if (null == value)
+                {
+                    return;
+                }
                 this.binaryField = value;
             }
         }
