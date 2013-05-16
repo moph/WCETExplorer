@@ -19,10 +19,14 @@ namespace EvolutionAlgo
             this._param = param;
 
         }
-
-        public double getFittness()
+        public double fittness
         {
-            return _fittness;
+            get{
+                return _fittness;
+            }
+            set {
+                _fittness = value;
+            }
         }
 
         public void calcFitness()

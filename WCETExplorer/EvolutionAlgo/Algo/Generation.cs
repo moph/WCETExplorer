@@ -69,7 +69,8 @@ namespace EvolutionAlgo
         public void crossover()
         {
 
-
+            Genom test = new Genom(null);
+            
         }
 
         public void mutate()
