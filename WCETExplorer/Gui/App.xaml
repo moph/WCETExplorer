@@ -5,7 +5,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.WCETLine" 
 			 xmlns:SampleData1="clr-namespace:Expression.Blend.SampleData.AVGLine" 
-			 xmlns:SampleData2="clr-namespace:Expression.Blend.SampleData.FunktionNames" 
+			 xmlns:SampleData2="clr-namespace:Expression.Blend.SampleData.FunctionNames" 
 			 mc:Ignorable="d" 
 			 x:Class="Gui.App"
              StartupUri="WManualSettings.xaml">
@@ -15,7 +15,7 @@
     			<ResourceDictionary Source="Simple Styles.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
         
-    		<SampleData2:FunktionNames x:Key="FunktionNames" d:IsDataSource="True"/>
+    		<SampleData2:FunctionNames x:Key="FunctionNames" d:IsDataSource="True"/>
         
     		<SampleData1:AVGLine x:Key="AVGLine" d:IsDataSource="True"/>
         

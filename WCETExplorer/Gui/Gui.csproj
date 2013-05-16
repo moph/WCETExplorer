@@ -80,8 +80,8 @@
     <Compile Include="SampleData\AVGLine\AVGLine.xaml.cs">
       <DependentUpon>AVGLine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SampleData\FunktionNames\FunktionNames.xaml.cs">
-      <DependentUpon>FunktionNames.xaml</DependentUpon>
+    <Compile Include="SampleData\FunctionNames\FunctionNames.xaml.cs">
+      <DependentUpon>FunctionNames.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleData\WCETLine\WCETLine.xaml.cs">
       <DependentUpon>WCETLine.xaml</DependentUpon>
@@ -113,7 +113,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SampleData\FunktionNames\FunktionNames.xaml">
+    <Page Include="SampleData\FunctionNames\FunctionNames.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -140,7 +140,7 @@
     </None>
     <DesignTimeOnly Include="SampleData\WCETLine\WCETLine.xsd" />
     <DesignTimeOnly Include="SampleData\AVGLine\AVGLine.xsd" />
-    <DesignTimeOnly Include="SampleData\FunktionNames\FunktionNames.xsd" />
+    <DesignTimeOnly Include="SampleData\FunctionNames\FunctionNames.xsd" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\auto.png" />
     <Resource Include="Images\auto2.png" />
