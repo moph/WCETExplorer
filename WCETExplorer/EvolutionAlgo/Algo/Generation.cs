@@ -19,6 +19,7 @@ namespace EvolutionAlgo
         {
             this._blaram = param;
             this._size = size;
+            
             createGenes();
         }
 
@@ -48,20 +49,21 @@ namespace EvolutionAlgo
             for (int k = 0; k < this._size; k++)
             {
                 ran = new Random();
-                for (int i = 0; i < countAnalog; i++)
+                for (int i = 0; i < countAnalog; i++) // Erzeugung Random Analogwerte
                 {
 
                     analogVal[i] = (float)ran.NextDouble();
                 }
-                for (int i = 0; i < countDigital; i++)
+                for (int i = 0; i < countDigital; i++) // Erzeugung Random Digitalwerte
                 {
                     digitalVal[i] = rndBoolean();
                 }
-                for (int i = 0; i < countEnums; i++)
+                for (int i = 0; i < countEnums; i++) // Erzeugung Random Enum werte
                 {
                     enumVal[i] = ran.Next(10);
                 }
-
+                genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
+                _genomArray[k] = new Genom(genomParameter);
             }
 
         }
