@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EvolutionAlgo
-{
-    abstract class SelectionStrategy
-    {
+/// <summary>
+/// Author: Josué Kiefer
+/// Date: 17.05.2013
+/// </summary>
+namespace EvolutionAlgo{   
+    abstract class SelectionStrategy{
 
         public void select(){}
     }
