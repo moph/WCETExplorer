@@ -19,21 +19,28 @@ namespace EvolutionAlgo
         {
             this._blaram = param;
             this._size = size;
-            
-            createGenes();
+
+            this.createGenes();
         }
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(null);
+            Genom dummy = new Genom(_blaram);
             return dummy;
         }
 
         public double getAverageFitness()
         {
+            int lenght = _genomArray.Length;
+            double avg = 0;
+            for (int k = 0; k < lenght; k++)
+                _genomArray[k].calcFitness();
+
+            for (int k = 0; k < lenght; k++)
+                avg = avg + _genomArray[k].fittness;
 
 
-            return 0;
+            return avg/lenght;
         }
 
         public void createGenes()
