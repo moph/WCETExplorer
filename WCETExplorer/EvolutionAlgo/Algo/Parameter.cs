@@ -19,7 +19,7 @@ namespace EvolutionAlgo
             this.analog = analog;
             this.digital = digital;
             this.enums = enums;
-            //Dies ist ein GitTest
+            
 
 
             
