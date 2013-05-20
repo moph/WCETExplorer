@@ -135,9 +135,9 @@ namespace Gui.Classes
             foreach (string name in fNames)
             {
                 esFunction func = loadFunction(name);
-                float[] bla = new float[func.@float.Length];
-                bool[] blub = new bool[func.binary.Length];
-                int[] blurp = new int[func.@enum.Length];
+                float[] bla = new float[func.floats.Length];
+                bool[] blub = new bool[func.binaries.Length];
+                int[] blurp = new int[func.enums.Length];
                 Console.WriteLine(name + ": " + func.f(bla.Length, bla, blub.Length, blub, blurp.Length, blurp));
             }
         }

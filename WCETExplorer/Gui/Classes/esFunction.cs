@@ -31,16 +31,9 @@ namespace Gui.Classes
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate double executeEs(int sizeAnalogXML, float[] analog, int sizeDigitalXML, bool[] digital, int sizeSignalXML, int[] typ);
 
-        private esFunction()
-        {
-            enumField = new esFunctionEnum[0];
-            binaryField = new esFunctionBinary[0];
-            floatField = new esFunctionFloat[0];
-        }
-
         public override string ToString()
         {
-            return name;
+            return this.name;
         }
     }
 }

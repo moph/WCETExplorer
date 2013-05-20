@@ -1,35 +1,61 @@
-<schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+    attributeFormDefault="unqualified"
+    elementFormDefault="qualified"
+    xmlns="http://www.w3.org/2001/XMLSchema">
   <element name="es">
     <complexType>
       <sequence>
         <element type="string" name="dll"/>
-        <element name="function" maxOccurs="unbounded" minOccurs="0">
-          <complexType>
+        <element name="function" maxOccurs="unbounded" minOccurs="1">
+          <complexType mixed="true">
             <sequence>
-              <element type="string" name="name"/>
-              <element name="enum" minOccurs="0" maxOccurs="10">
+              <element name="enums" maxOccurs="1" minOccurs="1">
                 <complexType>
                   <sequence>
-                    <element type="string" name="name"/>
-                    <element type="string" name="value" maxOccurs="10" minOccurs="2"/>
+                    <element name="enum" maxOccurs="10" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element type="string" name="value" maxOccurs="10" minOccurs="2"/>
+                        </sequence>
+                        <attribute type="string" name="name" use="required"/>
+                      </complexType>
+                    </element>
                   </sequence>
                 </complexType>
               </element>
-              <element name="float" maxOccurs="10" minOccurs="0">
+              <element name="floats" maxOccurs="1" minOccurs="1">
                 <complexType>
                   <sequence>
-                    <element type="string" name="name"/>
+                    <element name="float" maxOccurs="10" minOccurs="0">
+                      <complexType>
+                        <simpleContent>
+                          <extension base="string">
+                            <attribute type="string" name="name" use="required"/>
+                          </extension>
+                        </simpleContent>
+                      </complexType>
+                    </element>
                   </sequence>
                 </complexType>
               </element>
-              <element name="binary" maxOccurs="40" minOccurs="0">
+              <element name="binaries" maxOccurs="1" minOccurs="1">
                 <complexType>
                   <sequence>
-                    <element type="string" name="name"/>
+                    <element name="binary" maxOccurs="40" minOccurs="0">
+                      <complexType>
+                        <simpleContent>
+                          <extension base="string">
+                            <attribute type="string" name="name" use="required"/>
+                          </extension>
+                        </simpleContent>
+                      </complexType>
+                    </element>
                   </sequence>
                 </complexType>
               </element>
             </sequence>
+            <attribute type="string" name="name" use="required"/>
           </complexType>
         </element>
       </sequence>

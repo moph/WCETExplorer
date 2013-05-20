@@ -58,66 +58,68 @@ namespace Gui.Classes {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class esFunction {
         
+        private esFunctionEnum[] enumsField;
+        
+        private esFunctionFloat[] floatsField;
+        
+        private esFunctionBinary[] binariesField;
+        
+        private string[] textField;
+        
         private string nameField;
         
-        private esFunctionEnum[] enumField;
-        
-        private esFunctionFloat[] floatField;
-        
-        private esFunctionBinary[] binaryField;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("enum", IsNullable=false)]
+        public esFunctionEnum[] enums {
+            get {
+                return this.enumsField;
+            }
+            set {
+                this.enumsField = value;
+            }
+        }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("float", IsNullable=false)]
+        public esFunctionFloat[] floats {
+            get {
+                return this.floatsField;
+            }
+            set {
+                this.floatsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("binary", IsNullable=false)]
+        public esFunctionBinary[] binaries {
+            get {
+                return this.binariesField;
+            }
+            set {
+                this.binariesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string name {
             get {
                 return this.nameField;
             }
             set {
                 this.nameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("enum")]
-        public esFunctionEnum[] @enum {
-            get {
-                return this.enumField;
-            }
-            set {
-                if (null == value)
-                {
-                    return;
-                }
-                this.enumField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("float")]
-        public esFunctionFloat[] @float {
-            get {
-                return this.floatField;
-            }
-            set {
-                if (null == value)
-                {
-                    return;
-                }
-                this.floatField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("binary")]
-        public esFunctionBinary[] binary {
-            get {
-                return this.binaryField;
-            }
-            set {
-                if (null == value)
-                {
-                    return;
-                }
-                this.binaryField = value;
             }
         }
     }
@@ -130,11 +132,47 @@ namespace Gui.Classes {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class esFunctionEnum {
         
-        private string nameField;
-        
         private string[] valueField;
         
+        private string nameField;
+        
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("value")]
+        public string[] value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class esFunctionFloat {
+        
+        private string nameField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string name {
             get {
                 return this.nameField;
@@ -145,8 +183,8 @@ namespace Gui.Classes {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("value")]
-        public string[] value {
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value {
             get {
                 return this.valueField;
             }
@@ -162,11 +200,14 @@ namespace Gui.Classes {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class esFunctionFloat {
+    public partial class esFunctionBinary {
         
         private string nameField;
         
+        private string valueField;
+        
         /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string name {
             get {
                 return this.nameField;
@@ -175,25 +216,15 @@ namespace Gui.Classes {
                 this.nameField = value;
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class esFunctionBinary {
-        
-        private string nameField;
         
         /// <remarks/>
-        public string name {
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value {
             get {
-                return this.nameField;
+                return this.valueField;
             }
             set {
-                this.nameField = value;
+                this.valueField = value;
             }
         }
     }
