@@ -10,17 +10,24 @@ namespace EvolutionAlgo
     /// </summary>
     class Generation
     {
+        // 21.5.13 Note to David: Constructor of Class Genom calculates Fitness.
 
-        private int _size;
+        private uint _size;
         private Genom[] _genomArray;
         private Parameter _blaram;
 
-        public Generation(int size,Parameter param)
+        public Generation(uint size,Parameter param)
         {
             this._blaram = param;
             this._size = size;
 
             this.createGenes();
+        }
+
+        // Create new Generation but use existing genoms.
+        public Generation(Generation gen, uint size)
+        {
+            // create (size - gen._size) new genes.
         }
 
         public Genom getBestGenom()
@@ -43,7 +50,7 @@ namespace EvolutionAlgo
             return avg/lenght;
         }
 
-        public void createGenes()
+        private void createGenes()
         {
             Parameter genomParameter;
             Random ran;
@@ -92,5 +99,7 @@ namespace EvolutionAlgo
             Random rand = new Random();
             return rand.Next(0, 2) == 0;
         }
+
+
     }
 }

@@ -14,10 +14,11 @@ namespace EvolutionAlgo
         private Parameter _param;
         private double _fittness;
 
+        //Create Genom and Calucalte Fitness.
         public Genom(Parameter param)
         {
             this._param = param;
-
+            this.calcFitness();
         }
         public double fittness
         {

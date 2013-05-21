@@ -5,10 +5,13 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    class TournamentSelection : StopCriterion
+    class TournamentSelection : SelectionStrategy
     {
 
-        public void select() { }
+        public override Generation select(Generation myGeneration)
+        {
+            return myGeneration;
+        }
     }
 
 }

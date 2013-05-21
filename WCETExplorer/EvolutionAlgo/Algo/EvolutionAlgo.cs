@@ -12,7 +12,7 @@ namespace EvolutionAlgo
     /// </summary>
     class EvolutionAlgo
     {
-        protected uint _startSize;
+        private uint _startSize;
         private AlgoSettings _aSettings;
         private Parameter _param;
         private Genom _bestGenom;
@@ -20,7 +20,8 @@ namespace EvolutionAlgo
         private finishedWCET_delegate _finishedWCET;
         private finishedManual_delegate _finishedManual;
         private calculateFitness_delegate _calculateFitness;
-        System.Threading.Thread _calculationThread;
+        private System.Threading.Thread _calculationThread;
+        private bool _automatic;
 
         // Delegates for Function calls in GUI by automatic Calculation.
         private delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
@@ -40,6 +41,7 @@ namespace EvolutionAlgo
             this._printResult = printResult;
             this._finishedWCET = finishedWCET;
             this._calculateFitness = calculateFitness;
+            this._automatic = true;
         }
        
         // Constructor for manual calculation of WCET.
@@ -48,6 +50,7 @@ namespace EvolutionAlgo
             this._param = param;
             this._finishedManual = finishedManual;
             this._calculateFitness = calculateFitness;
+            this._automatic = false;
         }
 
         // Private Constructor for optional initialisation.
@@ -69,7 +72,44 @@ namespace EvolutionAlgo
 
         // Does calculation of WCET.
         private void calculation() {
+            // Check if automatic or manual calculation.
+            if (_automatic) {
+                // Start loop and create new Generation.
+                Generation myGeneration = new Generation(_aSettings.populationSize, _param);
+                do
+                {
+                    // Call Functions in GUI to show results.
+                    _printResult(myGeneration, myGeneration.getBestGenom());
+                    // Crossover and Mutate Generation.
+                    myGeneration.crossover();
+                    myGeneration.mutate();
+                    // Select Genes from Generation with selected Selection Strategy.
+                    myGeneration = _aSettings.strategy.select(myGeneration);
+                    // Create new Generation but use existing genoms.
+                    myGeneration = new Generation(myGeneration, _aSettings.populationSize);
+                } while (again());
+                // Finish and return Genom with WCET.
+                _finishedWCET(_bestGenom);
+            } 
+            // Do Manual calculation.
+            else {
+                // Create Genom.
+                Genom myGenom = new Genom(_param);
+                // Return Genom to GUI.
+                _finishedManual(myGenom);
+            }
+        }
 
+        // Checks if Stop Criterions are fulfilled.
+        private bool again() {
+            // Checks all Stop Criterions in array _aSettings.stop.
+            for (int i = 0; i < _aSettings.stop.Length; i++) {
+                // if any is false -> return false and terminate algorithm.
+                if (_aSettings.stop[i].fulfilled()) {
+                    return false;
+                }
+            }
+            return true;
         }
 
 
@@ -77,6 +117,7 @@ namespace EvolutionAlgo
          * ToDo:
          * - Maybe delte private constructor and make calculation static :/
          * - Add correct parameters to delegate calculate Fitness.
+         * - Genom needs Function _calculateFitness.
          */
     }
 }

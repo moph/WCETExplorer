@@ -13,5 +13,10 @@ namespace EvolutionAlgo
         {
             this.fitness = fitness;
         }
+
+        public override bool fulfilled()
+        {
+            return false;
+        }
     }
 }

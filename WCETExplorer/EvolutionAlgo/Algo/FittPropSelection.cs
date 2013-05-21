@@ -7,6 +7,9 @@ namespace EvolutionAlgo
 {
     class FittPropSelection : SelectionStrategy
     {
-        public void select(){}
+        public override Generation select(Generation myGeneration)
+        {
+            return myGeneration;
+        }
     }
 }

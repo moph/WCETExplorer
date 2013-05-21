@@ -10,6 +10,6 @@ using System.Text;
 namespace EvolutionAlgo{   
     abstract class SelectionStrategy{
 
-        public void select(){}
+        abstract public Generation select(Generation myGeneration);
     }
 }

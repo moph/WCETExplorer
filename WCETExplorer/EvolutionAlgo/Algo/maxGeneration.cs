@@ -13,5 +13,9 @@ namespace EvolutionAlgo
         {
             this.maxGen = maxGen;
         }
+
+        public override bool fulfilled() {
+            return false;
+        }
     }
 }

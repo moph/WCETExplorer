@@ -13,5 +13,10 @@ namespace EvolutionAlgo
         {
             this.runtime = runtime;
         }
+
+        public override bool fulfilled()
+        {
+            return false;
+        }
     }
 }
