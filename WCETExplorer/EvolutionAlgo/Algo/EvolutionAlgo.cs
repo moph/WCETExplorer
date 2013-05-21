@@ -76,6 +76,7 @@ namespace EvolutionAlgo
             if (_automatic) {
                 // Start loop and create new Generation.
                 Generation myGeneration = new Generation(_aSettings.populationSize, _param);
+                _bestGenom = myGeneration.getBestGenom();
                 do
                 {
                     // Call Functions in GUI to show results.
@@ -87,6 +88,10 @@ namespace EvolutionAlgo
                     myGeneration = _aSettings.strategy.select(myGeneration);
                     // Create new Generation but use existing genoms.
                     myGeneration = new Generation(myGeneration, _aSettings.populationSize);
+                    // Change bestGenom if necessary.
+                    if (_bestGenom.fittness < myGeneration.getBestGenom().fittness) {
+                        _bestGenom = myGeneration.getBestGenom();
+                    }
                 } while (again());
                 // Finish and return Genom with WCET.
                 _finishedWCET(_bestGenom);
@@ -117,7 +122,8 @@ namespace EvolutionAlgo
          * ToDo:
          * - Maybe delte private constructor and make calculation static :/
          * - Add correct parameters to delegate calculate Fitness.
-         * - Genom needs Function _calculateFitness.
+         * - Genom needs Function _calculateFitness to call DLL.
+         * - Add genomeComparer to compare bestGonom tih others.
          */
     }
 }
