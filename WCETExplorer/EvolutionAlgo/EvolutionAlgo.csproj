@@ -49,6 +49,7 @@
     <Compile Include="Algo\FittPropSelection.cs" />
     <Compile Include="Algo\Generation.cs" />
     <Compile Include="Algo\Genom.cs" />
+    <Compile Include="Algo\GenomeComparer.cs" />
     <Compile Include="Algo\maxGeneration.cs" />
     <Compile Include="Algo\Parameter.cs" />
     <Compile Include="Algo\Program.cs" />
