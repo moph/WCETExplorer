@@ -3,7 +3,12 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 
-namespace EvolutionAlgo.Algo
+
+/// <summary>
+/// Author: Josué Kiefer
+/// Date: 24.05.2013
+/// </summary>
+namespace EvolutionAlgo
 {
     class GenomeComparer : IComparer
     {
