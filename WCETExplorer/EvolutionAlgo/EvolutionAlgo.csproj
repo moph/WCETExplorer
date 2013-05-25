@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algo\AlgoSettings.cs" />
+    <Compile Include="Algo\Elitismus.cs" />
     <Compile Include="Algo\EvolutionAlgo.cs" />
     <Compile Include="Algo\Fitness.cs" />
     <Compile Include="Algo\FittPropSelection.cs" />

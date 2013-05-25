@@ -17,9 +17,9 @@ namespace EvolutionAlgo
             Genom g1 = (Genom)a;
             Genom g2 = (Genom)b;
 
-            if (g1.fittness > g2.fittness)
-                return 1;
             if (g1.fittness < g2.fittness)
+                return 1;
+            if (g1.fittness > g2.fittness)
                 return -1;
             else
                 return 0;
