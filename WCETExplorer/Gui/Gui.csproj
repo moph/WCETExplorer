@@ -8,7 +8,7 @@
     <ProjectGuid>{B5DE8CC2-2D32-4138-9F29-F1BB5CDFC92D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <DefaultClrNameSpace>WPFRibbonApplication1</DefaultClrNameSpace>
+    <DefaultClrNameSpace>Gui</DefaultClrNameSpace>
     <RootNamespace>Gui</RootNamespace>
     <AssemblyName>WCETExplorer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -27,7 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,7 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Gui.App</StartupObject>
@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Classes\LoadSaveSettings.cs" />
     <Compile Include="Classes\SaveResult.cs" />
+    <Compile Include="Test\DllLoaderTest.cs" />
     <Compile Include="WManualSettings.xaml.cs">
       <DependentUpon>WManualSettings.xaml</DependentUpon>
     </Compile>
@@ -168,9 +169,7 @@
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy $(SolutionDir)ES\Es_config.xml $(ProjectDir)$(OutDir)
-copy $(SolutionDir)ES\Es_config.xsd $(ProjectDir)$(OutDir)
-copy $(SolutionDir)ES\Simulated_ES.dll $(ProjectDir)$(OutDir)
-</PreBuildEvent>
+copy $(SolutionDir)ES\Es_config.xsd $(ProjectDir)$(OutDir)</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.

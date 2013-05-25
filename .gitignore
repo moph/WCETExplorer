@@ -10,9 +10,11 @@ Thumbs.db
 *.log
 *.ncb
 *.obj
+*.opensdf
 *.pch
 *.pdb
 *.sbr
+*.sdf
 *.sln
 *.suo
 *.tlb

@@ -27,8 +27,9 @@ namespace Gui.Classes
         /// </summary>
         /// <param name="file">The name of the ES-config-xml.</param>
         /// <returns>A list of function names available for this ES.</returns>
-        public string[] loadDll(string file){
-            if (IntPtr.Zero!= hModule)
+        public string[] loadDll(string file)
+        {
+            if (IntPtr.Zero != hModule)
             {
                 unloadDll();
             }
@@ -49,8 +50,8 @@ namespace Gui.Classes
 
                 hModule = LoadLibrary(theEs.dll);
                 if (IntPtr.Zero == hModule)
-                {
-                    throw new Exception("Error: " + Marshal.GetLastWin32Error().ToString());
+                { // Might be thrown because of mismatch between application and dll bitness (32 / 64)
+                    throw new Exception("Dll-load Error: " + Marshal.GetLastWin32Error().ToString());
                 }
                 string[] ret = new string[theEs.function.Length];
                 for (int i = 0; i < theEs.function.Length; i++)
@@ -125,29 +126,5 @@ namespace Gui.Classes
         [DllImport("kernel32.dll")]
         public extern static Int32 FreeLibrary(IntPtr hModule);
 
-
-        /// <summary>
-        /// Simple test to see if the call to the dll fails or not. (It works!)
-        /// </summary>
-        private void quickTest()
-        {
-            string[] fNames = loadDll("Es_config.xml");
-            foreach (string name in fNames)
-            {
-                esFunction func = loadFunction(name);
-                float[] bla = new float[func.floats.Length];
-                bool[] blub = new bool[func.binaries.Length];
-                int[] blurp = new int[func.enums.Length];
-                Console.WriteLine(name + ": " + func.f(bla.Length, bla, blub.Length, blub, blurp.Length, blurp));
-            }
-        }
-
-        /// <summary>
-        /// Ignore this
-        /// </summary>
-        static void Main()
-        {
-            new DllLoader().quickTest();
-        }
     }
 }
