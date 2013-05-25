@@ -26,10 +26,10 @@ namespace EvolutionAlgo
         {
             this._EMax = 1.9;
             this._EMin = 2.0 - this._EMax;
-            this._newPopSize = 0.2;
+            this._newPopSize = 0.75;
         }
 
-        public int roulette(ArrayList l, double nr)
+        private int roulette(ArrayList l, double nr)
         {
             double sum = 0;
             int index = 0;
