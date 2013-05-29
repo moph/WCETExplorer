@@ -11,7 +11,7 @@ namespace EvolutionAlgo
     class Genom
     {
 
-        private Parameter _param;
+        public Parameter _param;
         private double _fittness;
 
         //Create Genom and Calucalte Fitness.

@@ -29,6 +29,7 @@ namespace EvolutionAlgo
         public Generation(Generation gen, uint size)
         {
             // create (size - gen._size) new genes.
+            gen._genomArray.CopyTo(this._genomArray, 0);
             createGenes(gen._size - size);
         }
 
@@ -94,23 +95,33 @@ namespace EvolutionAlgo
         public void mutate()
         {
             Random rand = new Random();
-            int countAnalog = _blaram.analog.Length;
-            int countDigital = _blaram.digital.Length;
-            int countEnums = _blaram.enums.Length;
+
+            int countAnalog;
+            int countDigital;
+            int countEnums;
             int k;
-            for (k = 0; k < rand.Next(countAnalog); k++)
+            for (k = 0; k < this._genomArray.Length; k++)
             {
-                _blaram.analog[rand.Next(countAnalog - 1)] = (float)rand.NextDouble(); 
-            }
+                if ((rand.NextDouble() - 0.1) == 0.9)
+                {
+                    countAnalog = this._genomArray[k]._param.analog.Length;
+                    countDigital = this._genomArray[k]._param.digital.Length;
+                    countEnums = this._genomArray[k]._param.enums.Length;
+                    for (k = 0; k < rand.Next(countAnalog); k++)
+                    {
+                        this._genomArray[k]._param.analog[rand.Next(countAnalog - 1)] = (float)rand.NextDouble();
+                    }
 
-            for (k = 0; k < rand.Next(countDigital); k++)
-            {
-                _blaram.digital[rand.Next(countDigital - 1)] = rndBoolean();
-            }
+                    for (k = 0; k < rand.Next(countDigital); k++)
+                    {
+                        this._genomArray[k]._param.digital[rand.Next(countDigital - 1)] = rndBoolean();
+                    }
 
-            for (k = 0; k < rand.Next(countEnums); k++)
-            {
-                _blaram.enums[rand.Next(countEnums - 1)] = rand.Next(10);
+                    for (k = 0; k < rand.Next(countEnums); k++)
+                    {
+                        this._genomArray[k]._param.enums[rand.Next(countEnums - 1)] = rand.Next(10);
+                    }
+                }
             }
         }
         private bool rndBoolean()
