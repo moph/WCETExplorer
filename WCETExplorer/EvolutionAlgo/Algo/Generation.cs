@@ -15,19 +15,21 @@ namespace EvolutionAlgo
         private uint _size;
         private Genom[] _genomArray;
         private Parameter _blaram;
+        
 
         public Generation(uint size,Parameter param)
         {
             this._blaram = param;
             this._size = size;
 
-            this.createGenes();
+            this.createGenes(0);
         }
 
         // Create new Generation but use existing genoms.
         public Generation(Generation gen, uint size)
         {
             // create (size - gen._size) new genes.
+            createGenes(gen._size - size);
         }
 
         public Genom getBestGenom()
@@ -50,7 +52,7 @@ namespace EvolutionAlgo
             return avg/lenght;
         }
 
-        private void createGenes()
+        private void createGenes(uint givenGenes)
         {
             Parameter genomParameter;
             Random ran;
@@ -60,7 +62,7 @@ namespace EvolutionAlgo
             float[] analogVal = new float[countAnalog];
             bool[] digitalVal = new bool[countDigital];
             int[] enumVal = new int[countEnums];
-            for (int k = 0; k < this._size; k++)
+            for (uint k = givenGenes; k < this._size; k++)
             {
                 ran = new Random();
                 for (int i = 0; i < countAnalog; i++) // Erzeugung Random Analogwerte
