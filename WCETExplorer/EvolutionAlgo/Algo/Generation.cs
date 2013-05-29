@@ -93,8 +93,25 @@ namespace EvolutionAlgo
 
         public void mutate()
         {
+            Random rand = new Random();
+            int countAnalog = _blaram.analog.Length;
+            int countDigital = _blaram.digital.Length;
+            int countEnums = _blaram.enums.Length;
+            int k;
+            for (k = 0; k < rand.Next(countAnalog); k++)
+            {
+                _blaram.analog[rand.Next(countAnalog - 1)] = (float)rand.NextDouble(); 
+            }
 
+            for (k = 0; k < rand.Next(countDigital); k++)
+            {
+                _blaram.digital[rand.Next(countDigital - 1)] = rndBoolean();
+            }
 
+            for (k = 0; k < rand.Next(countEnums); k++)
+            {
+                _blaram.enums[rand.Next(countEnums - 1)] = rand.Next(10);
+            }
         }
         private bool rndBoolean()
         {
