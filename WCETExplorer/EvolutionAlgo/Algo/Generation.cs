@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 
@@ -12,8 +12,8 @@ namespace EvolutionAlgo
     {
         // 21.5.13 Note to David: Constructor of Class Genom calculates Fitness.
 
-        private uint _size;
-        private Genom[] _genomArray;
+        public uint _size;
+        public Genom[] _genomArray;
         private Parameter _blaram;
         
 
@@ -26,11 +26,11 @@ namespace EvolutionAlgo
         }
 
         // Create new Generation but use existing genoms.
-        public Generation(Generation gen, uint size)
+        public Generation(ArrayList gen, uint size)
         {
             // create (size - gen._size) new genes.
-            gen._genomArray.CopyTo(this._genomArray, 0);
-            createGenes(gen._size - size);
+            gen.CopyTo(this._genomArray, 0);
+            createGenes((uint)gen.Count - size);
         }
 
         public Genom getBestGenom()

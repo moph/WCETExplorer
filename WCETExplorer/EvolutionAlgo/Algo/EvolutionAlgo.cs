@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 
 namespace EvolutionAlgo
@@ -84,10 +85,8 @@ namespace EvolutionAlgo
                     // Crossover and Mutate Generation.
                     myGeneration.crossover();
                     myGeneration.mutate();
-                    // Select Genes from Generation with selected Selection Strategy.
-                    myGeneration = _aSettings.strategy.select(myGeneration);
-                    // Create new Generation but use existing genoms.
-                    myGeneration = new Generation(myGeneration, _aSettings.populationSize);
+                    // Select Genes from Generation with selected Selection Strategy & Create new Generation but use existing genoms.
+                    myGeneration = new Generation(_aSettings.strategy.select(generation2Array(myGeneration)), _aSettings.populationSize);
                     // Change bestGenom if necessary.
                     if (_bestGenom.fittness < myGeneration.getBestGenom().fittness) {
                         _bestGenom = myGeneration.getBestGenom();
@@ -115,6 +114,14 @@ namespace EvolutionAlgo
                 }
             }
             return true;
+        }
+
+        private ArrayList generation2Array(Generation myGeneration) {
+            ArrayList arrayGeneration = new ArrayList();
+            for(int i=0;i<myGeneration._size;i++) {
+                arrayGeneration.Add(myGeneration._genomArray[i]);
+            }
+            return arrayGeneration;
         }
 
 
