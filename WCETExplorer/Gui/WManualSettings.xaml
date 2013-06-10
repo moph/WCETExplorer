@@ -26,7 +26,7 @@
                 <ribbon:RibbonGroup x:Name="Load" Header="">
                     <ribbon:RibbonButton x:Name="SaveConf" LargeImageSource="Images/save.png"  Label="Save Config" Background="#00CDCDCD" />
                     <ribbon:RibbonButton x:Name="LoadConf" LargeImageSource="Images/load2.png" Label="Load Config" Background="#00CDCDCD" Click="LoadConf_Click" />
-                    <ribbon:RibbonButton x:Name="Run_Copy" LargeImageSource="Images/add.png"   Label="Load ES" Click="Run_Copy_Click" />                   
+                    <ribbon:RibbonButton x:Name="LoadES" LargeImageSource="Images/add.png"   Label="Load ES" Click="LoadES_Click" />                   
                 </ribbon:RibbonGroup>
                 <ribbon:RibbonGroup      x:Name="RunGroup" Header="" Margin="0">
                 	<ribbon:RibbonButton x:Name="Automatic" LargeImageSource="Images/auto3.png" Label="Automatic Optimization" Height="Auto" Click="Automatic_Click" />
@@ -60,46 +60,46 @@
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
-						<CheckBox Grid.Row="0" Grid.Column="0" Content="Binary1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="1" Grid.Column="0" Content="Binary2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="2" Grid.Column="0" Content="Binary3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="3" Grid.Column="0" Content="Binary4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="4" Grid.Column="0" Content="Binary5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="5" Grid.Column="0" Content="Binary6" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="6" Grid.Column="0" Content="Binary7" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="7" Grid.Column="0" Content="Binary8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="0" Grid.Column="1" Content="Binary9" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="1" Grid.Column="1" Content="Binary10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="2" Grid.Column="1" Content="Binary11" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="3" Grid.Column="1" Content="Binary12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="4" Grid.Column="1" Content="Binary13" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="5" Grid.Column="1" Content="Binary14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="6" Grid.Column="1" Content="Binary15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="7" Grid.Column="1" Content="Binary16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="0" Grid.Column="2" Content="Binary17" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="1" Grid.Column="2" Content="Binary18" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="2" Grid.Column="2" Content="Binary19" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="3" Grid.Column="2" Content="Binary20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="4" Grid.Column="2" Content="Binary21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="5" Grid.Column="2" Content="Binary22" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="6" Grid.Column="2" Content="Binary23" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="7" Grid.Column="2" Content="Binary24" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="0" Grid.Column="3" Content="Binary25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="1" Grid.Column="3" Content="Binary26" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="2" Grid.Column="3" Content="Binary27" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="3" Grid.Column="3" Content="Binary28" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="4" Grid.Column="3" Content="Binary29" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="5" Grid.Column="3" Content="Binary30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="6" Grid.Column="3" Content="Binary31" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="7" Grid.Column="3" Content="Binary32" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="0" Grid.Column="4" Content="Binary33" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="1" Grid.Column="4" Content="Binary34" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="2" Grid.Column="4" Content="Binary35" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="3" Grid.Column="4" Content="Binary36" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="4" Grid.Column="4" Content="Binary37" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="5" Grid.Column="4" Content="Binary38" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="6" Grid.Column="4" Content="Binary39" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-						<CheckBox Grid.Row="7" Grid.Column="4" Content="Binary40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+						<CheckBox Name="c1" Grid.Row="0" Grid.Column="0" Content="Binary1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c2" Grid.Row="1" Grid.Column="0" Content="Binary2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c3" Grid.Row="2" Grid.Column="0" Content="Binary3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c4" Grid.Row="3" Grid.Column="0" Content="Binary4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c5" Grid.Row="4" Grid.Column="0" Content="Binary5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c6" Grid.Row="5" Grid.Column="0" Content="Binary6" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c7" Grid.Row="6" Grid.Column="0" Content="Binary7" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c8" Grid.Row="7" Grid.Column="0" Content="Binary8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c9" Grid.Row="0" Grid.Column="1" Content="Binary9" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c10" Grid.Row="1" Grid.Column="1" Content="Binary10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c11" Grid.Row="2" Grid.Column="1" Content="Binary11" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c12" Grid.Row="3" Grid.Column="1" Content="Binary12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c13" Grid.Row="4" Grid.Column="1" Content="Binary13" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c14" Grid.Row="5" Grid.Column="1" Content="Binary14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c15" Grid.Row="6" Grid.Column="1" Content="Binary15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c16" Grid.Row="7" Grid.Column="1" Content="Binary16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c17" Grid.Row="0" Grid.Column="2" Content="Binary17" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c18" Grid.Row="1" Grid.Column="2" Content="Binary18" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c19" Grid.Row="2" Grid.Column="2" Content="Binary19" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c20" Grid.Row="3" Grid.Column="2" Content="Binary20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c21" Grid.Row="4" Grid.Column="2" Content="Binary21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c22" Grid.Row="5" Grid.Column="2" Content="Binary22" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c23" Grid.Row="6" Grid.Column="2" Content="Binary23" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c24" Grid.Row="7" Grid.Column="2" Content="Binary24" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c25" Grid.Row="0" Grid.Column="3" Content="Binary25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c26" Grid.Row="1" Grid.Column="3" Content="Binary26" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c27" Grid.Row="2" Grid.Column="3" Content="Binary27" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c28" Grid.Row="3" Grid.Column="3" Content="Binary28" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c29" Grid.Row="4" Grid.Column="3" Content="Binary29" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c30" Grid.Row="5" Grid.Column="3" Content="Binary30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c31" Grid.Row="6" Grid.Column="3" Content="Binary31" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c32" Grid.Row="7" Grid.Column="3" Content="Binary32" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c33" Grid.Row="0" Grid.Column="4" Content="Binary33" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c34" Grid.Row="1" Grid.Column="4" Content="Binary34" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c35" Grid.Row="2" Grid.Column="4" Content="Binary35" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c36" Grid.Row="3" Grid.Column="4" Content="Binary36" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c37" Grid.Row="4" Grid.Column="4" Content="Binary37" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c38" Grid.Row="5" Grid.Column="4" Content="Binary38" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c39" Grid.Row="6" Grid.Column="4" Content="Binary39" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <CheckBox Name="c40" Grid.Row="7" Grid.Column="4" Content="Binary40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 					</Grid>
 				</GroupBox>
 				<GroupBox Header="Enums" VerticalAlignment="Bottom">
@@ -125,43 +125,43 @@
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						<Label   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum1"/>
-						<ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0">
+						<ComboBox Name="e1" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum2"/>
-						<ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e2" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum3"/>
-						<ComboBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e3" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum4"/>
-						<ComboBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e4" Grid.Row="0" Grid.Column="3" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum5"/>
-						<ComboBox Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e5" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum6"/>
-						<ComboBox Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e6" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum7"/>
-						<ComboBox Grid.Row="0" Grid.Column="5" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e7" Grid.Row="0" Grid.Column="5" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum8"/>
-						<ComboBox Grid.Row="1" Grid.Column="5" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e8" Grid.Row="1" Grid.Column="5" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="0" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum9"/>
-						<ComboBox Grid.Row="0" Grid.Column="7" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e9" Grid.Row="0" Grid.Column="7" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 						<Label   Grid.Row="1" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Enum10"/>
-						<ComboBox Grid.Row="1" Grid.Column="7" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox Name="e10" Grid.Row="1" Grid.Column="7" VerticalAlignment="Top" SelectedIndex="0">
 							<ComboBoxItem>Bla</ComboBoxItem>
 						</ComboBox>
 					</Grid>
@@ -189,25 +189,25 @@
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						<Label   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float1"/>
-						<Slider  Grid.Row="0" Grid.Column="1" />
+						<Slider Name="f1" Grid.Row="0" Grid.Column="1" />
 						<Label   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float2"/>
-						<Slider  Grid.Row="1" Grid.Column="1" />
+                        <Slider Name="f2" Grid.Row="1" Grid.Column="1" />
 						<Label   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float3"/>
-						<Slider  Grid.Row="2" Grid.Column="1" />
+                        <Slider Name="f3" Grid.Row="2" Grid.Column="1" />
 						<Label   Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float4"/>
-						<Slider  Grid.Row="0" Grid.Column="3" />
+                        <Slider Name="f4" Grid.Row="0" Grid.Column="3" />
 						<Label   Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float5"/>
-						<Slider  Grid.Row="1" Grid.Column="3" />
+                        <Slider Name="f5" Grid.Row="1" Grid.Column="3" />
 						<Label   Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float6"/>
-						<Slider  Grid.Row="2" Grid.Column="3" />
+                        <Slider Name="f6" Grid.Row="2" Grid.Column="3" />
 						<Label   Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float7"/>
-						<Slider  Grid.Row="0" Grid.Column="5" />
+                        <Slider Name="f7" Grid.Row="0" Grid.Column="5" />
 						<Label   Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float8"/>
-						<Slider  Grid.Row="1" Grid.Column="5" />
+                        <Slider Name="f8" Grid.Row="1" Grid.Column="5" />
 						<Label   Grid.Row="0" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float9"/>
-						<Slider  Grid.Row="0" Grid.Column="7" />
+                        <Slider Name="f9" Grid.Row="0" Grid.Column="7" />
 						<Label   Grid.Row="1" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float10"/>
-						<Slider  Grid.Row="1" Grid.Column="7" />
+                        <Slider Name="f10" Grid.Row="1" Grid.Column="7" />
 					</Grid>
 				</GroupBox>
 			</StackPanel>
