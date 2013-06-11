@@ -64,8 +64,8 @@
         </GroupBox>
         <GroupBox Header="Truncation condition" HorizontalAlignment="Right" Margin="0,8,8,0" Grid.Row="1" Width="300" Height="251.88" VerticalAlignment="Top">
         	<Grid Margin="0,0,-4,-1.04">
-        		<CheckBox x:Name="Number_of_generations" Content="Number of generations" VerticalAlignment="Top" Margin="8,13.901,140.481,0" d:LayoutOverrides="Width" Checked="Number_of_generations_Checked" />
-        		<TextBox Name="numGen" HorizontalAlignment="Left" Height="25" Margin="26,33,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="108" TextAlignment="Right" TextChanged="TextBox_TextChanged" />
+        		<CheckBox x:Name="Number_of_generations" Content="Number of generations" VerticalAlignment="Top" Margin="8,13.901,140.481,0" d:LayoutOverrides="Width"  />
+        		<TextBox Name="numGen" HorizontalAlignment="Left" Height="25" Margin="26,33,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="108" TextAlignment="Right" />
         		<CheckBox x:Name="Runtime__s_" Content="Runtime (s)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,93.901,0,0"/>
         		<TextBox Name="runTime" HorizontalAlignment="Left" Margin="26,113,0,0" TextWrapping="Wrap" Text="7.5" Width="108" TextAlignment="Right" Height="25" VerticalAlignment="Top"/>
         		<CheckBox x:Name="Fitness__ms_" Content="Fitness (ms)" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,0,0,37.96"/>

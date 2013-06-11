@@ -22,12 +22,7 @@ namespace Gui
     public partial class WAlgorithmSettings : RibbonWindow
     {
 
-
-        //public static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
-        //public static WManualSettings WManual = new WManualSettings();
-
-
-
+        
         public WAlgorithmSettings()
         {
             InitializeComponent();
@@ -99,20 +94,32 @@ namespace Gui
         public void setParameter(AlgoSettings algoSettings)
         {
 
-            sele.SetValue = algoSettings.strategy.select;
-            popu.setValue = algoSettings.populationSize;
-            cross.SetValue = algoSettings.crossoverCount;
-            muta.SetValue = algoSettings.mutationRate;
+            sele.SelectedValue = algoSettings.strategy;
+            popu.Value = algoSettings.populationSize;
+            cross.Text = algoSettings.crossoverCount.ToString();
+            muta.Value = algoSettings.mutationRate;
 
-
-            //sele.SetValue = AlgoSettings.SelectionStrategy;
-            //popu.SetValue = AlgoSettings.populationSize;
-            //cross.SetValue = AlgoSettings.crossoverCount;
-            //muta.SetValue = AlgoSettings.mutationRate;
+            maxGeneration m = new maxGeneration(1);
+            Runtime r = new Runtime(1);
+            Fitness f = new Fitness(1);
 
             for (int i = 0; i < algoSettings.stop.Length; i++)
             {
-                numGen.SetValue = algoSettings.stop[i];
+                if (algoSettings.stop[i].GetType().IsAssignableFrom(m.GetType()))
+                {
+                    Number_of_generations.IsChecked = true;
+                    numGen.Text = algoSettings.stop[i].ToString();
+                }
+                if (algoSettings.stop[i].GetType().IsAssignableFrom(r.GetType()))
+                {
+                    Runtime__s_.IsChecked = true;
+                    runTime.Text = algoSettings.stop[i].ToString();
+                }
+                if (algoSettings.stop[i].GetType().IsAssignableFrom(f.GetType()))
+                {
+                    Fitness__ms_.IsChecked = true;
+                    fitness.Text = algoSettings.stop[i].ToString();
+                }
             }
 
         }
@@ -125,29 +132,40 @@ namespace Gui
         {
             int count = 0;
 
+
+            StopCriterion[] stop = new StopCriterion[3];
             AlgoSettings algoSettings = new AlgoSettings();
 
-            algoSettings.strategy = sele.getValue;
-            algoSettings.populationSize = popu.GetValue;
-            algoSettings.crossoverCount = cross.GetValue;
-            algoSettings.mutationRate = muta.GetValue;
+            algoSettings.strategy = (SelectionStrategy)sele.SelectedValue;
+            algoSettings.populationSize = (uint)popu.Value;
+            algoSettings.crossoverCount = Convert.ToUInt32(cross.Text);
+            algoSettings.mutationRate = (float)muta.Value;
 
 
             if (Number_of_generations.IsChecked == true)
             {
-                algoSettings.stop[count] = numGen.GetValue;
+                maxGeneration gen = new maxGeneration(Convert.ToUInt32(numGen.Text));
+                stop[count] = gen;
                 count++;
             }
             if (Runtime__s_.IsChecked == true)
             {
-                algoSettings.stop[count] = runTime.GetValue;
+                Runtime run = new Runtime(Convert.ToUInt32(runTime.Text));
+                stop[count] = run;
                 count++;
             }
             if (Fitness__ms_.IsChecked == true)
             {
-                algoSettings.stop[count] = fitness.GetValue;
+                Fitness fit = new Fitness(Convert.ToUInt32(fitness.Text));
+                stop[count] = fit;
                 count++;
             }
+            StopCriterion[] s = new StopCriterion[count];
+
+            for (int i = 0; i < count; i++)
+                s[i] = stop[i];
+
+            algoSettings.stop = s;
 
         }
     }
