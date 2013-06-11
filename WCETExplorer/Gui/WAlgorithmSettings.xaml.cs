@@ -23,8 +23,8 @@ namespace Gui
     {
 
 
-        public static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
-        public static WManualSettings WManual = new WManualSettings();
+        //public static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
+        //public static WManualSettings WManual = new WManualSettings();
 
 
 
@@ -62,8 +62,9 @@ namespace Gui
         /// <param name="e"></param>
         private void Manual_Click(object sender, RoutedEventArgs e)
         {
-            WAlgorithmSettings.WAlgo.Hide();
-            WAlgorithmSettings.WManual.Show();
+            this.Hide();
+            WManualSettings WManual = new WManualSettings();
+            WManual.Show();
         }
 
         /// <summary>
@@ -97,14 +98,21 @@ namespace Gui
         /// <param name="algoSettings"></param>
         public void setParameter(AlgoSettings algoSettings)
         {
-            sele.SetValue = AlgoSettings.SelectionStrategy;
-            popu.SetValue = AlgoSettings.populationSize;
-            cross.SetValue = AlgoSettings.crossoverCount;
-            muta.SetValue = AlgoSettings.mutationRate;
 
-            for (int i = 0; i < algoSettings.StopCriterion.length; i++)
+            sele.SetValue = algoSettings.strategy.select;
+            popu.setValue = algoSettings.populationSize;
+            cross.SetValue = algoSettings.crossoverCount;
+            muta.SetValue = algoSettings.mutationRate;
+
+
+            //sele.SetValue = AlgoSettings.SelectionStrategy;
+            //popu.SetValue = AlgoSettings.populationSize;
+            //cross.SetValue = AlgoSettings.crossoverCount;
+            //muta.SetValue = AlgoSettings.mutationRate;
+
+            for (int i = 0; i < algoSettings.stop.Length; i++)
             {
-                numGen.SetValue = algoSettings.StopCriterion[i];
+                numGen.SetValue = algoSettings.stop[i];
             }
 
         }
@@ -117,25 +125,27 @@ namespace Gui
         {
             int count = 0;
 
-            AlgoSettings.SelectionStrategy = sele.GetValue;
-            AlgoSettings.populationSize = popu.GetValue;
-            AlgoSettings.crossoverCount = cross.GetValue;
-            AlgoSettings.mutationRate = muta.GetValue;
+            AlgoSettings algoSettings = new AlgoSettings();
+
+            algoSettings.strategy = sele.getValue;
+            algoSettings.populationSize = popu.GetValue;
+            algoSettings.crossoverCount = cross.GetValue;
+            algoSettings.mutationRate = muta.GetValue;
 
 
             if (Number_of_generations.IsChecked == true)
             {
-                AlgoSettings.StopCriterion[count] = numGen.GetValue;
+                algoSettings.stop[count] = numGen.GetValue;
                 count++;
             }
             if (Runtime__s_.IsChecked == true)
             {
-                AlgoSettings.StopCriterion[count] = runTime.GetValue;
+                algoSettings.stop[count] = runTime.GetValue;
                 count++;
             }
             if (Fitness__ms_.IsChecked == true)
             {
-                AlgoSettings.StopCriterion[count] = fitness.GetValue;
+                algoSettings.stop[count] = fitness.GetValue;
                 count++;
             }
 

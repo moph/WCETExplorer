@@ -15,6 +15,7 @@ using Gui.Classes;
 using System.Windows.Controls;
 using EvolutionAlgo;
 
+
 namespace Gui
 {
 
@@ -33,7 +34,7 @@ namespace Gui
         private static ComboBox[] enums;
 
 
-        private static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
+        //private static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
 
         /// <summary>
         /// Aufruf von Window
@@ -74,8 +75,9 @@ namespace Gui
         /// <param name="e"></param>
         private void Automatic_Click(object sender, RoutedEventArgs e)
         {
-            WAlgorithmSettings.WManual.Hide();
-            WAlgorithmSettings.WAlgo.Show();
+            this.Hide();
+            WAlgorithmSettings WAlgo = new WAlgorithmSettings();
+            WAlgo.Show();
         }
 
         private void LoadConf_Click(object sender, RoutedEventArgs e)
