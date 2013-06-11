@@ -4,6 +4,7 @@ Thumbs.db
 *.aps
 *.bak
 *.cache
+*.dll
 *.exe
 *.ilk
 *.lib
