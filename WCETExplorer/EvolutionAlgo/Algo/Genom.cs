@@ -32,7 +32,7 @@ namespace EvolutionAlgo
 
         public void calcFitness()
         {
-
+            
         }
     }
 }
