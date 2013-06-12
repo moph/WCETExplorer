@@ -16,7 +16,7 @@ namespace EvolutionAlgo
         public Genom[] _genomArray;
         private Parameter _blaram;
         
-
+        
         public Generation(uint size,Parameter param)
         {
             this._blaram = param;
@@ -35,7 +35,15 @@ namespace EvolutionAlgo
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(_blaram);
+            Genom dummy = new Genom(null);
+            dummy.fittness = 0;
+            for (int k = 0; k < _genomArray.Length; k++)
+            {
+                if (_genomArray[k].fittness > dummy.fittness)
+                {
+                    dummy = _genomArray[k];
+                }
+            }
             return dummy;
         }
 
