@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    class maxGeneration : StopCriterion
+    public class maxGeneration : StopCriterion
     {
-        private uint maxGen;
+        public uint maxGen { get; set; }
 
         public maxGeneration(uint maxGen)
         {

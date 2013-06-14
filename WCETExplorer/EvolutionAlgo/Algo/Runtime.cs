@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    class Runtime : StopCriterion
+    public class Runtime : StopCriterion
     {
-        private double runtime;
+        public double runtime { get; set; }
 
         public Runtime(double runtime)
         {
@@ -18,5 +18,7 @@ namespace EvolutionAlgo
         {
             return false;
         }
+
+       
     }
 }

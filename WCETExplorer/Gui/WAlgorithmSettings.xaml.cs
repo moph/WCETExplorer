@@ -108,17 +108,19 @@ namespace Gui
                 if (algoSettings.stop[i].GetType().IsAssignableFrom(m.GetType()))
                 {
                     Number_of_generations.IsChecked = true;
-                    numGen.Text = algoSettings.stop[i].ToString();
+                    numGen.Text = ((maxGeneration)algoSettings.stop[i]).maxGen.ToString();
                 }
                 if (algoSettings.stop[i].GetType().IsAssignableFrom(r.GetType()))
                 {
                     Runtime__s_.IsChecked = true;
-                    runTime.Text = algoSettings.stop[i].ToString();
+
+                    runTime.Text = ((Runtime)algoSettings.stop[i]).runtime.ToString();
+
                 }
                 if (algoSettings.stop[i].GetType().IsAssignableFrom(f.GetType()))
                 {
                     Fitness__ms_.IsChecked = true;
-                    fitness.Text = algoSettings.stop[i].ToString();
+                    fitness.Text = ((Fitness)algoSettings.stop[i]).fitness.ToString();
                 }
             }
 
