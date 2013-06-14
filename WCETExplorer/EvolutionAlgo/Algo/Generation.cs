@@ -16,7 +16,7 @@ namespace EvolutionAlgo
         public Genom[] _genomArray;
         private Parameter _blaram;
         
-
+        
         public Generation(uint size,Parameter param)
         {
             this._blaram = param;
@@ -35,7 +35,15 @@ namespace EvolutionAlgo
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(_blaram);
+            Genom dummy = new Genom(null);
+            dummy.fittness = 0;
+            for (int k = 0; k < _genomArray.Length; k++)
+            {
+                if (_genomArray[k].fittness > dummy.fittness)
+                {
+                    dummy = _genomArray[k];
+                }
+            }
             return dummy;
         }
 
@@ -87,9 +95,27 @@ namespace EvolutionAlgo
 
         public void crossover()
         {
-
+            Random rand = new Random();
             Genom test = new Genom(null);
-            
+            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
+            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
+            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
+            for (int k = 0; k < _genomArray.Length; k++)
+            {
+                for (; abgra < _genomArray[0]._param.analog.Length; abgra++)
+                {
+                    _genomArray[k+1]._param.analog[abgra] = _genomArray[k]._param.analog[abgra]; 
+                }
+                for (; abgrd < _genomArray[0]._param.digital.Length; abgrd++)
+                {
+                    _genomArray[k+1]._param.digital[abgrd] = _genomArray[k]._param.digital[abgrd];
+                }
+                for (; abgre < _genomArray[0]._param.enums.Length; abgre++)
+                {
+                    _genomArray[k+1]._param.enums[abgre] = _genomArray[k]._param.enums[abgre];
+                }
+            }
+
         }
 
         public void mutate()
