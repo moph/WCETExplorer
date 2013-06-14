@@ -8,7 +8,7 @@ namespace EvolutionAlgo
     /// <summary>
     /// Author: David Schreiner
     /// </summary>
-    class Parameter
+    public class Parameter
     {
         public float[] analog;
         public bool[] digital;

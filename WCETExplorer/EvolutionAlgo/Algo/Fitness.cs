@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    class Fitness : StopCriterion
+    public class Fitness : StopCriterion
     {
-        private double fitness;
+        public double fitness { get; set; }
 
         public Fitness(double fitness)
         {
