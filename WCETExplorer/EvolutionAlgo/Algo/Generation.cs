@@ -11,24 +11,25 @@ namespace EvolutionAlgo
     class Generation
     {
         // 21.5.13 Note to David: Constructor of Class Genom calculates Fitness.
-
+        EvolutionAlgo _ea;
         public uint _size;
         public Genom[] _genomArray;
         private Parameter _blaram;
         private double mutateRate;
         private uint maxCrossover;
-
-        public Generation(uint size,Parameter param,double mutateRate, uint maxCrossover)
+      
+        public Generation(uint size, Parameter param, double mutateRate, uint maxCrossover, EvolutionAlgo ea)
         {
             this._blaram = param;
             this._size = size;
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
             this.createGenes(0);
+            this._ea = ea;
         }
 
         // Create new Generation but use existing genoms.
-        public Generation(ArrayList gen, uint size,double mutateRate, uint maxCrossover)
+        public Generation(ArrayList gen, uint size, double mutateRate, uint maxCrossover, EvolutionAlgo ea)
         {
             // create (size - gen._size) new genes.
             this.mutateRate = mutateRate;
@@ -56,8 +57,7 @@ namespace EvolutionAlgo
             int lenght = _genomArray.Length;
             double avg = 0;
             for (int k = 0; k < lenght; k++)
-                _genomArray[k].calcFitness();
-
+                _ea._calculateFitness(_genomArray[k]._param.analog, _genomArray[k]._param.digital, _genomArray[k]._param.enums);
             for (int k = 0; k < lenght; k++)
                 avg = avg + _genomArray[k].fittness;
 
@@ -93,6 +93,8 @@ namespace EvolutionAlgo
                 }
                 genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
                 _genomArray[k] = new Genom(genomParameter);
+                //Calculate Fittness.
+                _genomArray[k].fittness = _ea._calculateFitness(analogVal, digitalVal, enumVal);
             }
 
         }

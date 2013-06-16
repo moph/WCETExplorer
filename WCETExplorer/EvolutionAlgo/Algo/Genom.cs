@@ -18,7 +18,6 @@ namespace EvolutionAlgo
         public Genom(Parameter param)
         {
             this._param = param;
-            this.calcFitness();
         }
         public double fittness
         {
@@ -28,11 +27,6 @@ namespace EvolutionAlgo
             set {
                 _fittness = value;
             }
-        }
-
-        public void calcFitness()
-        {
-            
         }
     }
 }
