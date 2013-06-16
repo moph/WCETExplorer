@@ -100,7 +100,7 @@ namespace EvolutionAlgo
             // Do Manual calculation.
             else {
                 // Create Genom.
-                Genom myGenom = new Genom(_param);
+                Genom myGenom = new Genom(_param,this);
                 // Return Genom to GUI.
                 _finishedManual(myGenom);
             }

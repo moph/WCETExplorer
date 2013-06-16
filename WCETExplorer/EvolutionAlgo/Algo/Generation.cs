@@ -40,7 +40,7 @@ namespace EvolutionAlgo
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(null);
+            Genom dummy = new Genom(null,null);
             dummy.fittness = 0;
             for (int k = 0; k < _genomArray.Length; k++)
             {
@@ -92,9 +92,9 @@ namespace EvolutionAlgo
                     enumVal[i] = ran.Next(10);
                 }
                 genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
-                _genomArray[k] = new Genom(genomParameter);
+                _genomArray[k] = new Genom(genomParameter,_ea);
                 //Calculate Fittness.
-                _genomArray[k].fittness = _ea._calculateFitness(analogVal, digitalVal, enumVal);
+                
             }
 
         }
