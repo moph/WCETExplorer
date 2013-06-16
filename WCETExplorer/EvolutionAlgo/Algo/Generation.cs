@@ -16,9 +16,9 @@ namespace EvolutionAlgo
         public Genom[] _genomArray;
         private Parameter _blaram;
         private double mutateRate;
-        private int maxCrossover;
+        private uint maxCrossover;
 
-        public Generation(uint size,Parameter param,double mutateRate, int maxCrossover)
+        public Generation(uint size,Parameter param,double mutateRate, uint maxCrossover)
         {
             this._blaram = param;
             this._size = size;
@@ -28,7 +28,7 @@ namespace EvolutionAlgo
         }
 
         // Create new Generation but use existing genoms.
-        public Generation(ArrayList gen, uint size,double mutateRate, int maxCrossover)
+        public Generation(ArrayList gen, uint size,double mutateRate, uint maxCrossover)
         {
             // create (size - gen._size) new genes.
             this.mutateRate = mutateRate;
