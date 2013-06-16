@@ -15,20 +15,24 @@ namespace EvolutionAlgo
         public uint _size;
         public Genom[] _genomArray;
         private Parameter _blaram;
-        
-        
-        public Generation(uint size,Parameter param)
+        private double mutateRate;
+        private int maxCrossover;
+
+        public Generation(uint size,Parameter param,double mutateRate, int maxCrossover)
         {
             this._blaram = param;
             this._size = size;
-
+            this.mutateRate = mutateRate;
+            this.maxCrossover = maxCrossover;
             this.createGenes(0);
         }
 
         // Create new Generation but use existing genoms.
-        public Generation(ArrayList gen, uint size)
+        public Generation(ArrayList gen, uint size,double mutateRate, int maxCrossover)
         {
             // create (size - gen._size) new genes.
+            this.mutateRate = mutateRate;
+            this.maxCrossover = maxCrossover;
             gen.CopyTo(this._genomArray, 0);
             createGenes((uint)gen.Count - size);
         }
@@ -96,23 +100,26 @@ namespace EvolutionAlgo
         public void crossover()
         {
             Random rand = new Random();
-            Genom test = new Genom(null);
+           
             int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
             int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
             int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
-            for (int k = 0; k < _genomArray.Length; k++)
+            int testJ;
+            for (int k = 0; k < maxCrossover; k++)
             {
+                Random test = new Random();
+                testJ = test.Next(0, _genomArray.Length);
                 for (; abgra < _genomArray[0]._param.analog.Length; abgra++)
                 {
-                    _genomArray[k+1]._param.analog[abgra] = _genomArray[k]._param.analog[abgra]; 
+                    _genomArray[testJ+1]._param.analog[abgra] = _genomArray[testJ]._param.analog[abgra]; 
                 }
                 for (; abgrd < _genomArray[0]._param.digital.Length; abgrd++)
                 {
-                    _genomArray[k+1]._param.digital[abgrd] = _genomArray[k]._param.digital[abgrd];
+                    _genomArray[testJ+1]._param.digital[abgrd] = _genomArray[testJ]._param.digital[abgrd];
                 }
                 for (; abgre < _genomArray[0]._param.enums.Length; abgre++)
                 {
-                    _genomArray[k+1]._param.enums[abgre] = _genomArray[k]._param.enums[abgre];
+                    _genomArray[testJ+1]._param.enums[abgre] = _genomArray[testJ]._param.enums[abgre];
                 }
             }
 
@@ -128,7 +135,7 @@ namespace EvolutionAlgo
             int k;
             for (k = 0; k < this._genomArray.Length; k++)
             {
-                if ((rand.NextDouble() - 0.1) == 0.9)
+                if (rand.NextDouble() == mutateRate)
                 {
                     countAnalog = this._genomArray[k]._param.analog.Length;
                     countDigital = this._genomArray[k]._param.digital.Length;
