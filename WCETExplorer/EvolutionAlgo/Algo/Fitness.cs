@@ -11,7 +11,7 @@ namespace EvolutionAlgo
 {
     public class Fitness : StopCriterion
     {
-        private double fitness;
+        private double fitness { get; set; }
 
         public Fitness(double fitness)
         {

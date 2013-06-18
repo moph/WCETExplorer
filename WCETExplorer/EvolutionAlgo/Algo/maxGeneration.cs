@@ -11,7 +11,7 @@ namespace EvolutionAlgo
 {
     public class maxGeneration : StopCriterion
     {
-        private uint maxGen;
+        private uint maxGen { get; set; }
 
         public maxGeneration(uint maxGen)
         {
