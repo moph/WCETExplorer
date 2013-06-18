@@ -8,7 +8,7 @@ namespace EvolutionAlgo
     /// <summary>
     /// Author:David Schreiner
     /// </summary>
-    class Genom
+    public class Genom
     {
 
         public Parameter _param;
