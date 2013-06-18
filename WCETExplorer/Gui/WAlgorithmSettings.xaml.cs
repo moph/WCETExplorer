@@ -22,12 +22,7 @@ namespace Gui
     public partial class WAlgorithmSettings : RibbonWindow
     {
 
-
-        public static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
-        public static WManualSettings WManual = new WManualSettings();
-
-
-
+        
         public WAlgorithmSettings()
         {
             InitializeComponent();
@@ -62,8 +57,9 @@ namespace Gui
         /// <param name="e"></param>
         private void Manual_Click(object sender, RoutedEventArgs e)
         {
-            WAlgorithmSettings.WAlgo.Hide();
-            WAlgorithmSettings.WManual.Show();
+            this.Hide();
+            WManualSettings WManual = new WManualSettings();
+            WManual.Show();
         }
 
         /// <summary>
@@ -97,14 +93,35 @@ namespace Gui
         /// <param name="algoSettings"></param>
         public void setParameter(AlgoSettings algoSettings)
         {
-            sele.SetValue = AlgoSettings.SelectionStrategy;
-            popu.SetValue = AlgoSettings.populationSize;
-            cross.SetValue = AlgoSettings.crossoverCount;
-            muta.SetValue = AlgoSettings.mutationRate;
 
-            for (int i = 0; i < algoSettings.StopCriterion.length; i++)
+            sele.SelectedValue = algoSettings.strategy;
+            popu.Value = algoSettings.populationSize;
+            cross.Text = algoSettings.crossoverCount.ToString();
+            muta.Value = algoSettings.mutationRate;
+
+            maxGeneration m = new maxGeneration(1);
+            Runtime r = new Runtime(1);
+            Fitness f = new Fitness(1);
+
+            for (int i = 0; i < algoSettings.stop.Length; i++)
             {
-                numGen.SetValue = algoSettings.StopCriterion[i];
+                if (algoSettings.stop[i].GetType().IsAssignableFrom(m.GetType()))
+                {
+                    Number_of_generations.IsChecked = true;
+                    numGen.Text = ((maxGeneration)algoSettings.stop[i]).maxGen.ToString();
+                }
+                if (algoSettings.stop[i].GetType().IsAssignableFrom(r.GetType()))
+                {
+                    Runtime__s_.IsChecked = true;
+
+                    runTime.Text = ((Runtime)algoSettings.stop[i]).runtime.ToString();
+
+                }
+                if (algoSettings.stop[i].GetType().IsAssignableFrom(f.GetType()))
+                {
+                    Fitness__ms_.IsChecked = true;
+                    fitness.Text = ((Fitness)algoSettings.stop[i]).fitness.ToString();
+                }
             }
 
         }
@@ -117,27 +134,40 @@ namespace Gui
         {
             int count = 0;
 
-            AlgoSettings.SelectionStrategy = sele.GetValue;
-            AlgoSettings.populationSize = popu.GetValue;
-            AlgoSettings.crossoverCount = cross.GetValue;
-            AlgoSettings.mutationRate = muta.GetValue;
+
+            StopCriterion[] stop = new StopCriterion[3];
+            AlgoSettings algoSettings = new AlgoSettings();
+
+            algoSettings.strategy = (SelectionStrategy)sele.SelectedValue;
+            algoSettings.populationSize = (uint)popu.Value;
+            algoSettings.crossoverCount = Convert.ToUInt32(cross.Text);
+            algoSettings.mutationRate = (float)muta.Value;
 
 
             if (Number_of_generations.IsChecked == true)
             {
-                AlgoSettings.StopCriterion[count] = numGen.GetValue;
+                maxGeneration gen = new maxGeneration(Convert.ToUInt32(numGen.Text));
+                stop[count] = gen;
                 count++;
             }
             if (Runtime__s_.IsChecked == true)
             {
-                AlgoSettings.StopCriterion[count] = runTime.GetValue;
+                Runtime run = new Runtime(Convert.ToUInt32(runTime.Text));
+                stop[count] = run;
                 count++;
             }
             if (Fitness__ms_.IsChecked == true)
             {
-                AlgoSettings.StopCriterion[count] = fitness.GetValue;
+                Fitness fit = new Fitness(Convert.ToUInt32(fitness.Text));
+                stop[count] = fit;
                 count++;
             }
+            StopCriterion[] s = new StopCriterion[count];
+
+            for (int i = 0; i < count; i++)
+                s[i] = stop[i];
+
+            algoSettings.stop = s;
 
         }
     }

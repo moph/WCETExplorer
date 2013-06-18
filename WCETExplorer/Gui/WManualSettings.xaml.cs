@@ -12,8 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Windows.Controls.Ribbon;
 using Gui.Classes;
-using System.Windows.Controls;
 using EvolutionAlgo;
+
 
 namespace Gui
 {
@@ -33,7 +33,7 @@ namespace Gui
         private static ComboBox[] enums;
 
 
-        private static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
+        //private static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
 
         /// <summary>
         /// Aufruf von Window
@@ -49,7 +49,7 @@ namespace Gui
             enums = new ComboBox[10] { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 };
 
             // Insert code required on object creation below this point.
-            esFunction func;
+            //esFunction func;
             
 
             
@@ -74,8 +74,9 @@ namespace Gui
         /// <param name="e"></param>
         private void Automatic_Click(object sender, RoutedEventArgs e)
         {
-            WAlgorithmSettings.WManual.Hide();
-            WAlgorithmSettings.WAlgo.Show();
+            this.Hide();
+            WAlgorithmSettings WAlgo = new WAlgorithmSettings();
+            WAlgo.Show();
         }
 
         private void LoadConf_Click(object sender, RoutedEventArgs e)
@@ -106,9 +107,9 @@ namespace Gui
         private Parameter getParameters()
         {
 
-            float[] analog;
-            bool[] digital;
-            int[] enumses;
+            float[] analog = new float[floats.Length];
+            bool[] digital = new bool[binaries.Length];
+            int[] enumses = new int[enums.Length];
 
             for (int i = 0; i < binaries.Length; i++)
                 if (binaries[i].IsEnabled == true)
@@ -120,9 +121,9 @@ namespace Gui
 
             for (int i = 0; i < enums.Length; i++)
                 if (enums[i].IsEnabled == true)
-                    enumses[i] = (int)enums[i].SelectedValue;
+                    enumses[i] = enums[i].SelectedIndex;
 
-            Parameter param; // = new Parameter(analog, digital, enums);
+            Parameter param = new Parameter(analog, digital, enumses);
             return param;
         }
 
@@ -142,40 +143,51 @@ namespace Gui
 
             for (int i = 0; i < enums.Length; i++)
                 if (enums[i].IsEnabled == true)
-                    enums[i].SetCurrentValue(param.enums);
+                    enums[i].SelectedIndex = param.enums[i];
 
         }
 
         /// <summary>
         /// Authos: Philipp Klein
         /// </summary>
-        private void setPreconfig(/*esFunction func,*/ esFunctionBinary[] b, esFunctionEnum[] e, esFunctionFloat[] f)
+        private void setPreconfig(esFunction func)
         {
             int sizeB, sizeE, sizeF;
-            
-            //sizeB = func.binaries.Length;
-            //sizeE = func.enums.Length;
-            //sizeF = func.floats.Length;
 
-            sizeB = b.Length;
-            sizeE = e.Length;
-            sizeF = f.Length;
+            sizeB = func.binaries.Length;
+            sizeE = func.enums.Length;
+            sizeF = func.floats.Length;
 
-            for (int i = 0; i < sizeB; i++)
+            int i;
+            for (i = 0; i < sizeB; i++)
             {
-                binaries[i].IsEnabled = false;
+                binaries[i].IsEnabled = true;
                 binaries[i].IsChecked = false;
             }
-            for (int i = 0; i < sizeE; i++)
+            for (; i < binaries.Length; i++)
+            {
+                binaries[i].IsEnabled = false;
+            }
+
+            for (i = 0; i < sizeE; i++)
+            {
+                enums[i].IsEnabled = true;
+                for (int j = 0; j < func.enums[i].value.Length; j++)
+                {
+                    enums[i].Items.Add(func.enums[i].value[j]);
+                }
+            }
+            for (; i < enums.Length; i++)
             {
                 enums[i].IsEnabled = false;
-                enums[i].Items.Add(e[i].value);
             }
-            for (int i = 0; i < sizeF; i++)
+            for (i = 0; i < sizeF; i++)
+            {
+                floats[i].IsEnabled = true;
+            }
+            for (; i < floats.Length; i++)
             {
                 floats[i].IsEnabled = false;
-                floats[i].Minimum = f[i].Value[1];
-                floats[i].Maximum = f[i].Value[2];
             }
 
         }

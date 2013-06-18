@@ -9,7 +9,7 @@ using System.Collections;
 /// Date: 17.05.2013
 /// </summary>
 namespace EvolutionAlgo{
-    abstract class SelectionStrategy
+    public abstract class SelectionStrategy
     {
         public abstract ArrayList select(ArrayList gens);
     }

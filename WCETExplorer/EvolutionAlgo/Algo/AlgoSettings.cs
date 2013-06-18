@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EvolutionAlgo
 {
-    class AlgoSettings
+    public class AlgoSettings
     {
 
         public SelectionStrategy strategy;
