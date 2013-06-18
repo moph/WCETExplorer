@@ -10,18 +10,102 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+///Author: Luisa Andre
+
 namespace Gui
 {
-	/// <summary>
-	/// Interaktionslogik für WDllChooser.xaml
-	/// </summary>
+    /// <summary>
+    /// WDllChooser-Logic for user interaction
+    /// </summary>
 	public partial class WDllChooser : Window
 	{
+        string xmlPath = null;
+        TextBox showXmlPath;
+        string selectedFunction = null;
+
+        /// <summary>
+        /// constructor
+        /// </summary>
 		public WDllChooser()
 		{
 			this.InitializeComponent();
-			
-			// Fügen Sie Code, der bei der Objekterstellung erforderlich ist, unter diesem Punkt ein.
+            showXmlPath = path;
+            showXmlPath.Height = 22;
 		}
+
+        /// <summary>
+        /// returns path of chosen file
+        /// </summary>
+        /// <returns>string</returns>
+        public string getXmlPath()
+        {
+            return xmlPath;
+        }
+
+        /// <summary>
+        /// returns selected funktion
+        /// </summary>
+        /// <returns>string</returns>
+        public string getSelectedFunction()
+        {
+            return selectedFunction;
+        }
+
+        /// <summary>
+        /// logik for "..."-button: opens file-dialog, gets file-path, reads chosen .xml-file 
+        /// and sets values of combobox and textbox
+        /// </summary>
+        /// <param name="sender">Object</param>
+        /// <param name="e">RoutedEventArgs</param>
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            string[] functions;
+            Classes.DllChooser chooser = new Classes.DllChooser();
+            Classes.FunctionChooser fc = new Classes.FunctionChooser();
+
+            xmlPath = chooser.openFileDialog();
+            showXmlPath.Text = xmlPath;
+            functions = fc.getFunctions(xmlPath);
+
+            for (int i = 0; i < functions.Length; i++)
+            {
+                combobox.Items.Add(functions[i]);
+            }
+
+        }
+
+        /// <summary>
+        /// logik for "ok"-button: opens WAlgorithmSettings-window and closes itself.
+        /// maybe it should set some values at WAlgorithmSettings-Object (constructor?)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">EventListener</param>
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            WAlgorithmSettings ws = new WAlgorithmSettings();
+            ws.Show();
+            this.Close();
+        }
+
+        /// <summary>
+        /// logic of textbox
+        /// </summary>
+        /// <param name="sender">Object</param>
+        /// <param name="e">TextChangedEventArgs</param>
+        private void path_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// logic for combobox: sets the selected function
+        /// </summary>
+        /// <param name="sender">Object</param>
+        /// <param name="e">SelectionChangedEventArgs</param>
+        private void combobox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            selectedFunction = combobox.Text;
+        }
+
 	}
 }
