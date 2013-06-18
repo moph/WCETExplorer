@@ -98,6 +98,7 @@ namespace EvolutionAlgo
                 _finishedWCET(_bestGenom);
             } 
             // Do Manual calculation.
+            //Andi ist doof :)
             else {
                 // Create Genom.
                 Genom myGenom = new Genom(_param,this);
