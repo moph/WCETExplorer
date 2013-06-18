@@ -11,7 +11,7 @@ namespace EvolutionAlgo
 {
     public class Runtime : StopCriterion
     {
-        private double runtime;
+        public double runtime { get; set; }
 
         public Runtime(double runtime)
         {
