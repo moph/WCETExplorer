@@ -20,7 +20,7 @@ namespace EvolutionAlgo
         private printResult_delegate _printResult;
         private finishedWCET_delegate _finishedWCET;
         private finishedManual_delegate _finishedManual;
-        private calculateFitness_delegate _calculateFitness;
+        public calculateFitness_delegate _calculateFitness;
         private System.Threading.Thread _calculationThread;
         private bool _automatic;
 
@@ -32,7 +32,7 @@ namespace EvolutionAlgo
         private delegate void finishedManual_delegate(Genom myGenom);
 
         // Delegate for Function call in DLL.
-        private delegate double calculateFitness_delegate(float[] analog, bool[] digital, int[] enmus);
+        public delegate double calculateFitness_delegate(float[] analog, bool[] digital, int[] enmus);
 
         // Constructor for automatic calculation of WCET. 
         EvolutionAlgo(Parameter param, AlgoSettings aSettings, printResult_delegate printResult, finishedWCET_delegate finishedWCET,
@@ -43,6 +43,7 @@ namespace EvolutionAlgo
             this._finishedWCET = finishedWCET;
             this._calculateFitness = calculateFitness;
             this._automatic = true;
+            _startSize = _aSettings.populationSize;
         }
        
         // Constructor for manual calculation of WCET.
@@ -52,6 +53,7 @@ namespace EvolutionAlgo
             this._finishedManual = finishedManual;
             this._calculateFitness = calculateFitness;
             this._automatic = false;
+            _startSize = _aSettings.populationSize;
         }
 
         // Private Constructor for optional initialisation.
@@ -76,7 +78,7 @@ namespace EvolutionAlgo
             // Check if automatic or manual calculation.
             if (_automatic) {
                 // Start loop and create new Generation.
-                Generation myGeneration = new Generation(_aSettings.populationSize, _param);
+                Generation myGeneration = new Generation(_aSettings.populationSize, _param, _aSettings.mutationRate, _aSettings.crossoverCount, this);
                 _bestGenom = myGeneration.getBestGenom();
                 do
                 {
@@ -86,7 +88,7 @@ namespace EvolutionAlgo
                     myGeneration.crossover();
                     myGeneration.mutate();
                     // Select Genes from Generation with selected Selection Strategy & Create new Generation but use existing genoms.
-                    myGeneration = new Generation(_aSettings.strategy.select(generation2Array(myGeneration)), _aSettings.populationSize);
+                    myGeneration = new Generation(_aSettings.strategy.select(generation2Array(myGeneration)), _aSettings.populationSize, _aSettings.mutationRate, _aSettings.crossoverCount, this);
                     // Change bestGenom if necessary.
                     if (_bestGenom.fittness < myGeneration.getBestGenom().fittness) {
                         _bestGenom = myGeneration.getBestGenom();
@@ -98,7 +100,7 @@ namespace EvolutionAlgo
             // Do Manual calculation.
             else {
                 // Create Genom.
-                Genom myGenom = new Genom(_param);
+                Genom myGenom = new Genom(_param,this);
                 // Return Genom to GUI.
                 _finishedManual(myGenom);
             }
