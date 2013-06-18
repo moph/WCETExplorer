@@ -11,14 +11,12 @@
 	<Grid x:Name="LayoutRoot">
 		<Grid>
 			<Label Content="Please select the &quot;*.xml&quot; File of the System you like to &#xa;simulate." Height="44" Margin="8,8,8,0" VerticalAlignment="Top"/>
-			<TextBox TextWrapping="Wrap" Text="D:\Documents\ES\config.xml" VerticalAlignment="Top" Margin="8,56,45.447,0"/>
-			<Button Content="..." HorizontalAlignment="Right" VerticalAlignment="Top" Width="33.447" Margin="0,56,8,0" />
+			<TextBox Name="path" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="8,56,45.447,0" TextChanged="path_TextChanged" />
+			<Button Content="..." HorizontalAlignment="Right" VerticalAlignment="Top" Width="33.447" Margin="0,56,8,0" Click="Button_Click_2" />
 			<Label Content="Function" HorizontalAlignment="Left" Margin="8,79.96,0,0" VerticalAlignment="Top"/>
-			<ComboBox SelectedIndex="0" Margin="67.777,81.96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="225.776">
-				<ComboBoxItem Content="Two-params-function"/>
-				<ComboBoxItem Content="Three-params-function"/>
+			<ComboBox Name="combobox" SelectedIndex="0" Margin="67.777,81.96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="225.776" SelectionChanged="combobox_SelectionChanged_1">
 			</ComboBox>
-			<Button Content="OK" HorizontalAlignment="Right" VerticalAlignment="Top" Width="33.447" Margin="0,81.96,8,0" />
+			<Button Content="OK" HorizontalAlignment="Right" VerticalAlignment="Top" Width="33.447" Margin="0,81.96,8,0" Click="Button_Click_3" />
 		</Grid>
 	</Grid>
 </Window>

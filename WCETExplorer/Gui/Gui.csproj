@@ -64,11 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\DllChooser.cs" />
     <Compile Include="Classes\DllLoader.cs" />
     <Compile Include="Classes\esFunction.cs" />
     <Compile Include="Classes\es_config.cs">
       <SubType>code</SubType>
     </Compile>
+    <Compile Include="Classes\FunctionChooser.cs" />
     <Compile Include="Classes\LoadSaveSettings.cs" />
     <Compile Include="Classes\SaveResult.cs" />
     <Compile Include="Test\DllLoaderTest.cs" />
@@ -168,8 +170,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy $(SolutionDir)ES\Es_config.xml $(ProjectDir)$(OutDir)
-copy $(SolutionDir)ES\Es_config.xsd $(ProjectDir)$(OutDir)</PreBuildEvent>
+    <PreBuildEvent>copy "$(SolutionDir)ES\Es_config.xml" "$(ProjectDir)$(OutDir)"
+
+copy "$(SolutionDir)ES\Es_config.xsd" "$(ProjectDir)$(OutDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.
