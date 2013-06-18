@@ -9,7 +9,7 @@ using System.Text;
 /// </summary> 
 namespace EvolutionAlgo
 {
-    class Runtime : StopCriterion
+    public class Runtime : StopCriterion
     {
         private double runtime;
 

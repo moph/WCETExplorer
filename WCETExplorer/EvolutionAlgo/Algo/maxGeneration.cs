@@ -9,7 +9,7 @@ using System.Text;
 /// </summary>
 namespace EvolutionAlgo
 {
-    class maxGeneration : StopCriterion
+    public class maxGeneration : StopCriterion
     {
         private uint maxGen;
 

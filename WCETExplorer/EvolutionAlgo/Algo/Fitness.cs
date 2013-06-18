@@ -9,7 +9,7 @@ using System.Text;
 /// </summary>
 namespace EvolutionAlgo
 {
-    class Fitness : StopCriterion
+    public class Fitness : StopCriterion
     {
         private double fitness;
 
