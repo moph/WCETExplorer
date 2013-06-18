@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// Author: Josué Kiefer
+/// Date: 25.05.2013
+/// </summary>
 namespace EvolutionAlgo
 {
     public class Fitness : StopCriterion
@@ -14,9 +18,14 @@ namespace EvolutionAlgo
             this.fitness = fitness;
         }
 
-        public override bool fulfilled()
+        public override bool fulfilled() { return false; }
+
+        public bool fulfilled(double fitness)
         {
-            return false;
+            if (fitness < this.fitness)
+                return false;
+            else
+                return true;
         }
     }
 }
