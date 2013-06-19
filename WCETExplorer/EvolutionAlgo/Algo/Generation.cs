@@ -8,7 +8,7 @@ namespace EvolutionAlgo
     /// <summary>
     /// Author: David Schreiner
     /// </summary>
-    class Generation
+    public class Generation
     {
         // 21.5.13 Note to David: Constructor of Class Genom calculates Fitness.
         EvolutionAlgo _ea;
@@ -35,7 +35,7 @@ namespace EvolutionAlgo
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
             gen.CopyTo(this._genomArray, 0);
-            createGenes((uint)gen.Count - size);
+            //createGenes((uint)gen.Count - size);
         }
 
         public Genom getBestGenom()
