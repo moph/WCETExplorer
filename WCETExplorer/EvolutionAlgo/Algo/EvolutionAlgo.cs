@@ -11,7 +11,7 @@ namespace EvolutionAlgo
     /// Author: Andreas Engel
     /// Date: 16.05.2013
     /// </summary>
-    class EvolutionAlgo
+    public class EvolutionAlgo
     {
         private uint _startSize;
         private AlgoSettings _aSettings;

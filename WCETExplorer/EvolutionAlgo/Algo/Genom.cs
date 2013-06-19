@@ -16,7 +16,7 @@ namespace EvolutionAlgo
         private EvolutionAlgo _ea;
 
         //Create Genom and Calucalte Fitness.
-        Genom(Parameter param, EvolutionAlgo ea)
+        public Genom(Parameter param, EvolutionAlgo ea)
         {
             this._param = param;
             this._ea = ea;
