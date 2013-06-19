@@ -16,7 +16,7 @@ namespace EvolutionAlgo
         public double p;
     }
 
-    class FittPropSelection : SelectionStrategy
+    public class FittPropSelection : SelectionStrategy
     {
         private double _newPopSize;
 

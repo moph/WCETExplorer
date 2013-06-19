@@ -10,7 +10,7 @@ using System.Collections;
 /// </summary>
 namespace EvolutionAlgo
 {
-    class Elitismus : SelectionStrategy
+    public class Elitismus : SelectionStrategy
     {
         private double _newPopSize;
 

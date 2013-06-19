@@ -16,7 +16,7 @@ namespace EvolutionAlgo
         public double p;
     }
 
-    class RangSelection : SelectionStrategy
+    public class RangSelection : SelectionStrategy
     {
         private double _EMax;
         private double _EMin;

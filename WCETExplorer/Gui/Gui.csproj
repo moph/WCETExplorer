@@ -73,7 +73,9 @@
     <Compile Include="Classes\FunctionChooser.cs" />
     <Compile Include="Classes\LoadSaveSettings.cs" />
     <Compile Include="Classes\SaveResult.cs" />
+    <Compile Include="Classes\settings.cs" />
     <Compile Include="Test\DllLoaderTest.cs" />
+    <Compile Include="Test\LoadSaveSettingsTest.cs" />
     <Compile Include="WManualSettings.xaml.cs">
       <DependentUpon>WManualSettings.xaml</DependentUpon>
     </Compile>
@@ -171,8 +173,8 @@
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy "$(SolutionDir)ES\Es_config.xml" "$(ProjectDir)$(OutDir)"
-
-copy "$(SolutionDir)ES\Es_config.xsd" "$(ProjectDir)$(OutDir)"</PreBuildEvent>
+copy "$(SolutionDir)ES\Es_config.xsd" "$(ProjectDir)$(OutDir)"
+copy "$(ProjectDir)\settings.xsd" "$(ProjectDir)$(OutDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.
