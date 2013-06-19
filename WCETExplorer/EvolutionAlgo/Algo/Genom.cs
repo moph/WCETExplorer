@@ -8,7 +8,7 @@ namespace EvolutionAlgo
     /// <summary>
     /// Author:David Schreiner
     /// </summary>
-    public class Genom
+    class Genom
     {
 
         public Parameter _param;
@@ -16,7 +16,7 @@ namespace EvolutionAlgo
         private EvolutionAlgo _ea;
 
         //Create Genom and Calucalte Fitness.
-        public Genom(Parameter param, EvolutionAlgo ea)
+        Genom(Parameter param, EvolutionAlgo ea)
         {
             this._param = param;
             this._ea = ea;
