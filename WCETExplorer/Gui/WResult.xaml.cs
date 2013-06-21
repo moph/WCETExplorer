@@ -26,6 +26,9 @@ namespace Gui
 
         int i = 0;
 
+        //falls WCET unrealistisch
+        double dayborder = 86400000;
+
 		public WResult()
 		{
             i = 0;
@@ -70,8 +73,13 @@ namespace Gui
         public void finishedWCET(Genom gn)
         {
             double temp = gn.fittness;
-            temp = Math.Round(temp, 6);
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
+            if (temp >= dayborder)
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "Terminierung fehlgeschlagen");
+            else
+            {
+                temp = Math.Round(temp, 6);
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
+            }
         }
 
         /// <summary>
@@ -80,9 +88,14 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedManual(Genom gn)
         {
-           double temp = gn.fittness;
-           temp = Math.Round(temp, 6);
-           Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus),temp.ToString());
+            double temp = gn.fittness;
+            if (temp >= dayborder)
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "Terminierung fehlgeschlagen");
+            else
+            {
+                temp = Math.Round(temp, 6);
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
+            }
         }
 
         /// <summary>
@@ -91,7 +104,14 @@ namespace Gui
         /// <param name="msg"></param>
         private void setStatus(string msg)
         {
-            fitt.Content = msg + " ms";
+            string stemp = "Terminierung fehlgeschlagen";
+            if (msg.Equals(stemp))
+                fitt.Content = msg;
+            else
+            {
+                fitt.FontSize = 22;
+                fitt.Content = msg + " ms";
+            }
         }
 
         /// <summary>
