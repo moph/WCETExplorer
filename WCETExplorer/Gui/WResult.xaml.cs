@@ -57,7 +57,7 @@ namespace Gui
             AVGValue.Add(new KeyValuePair<int,double>(i, g1.getAverageFitness()));
 
             //Print absolut WCET
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), g2.fittness);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), g2.fittness.ToString());
 
             //print <WCET/AVG line
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
