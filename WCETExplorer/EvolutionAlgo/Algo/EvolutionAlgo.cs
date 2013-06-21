@@ -49,8 +49,8 @@ namespace EvolutionAlgo
         private bool _automatic;
 
         // Delegates for Function calls in GUI by automatic Calculation.
-        private delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
-        private delegate void finishedWCET_delegate(Genom myGenom);
+        public delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
+        public delegate void finishedWCET_delegate(Genom myGenom);
 
 
         // Constructor for automatic calculation of WCET. 

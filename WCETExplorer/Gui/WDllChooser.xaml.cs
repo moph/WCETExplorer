@@ -44,6 +44,14 @@ namespace Gui
             return xmlPath;
         }
 
+
+        public void setXmlPath(string xmlPath)
+        {
+            this.xmlPath = xmlPath;
+        }
+
+
+
         /// <summary>
         /// returns selected funktion
         /// </summary>
@@ -82,7 +90,7 @@ namespace Gui
         /// <param name="e">EventListener</param>
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            WManualSettings ws = new WManualSettings(this);
+            WAlgorithmSettings ws = new WAlgorithmSettings(this);
             ws.Show();
             this.Close();
         }
