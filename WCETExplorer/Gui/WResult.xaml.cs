@@ -68,8 +68,10 @@ namespace Gui
         /// </summary>
         /// <param name="gn"></param>
         public void finishedWCET(Genom gn)
-        {   
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), gn.fittness.ToString());
+        {
+            double temp = gn.fittness;
+            temp = Math.Round(temp, 6);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
         }
 
         /// <summary>
@@ -78,7 +80,9 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedManual(Genom gn)
         {
-           Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus),gn.fittness.ToString());
+           double temp = gn.fittness;
+           temp = Math.Round(temp, 6);
+           Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus),temp.ToString());
         }
 
         /// <summary>
