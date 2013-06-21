@@ -31,8 +31,11 @@ namespace Gui
             i = 0;
 
             WCETValue.Clear();
+            AVGValue.Clear();
 
 			this.InitializeComponent();
+
+            //showColumnChart(null, null);
 		}
         /// <summary>
         /// Wird einzeln aufgerufen liste erstellen
@@ -50,8 +53,12 @@ namespace Gui
             WCETValue.Add(new KeyValuePair<int, double>(i, dummy.fittness));
             AVGValue.Add(new KeyValuePair<int,double>(i, g1.getAverageFitness()));
 
+            //WCETValue.Add(new KeyValuePair<int, double>(1, 12.4));
+            //WCETValue.Add(new KeyValuePair<int, double>(2, 10.4));
+            //WCETValue.Add(new KeyValuePair<int, double>(3, 9.6));
+
             //Print absolut WCET
-            fitt.Content = "" + g2.fittness + " ms";
+            //fitt.Content = "" + g2.fittness + " ms";
 
             WCET.DataContext = WCETValue;
             AVG.DataContext = AVGValue;
