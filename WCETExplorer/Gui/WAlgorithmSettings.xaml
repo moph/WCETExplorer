@@ -38,9 +38,9 @@
         </ribbon:Ribbon>
         <GroupBox Header="Selection Procedure" HorizontalAlignment="Left" Margin="8,8,0,0" Grid.Row="1" Width="304" Height="58" VerticalAlignment="Top">
         	<ComboBox Name ="sele" Margin="57,8,65,0" SelectedIndex="0" Height="25" VerticalAlignment="Top" Width="170">
-        		<ComboBoxItem Content="Elitism" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsSelected="True"/>
+        		<!--<ComboBoxItem Content="Elitism" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsSelected="True"/>
         		<ComboBoxItem Content="Fitness proportionate selection"/>
-        		<ComboBoxItem Content="Tournament selection"/>
+        		<ComboBoxItem Content="Tournament selection"/>-->
         	</ComboBox>
         </GroupBox>
         <GroupBox Header="Population" HorizontalAlignment="Left" Margin="8,70,0,0" Grid.Row="1" Width="304" VerticalAlignment="Top">

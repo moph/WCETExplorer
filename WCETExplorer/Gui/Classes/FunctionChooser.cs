@@ -14,6 +14,9 @@ namespace Gui.Classes
     /// </summary>
     class FunctionChooser
     {
+        private DllLoader dl = new DllLoader();
+
+
         /// <summary>
         /// Returns function-names
         /// </summary>
@@ -22,11 +25,14 @@ namespace Gui.Classes
         public string[] getFunctions(string filePath)
         {
             string[] functions;
-            DllLoader dl = new DllLoader();
 
             functions = dl.loadDll(filePath);
 
             return functions;
+        }
+
+        public esFunction getFunction(string fname) {
+            return dl.loadFunction(fname);
         }
        
     }

@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using Microsoft.Windows.Controls.Ribbon;
 using EvolutionAlgo;
 using Gui.Classes;
-using System.Collections;
 
 namespace Gui
 {
@@ -24,40 +23,24 @@ namespace Gui
     public partial class WAlgorithmSettings : RibbonWindow
     {
 
-        public string dllPath {get;set;}
-        public string functionName {get;set;}
-        public WDllChooser wdll {get;set;}
-        private WManualSettings WManual;
-        public Microsoft.Win32.OpenFileDialog dlg {get;set;}
-        public Microsoft.Win32.SaveFileDialog sfd { get; set; }
-
+<<<<<<< Updated upstream
+        private WDllChooser wdll;
         public WAlgorithmSettings(WDllChooser wdll)
+=======
+        private String dllPath;
+        private String functionName;
+        public WAlgorithmSettings WAlgo { get; set; }
+        public WManualSettings WManual { get; set; }
+        
+
+        public WAlgorithmSettings()
+>>>>>>> Stashed changes
         {
             InitializeComponent();
+            WAlgo = new WAlgorithmSettings();
+            WManual = new WManualSettings();
+			// Insert code required on object creation below this point.
             this.wdll = wdll;
-            dllPath = wdll.getXmlPath();
-            functionName = wdll.getSelectedFunction().name;
-            WManual = new WManualSettings(wdll, this);
-
-            //ArrayList aL = new ArrayList();
-            sele.Items.Add(new Elitismus());
-            sele.Items.Add(new RangSelection());
-            sele.Items.Add(new FittPropSelection());
-            //sele.Items.Add(aL);
-
-
-            //Load
-            dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = "Document";
-            dlg.DefaultExt = ".xml";
-            dlg.Filter = "Extensible Markup Language (.xml)|*.xml";
-
-            //Save
-            sfd = new Microsoft.Win32.SaveFileDialog();
-            sfd.FileName = "Document";
-            sfd.DefaultExt = ".xml";
-            sfd.Filter = "Extensible Markup Language (.xml)|*.xml";
- 
         }
 
         /// <summary>
@@ -67,15 +50,8 @@ namespace Gui
         /// <param name="e"></param>
         private void SaveConf_Click(object sender, RoutedEventArgs e)
         {
-            string savePath;
-            Nullable<bool> result = sfd.ShowDialog();
-            if (result != true)
-            {
-                return;
-            }
-            savePath = sfd.FileName;
-            LoadSaveSettings loadsave = new LoadSaveSettings();
-            loadsave.save(savePath, dllPath, functionName, WManual.getParameter(), getParameter());
+            saveSettings save = new saveSettings(dllPath, functionName, WManual.getParameter(), getParameter());
+            save.Show();
         }
 
         /// <summary>
@@ -85,28 +61,8 @@ namespace Gui
         /// <param name="e"></param>
         private void LoadConf_Click(object sender, RoutedEventArgs e)
         {
-            string loadPath;
-            Parameter param;
-            AlgoSettings sa;
-            string funcName;
-            string dllPath;
-
-            Nullable<bool> result = dlg.ShowDialog();
-            if (result != true)
-            {
-                return;
-            }
-            loadPath = dlg.FileName;
-            LoadSaveSettings loadsave = new LoadSaveSettings();
-            loadsave.load(loadPath, out dllPath, out funcName, out param, out sa);
-            setParameter(sa);
-            WManual.setParamter(param);
-            DllLoader dllLoad = new DllLoader();
-            String[] funcs = dllLoad.loadDll(dllPath);
-            esFunction esf = dllLoad.loadFunction(funcName);
-            this.dllPath = dllPath;
-            WManual.setPreconfig(esf);
-
+            loadSettings load = new loadSettings();
+            load.Show();
         }
 
         /// <summary>
@@ -118,7 +74,12 @@ namespace Gui
         private void Manual_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+<<<<<<< Updated upstream
+            WManualSettings WManual = new WManualSettings(wdll);
+            WManual.Show();
+=======
             this.WManual.Show();
+>>>>>>> Stashed changes
         }
 
         /// <summary>
@@ -141,9 +102,10 @@ namespace Gui
         /// <param name="e"></param>
         private void LoadES_Click(object sender, RoutedEventArgs e)
         {
-            dllPath = wdll.getXmlPath();
-            functionName = wdll.getSelectedFunction().name;
-            wdll.Show();
+            Gui.WDllChooser WDll = new Gui.WDllChooser();
+            dllPath = WDll.getXmlPath();
+            functionName = WDll.getSelectedFunction();
+            WDll.Show();
             
         }
 

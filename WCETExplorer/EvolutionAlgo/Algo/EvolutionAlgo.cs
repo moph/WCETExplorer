@@ -3,10 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Runtime.InteropServices;
 
 
 namespace EvolutionAlgo
-{   
+{
+
+    /// <summary>
+    /// Calls the underlying ES which will return a fitness value or in case of error:
+    /// ERROR_CODE_USING -1.0 Parameteranzahl stimmt nicht mit Definition überein.
+    /// ERROR_CODE_INDEX_OUT_OF_BOUND -2.0 Zugriff auf ein Element ausserhalb des addressierten Bereichs.
+    /// ERROR_CODE_NOT_NORMED -3.0 Wert wurde nicht normiert übergeben.
+    /// ERROR_CODE_MIN_MAX_DISTORTED -4.0 Min / Max Definition fehlerhaft.
+    /// </summary>
+    /// <param name="sizeAnalogXML">Number of analog (float) parameters.</param>
+    /// <param name="analog">Array of float.</param>
+    /// <param name="sizeDigitalXML">Number of digital (bool) parameters.</param>
+    /// <param name="digital">Array of bool.</param>
+    /// <param name="sizeSignalXML">Number of enum parameters.</param>
+    /// <param name="typ">Array of int.</param>
+    /// <returns>The fitness of the current Parameter set.</returns>
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate double calculateFitness_delegate(int sizeAnalogXML, float[] analog, int sizeDigitalXML, bool[] digital, int sizeSignalXML, int[] typ);
+
+
+    // Delegate for Function call in GUI by manual Calculation.
+    public delegate void finishedManual_delegate(Genom myGenom);
+
+    
     /// <summary>
     /// Author: Andreas Engel
     /// Date: 16.05.2013
@@ -25,17 +49,12 @@ namespace EvolutionAlgo
         private bool _automatic;
 
         // Delegates for Function calls in GUI by automatic Calculation.
-        private delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
-        private delegate void finishedWCET_delegate(Genom myGenom);
+        public delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
+        public delegate void finishedWCET_delegate(Genom myGenom);
 
-        // Delegate for Function call in GUI by manual Calculation.
-        private delegate void finishedManual_delegate(Genom myGenom);
-
-        // Delegate for Function call in DLL.
-        public delegate double calculateFitness_delegate(float[] analog, bool[] digital, int[] enmus);
 
         // Constructor for automatic calculation of WCET. 
-        EvolutionAlgo(Parameter param, AlgoSettings aSettings, printResult_delegate printResult, finishedWCET_delegate finishedWCET,
+        public EvolutionAlgo(Parameter param, AlgoSettings aSettings, printResult_delegate printResult, finishedWCET_delegate finishedWCET,
             calculateFitness_delegate calculateFitness) : this() {
             this._param = param;
             this._aSettings = aSettings;
@@ -45,15 +64,15 @@ namespace EvolutionAlgo
             this._automatic = true;
             _startSize = _aSettings.populationSize;
         }
-       
+
         // Constructor for manual calculation of WCET.
-        EvolutionAlgo(Parameter param, finishedManual_delegate finishedManual, calculateFitness_delegate calculateFitness) : this()
+        public EvolutionAlgo(Parameter param, finishedManual_delegate finishedManual, calculateFitness_delegate calculateFitness)
+            : this()
         {
             this._param = param;
             this._finishedManual = finishedManual;
             this._calculateFitness = calculateFitness;
             this._automatic = false;
-            _startSize = _aSettings.populationSize;
         }
 
         // Private Constructor for optional initialisation.

@@ -32,21 +32,28 @@ namespace Gui
         private static CheckBox[] binaries;
         private static ComboBox[] enums;
 
+        private WDllChooser wdll;
+        private WAlgorithmSettings WAlgo;
+        esFunction esf;
+
 
         //private static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
 
         /// <summary>
         /// Aufruf von Window
         /// </summary>
-        public WManualSettings()
+        public WManualSettings(WDllChooser wdll, WAlgorithmSettings WAlgo)
         {
-
-            
             InitializeComponent();
-            
+            this.WAlgo = WAlgo;
+            this.wdll = wdll;
+            esf = wdll.getSelectedFunction();
             binaries = new CheckBox[40] { c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40 };
             floats = new Slider[10] { f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 };
             enums = new ComboBox[10] { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 };
+
+
+            setPreconfig(wdll.getSelectedFunction());
 
             // Insert code required on object creation below this point.
             //esFunction func;
@@ -54,6 +61,9 @@ namespace Gui
 
             
         }
+
+        public delegate void finishedManual_delegate(Genom gn);
+
         /// <summary>
         /// Run
         /// Author: Philipp Klein
@@ -64,6 +74,11 @@ namespace Gui
         {
             WResult WR = new WResult();
             WR.Show();
+            EvolutionAlgo.finishedManual_delegate bla = WR.finishedManual;
+
+            Parameter p = this.getParameter();
+            EvolutionAlgo.EvolutionAlgo algo = new EvolutionAlgo.EvolutionAlgo(p, bla, esf.f);
+            algo.go();
         }
 
         /// <summary>
@@ -75,18 +90,45 @@ namespace Gui
         private void Automatic_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            WAlgorithmSettings WAlgo = new WAlgorithmSettings();
             WAlgo.Show();
         }
 
         private void LoadConf_Click(object sender, RoutedEventArgs e)
         {
+            string loadPath;
+            Parameter param;
+            AlgoSettings sa;
+            string funcName;
+            string dllPath;
 
+            Nullable<bool> result = WAlgo.dlg.ShowDialog();
+            if (result != true)
+            {
+                return;
+            }
+            loadPath = WAlgo.dlg.FileName;
+            LoadSaveSettings loadsave = new LoadSaveSettings();
+            loadsave.load(loadPath, out dllPath, out funcName, out param, out sa);
+            WAlgo.setParameter(sa);
+            this.setParamter(param);
+            DllLoader dllLoad = new DllLoader();
+            String[] funcs = dllLoad.loadDll(dllPath);
+            esFunction esf = dllLoad.loadFunction(funcName);
+            WAlgo.dllPath = dllPath;
+            this.setPreconfig(esf);
         }
 
         private void SaveConf_Click(object sender, RoutedEventArgs e)
         {
-            
+            string savePath;
+            Nullable<bool> result = WAlgo.sfd.ShowDialog();
+            if (result != true)
+            {
+                return;
+            }
+            savePath = WAlgo.sfd.FileName;
+            LoadSaveSettings loadsave = new LoadSaveSettings();
+            loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), WAlgo.getParameter());
         }
 
         /// <summary>
@@ -104,7 +146,7 @@ namespace Gui
         /// <summary>
         /// Author: Philipp Klein
         /// </summary>
-        private Parameter getParameters()
+        public Parameter getParameter()
         {
 
             float[] analog = new float[floats.Length];
@@ -130,7 +172,7 @@ namespace Gui
         /// <summary>
         /// Author: Philipp Klein
         /// </summary>
-        private void setParamters(Parameter param)
+        public void setParamter(Parameter param)
         {
 
             for (int i = 0; i < binaries.Length; i++)
@@ -150,7 +192,7 @@ namespace Gui
         /// <summary>
         /// Authos: Philipp Klein
         /// </summary>
-        private void setPreconfig(esFunction func)
+        public void setPreconfig(esFunction func)
         {
             int sizeB, sizeE, sizeF;
 

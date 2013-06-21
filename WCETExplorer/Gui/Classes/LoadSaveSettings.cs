@@ -10,6 +10,9 @@ using System.Collections;
 
 namespace Gui.Classes
 {
+    /// <summary>
+    /// /// Author: Maximilian Krög
+    /// </summary>
     enum Strategy
     {
         elitism = 0,
@@ -17,6 +20,9 @@ namespace Gui.Classes
         rang = 2,
     }
 
+    /// <summary>
+    /// /// Author: Maximilian Krög
+    /// </summary>
     public class LoadSaveSettings
     {
         private static string xsdPath = "settings.xsd";
