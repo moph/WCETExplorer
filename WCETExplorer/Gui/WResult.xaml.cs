@@ -30,9 +30,6 @@ namespace Gui
 		{
             i = 0;
 
-            WCETValue.Clear();
-            AVGValue.Clear();
-
 			this.InitializeComponent();
 
             //showColumnChart(null, null);
@@ -43,26 +40,27 @@ namespace Gui
         /// Author Marcus Eiswirt
         /// <param name="g1"></param>
         /// <param name="g2"></param>
-        private void showColumnChart(Generation g1, Genom g2)
+        private void printResult(Generation g1, Genom g2)
         {
             Genom dummy = new Genom(null, null);
             //get best Genom from one Generation
             dummy = g1.getBestGenom();
 
             //ADD AVG and WCET from GENERATION to List for print
+            i = WCETValue.Capacity + 1;
             WCETValue.Add(new KeyValuePair<int, double>(i, dummy.fittness));
+
+            i = AVGValue.Capacity + 1;
             AVGValue.Add(new KeyValuePair<int,double>(i, g1.getAverageFitness()));
 
-            //WCETValue.Add(new KeyValuePair<int, double>(1, 12.4));
-            //WCETValue.Add(new KeyValuePair<int, double>(2, 10.4));
-            //WCETValue.Add(new KeyValuePair<int, double>(3, 9.6));
-
             //Print absolut WCET
-            //fitt.Content = "" + g2.fittness + " ms";
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), g2.fittness);
 
-            WCET.DataContext = WCETValue;
-            AVG.DataContext = AVGValue;
+            //print <WCET/AVG line
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
 
+            i = 0;
         }
 
         /// <summary>
@@ -70,11 +68,11 @@ namespace Gui
         /// </summary>
         /// <param name="gn"></param>
         public void finishedWCET(Genom gn)
-        {   // TODO wird zum schluss aufgerufen
-            // -> Nach Terminierung 
-            fitt.Content = "" + gn.fittness + " ms";
+        {
+            double temp = gn.fittness;
+            temp = Math.Round(temp, 6);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
         }
-
 
         /// <summary>
         /// Author Marcus Eiswirt
@@ -82,16 +80,37 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedManual(Genom gn)
         {
-            DispatcherOperation op = Dispatcher.BeginInvoke(
-                DispatcherPriority.Normal,
-                new Action<string>(setStatus),
-                gn.fittness.ToString());
+           double temp = gn.fittness;
+           temp = Math.Round(temp, 6);
+           Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus),temp.ToString());
         }
 
+        /// <summary>
+        /// Author Marcus Eiswirt
+        /// </summary>
+        /// <param name="msg"></param>
         private void setStatus(string msg)
         {
             fitt.Content = msg + " ms";
         }
 
+        /// <summary>
+        /// Author Marcus Eiswirt
+        /// </summary>
+        /// <param name="tmp"></param>
+        private void printWCET(List<KeyValuePair<int, double>> tmp)
+        {
+            WCET.DataContext = tmp;
+        }
+
+
+        /// <summary>
+        /// Author Marcus Eiswirt
+        /// </summary>
+        /// <param name="tmp"></param>
+        private void printAVG(List<KeyValuePair<int, double>> tmp)
+        {
+            AVG.DataContext = tmp;
+        }
 	}
 }
