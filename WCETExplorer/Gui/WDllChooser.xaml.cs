@@ -24,7 +24,7 @@ namespace Gui
         private string selectedFunction = null;
         private Classes.DllChooser chooser = new Classes.DllChooser();
         private Classes.FunctionChooser fc = new Classes.FunctionChooser();
-
+        private WAlgorithmSettings ws = null;
         /// <summary>
         /// constructor
         /// </summary>
@@ -90,9 +90,13 @@ namespace Gui
         /// <param name="e">EventListener</param>
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            WAlgorithmSettings ws = new WAlgorithmSettings(this);
-            ws.Show();
-            this.Close();
+            if (ws == null)
+            {
+                ws = new WAlgorithmSettings(this);
+                ws.Show();
+            }
+            this.Hide();
+            ws.WManual.setPreconfig(getSelectedFunction());
         }
 
         /// <summary>
@@ -112,7 +116,7 @@ namespace Gui
         /// <param name="e">SelectionChangedEventArgs</param>
         private void combobox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            selectedFunction = combobox.Text;
+            selectedFunction = (string)combobox.SelectedValue;
         }
 
 	}
