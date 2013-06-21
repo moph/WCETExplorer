@@ -43,7 +43,7 @@ namespace Gui
         /// Author Marcus Eiswirt
         /// <param name="g1"></param>
         /// <param name="g2"></param>
-        private void printResult(Generation g1, Genom g2)
+        public void printResult(Generation g1, Genom g2)
         {
             Genom dummy = new Genom(null, null);
             //get best Genom from one Generation

@@ -146,9 +146,10 @@ namespace Gui
         {
             Gui.WResult WRun = new Gui.WResult();
             WRun.Show();
-            //EvolutionAlgo.printResult_delegate blab = WRun.;
-            //EvolutionAlgo.finishedManual_delegate bla = WRun.finishedWCET;
-            //EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(),getParameter(), ,  , wdll.getSelectedFunction().f);
+            EvolutionAlgo.printResult_delegate pR = WRun.printResult;
+            EvolutionAlgo.finishedWCET_delegate fW = WRun.finishedWCET;
+            EvolutionAlgo.EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(),getParameter(), pR, fW, wdll.getSelectedFunction().f);
+            evo.go();
         }
 
         /// <summary>
