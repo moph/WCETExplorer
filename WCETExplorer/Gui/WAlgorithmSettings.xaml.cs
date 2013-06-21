@@ -27,7 +27,7 @@ namespace Gui
         public string dllPath {get;set;}
         public string functionName {get;set;}
         public WDllChooser wdll {get;set;}
-        private WManualSettings WManual;
+        public  WManualSettings WManual {get; set;}
         public Microsoft.Win32.OpenFileDialog dlg {get;set;}
         public Microsoft.Win32.SaveFileDialog sfd { get; set; }
 
@@ -99,14 +99,18 @@ namespace Gui
             loadPath = dlg.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
             loadsave.load(loadPath, out dllPath, out funcName, out param, out sa);
-            setParameter(sa);
-            WManual.setParamter(param);
             DllLoader dllLoad = new DllLoader();
             String[] funcs = dllLoad.loadDll(dllPath);
             esFunction esf = dllLoad.loadFunction(funcName);
             this.dllPath = dllPath;
             WManual.setPreconfig(esf);
 
+            Number_of_generations.IsChecked = false;
+            Runtime__s_.IsChecked = false;
+            Fitness__ms_.IsChecked = false;
+
+            setParameter(sa);
+            WManual.setParamter(param);
         }
 
         /// <summary>
@@ -160,25 +164,21 @@ namespace Gui
             cross.Text = algoSettings.crossoverCount.ToString();
             muta.Value = algoSettings.mutationRate;
 
-            maxGeneration m = new maxGeneration(1);
-            Runtime r = new Runtime(1);
-            Fitness f = new Fitness(1);
-
             for (int i = 0; i < algoSettings.stop.Length; i++)
             {
-                if (algoSettings.stop[i].GetType().IsAssignableFrom(m.GetType()))
+                if (algoSettings.stop[i] is maxGeneration)
                 {
                     Number_of_generations.IsChecked = true;
                     numGen.Text = ((maxGeneration)algoSettings.stop[i]).maxGen.ToString();
                 }
-                if (algoSettings.stop[i].GetType().IsAssignableFrom(r.GetType()))
+                if (algoSettings.stop[i] is Runtime)
                 {
                     Runtime__s_.IsChecked = true;
 
                     runTime.Text = ((Runtime)algoSettings.stop[i]).runtime.ToString();
 
                 }
-                if (algoSettings.stop[i].GetType().IsAssignableFrom(f.GetType()))
+                if (algoSettings.stop[i] is Fitness)
                 {
                     Fitness__ms_.IsChecked = true;
                     fitness.Text = ((Fitness)algoSettings.stop[i]).fitness.ToString();
@@ -233,5 +233,6 @@ namespace Gui
             return algoSettings;
 
         }
+
     }
 }
