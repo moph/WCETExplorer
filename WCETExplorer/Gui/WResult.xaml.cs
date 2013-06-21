@@ -29,9 +29,6 @@ namespace Gui
 		{
             i = 0;
 
-            WCETValue.Clear();
-            AVGValue.Clear();
-
 			this.InitializeComponent();
 
             //showColumnChart(null, null);
@@ -57,7 +54,7 @@ namespace Gui
             //WCETValue.Add(new KeyValuePair<int, double>(3, 9.6));
 
             //Print absolut WCET
-            //fitt.Content = "" + g2.fittness + " ms";
+            fitt.Content = "" + g2.fittness + " ms";
 
             WCET.DataContext = WCETValue;
             AVG.DataContext = AVGValue;
