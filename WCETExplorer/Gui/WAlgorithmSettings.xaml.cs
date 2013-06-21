@@ -27,7 +27,7 @@ namespace Gui
         public string dllPath {get;set;}
         public string functionName {get;set;}
         public WDllChooser wdll {get;set;}
-        public  WManualSettings WManual {get; set;}
+        public WManualSettings WManual {get; set;}
         public Microsoft.Win32.OpenFileDialog dlg {get;set;}
         public Microsoft.Win32.SaveFileDialog sfd { get; set; }
 
@@ -146,6 +146,10 @@ namespace Gui
         {
             Gui.WResult WRun = new Gui.WResult();
             WRun.Show();
+            EvolutionAlgo.printResult_delegate pR = WRun.printResult;
+            EvolutionAlgo.finishedWCET_delegate fW = WRun.finishedWCET;
+            EvolutionAlgo.EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(),getParameter(), pR, fW, wdll.getSelectedFunction().f);
+            evo.go();
         }
 
         /// <summary>
@@ -232,13 +236,13 @@ namespace Gui
             }
             if (Runtime__s_.IsChecked == true)
             {
-                Runtime run = new Runtime(Convert.ToUInt32(runTime.Text));
+                Runtime run = new Runtime(Convert.ToDouble(runTime.Text));
                 stop[count] = run;
                 count++;
             }
             if (Fitness__ms_.IsChecked == true)
             {
-                Fitness fit = new Fitness(Convert.ToUInt32(fitness.Text));
+                Fitness fit = new Fitness(Convert.ToDouble(fitness.Text));
                 stop[count] = fit;
                 count++;
             }
@@ -248,7 +252,7 @@ namespace Gui
                 s[i] = stop[i];
 
             algoSettings.stop = s;
-
+            
             return algoSettings;
 
         }

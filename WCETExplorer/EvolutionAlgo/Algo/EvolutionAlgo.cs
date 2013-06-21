@@ -29,7 +29,9 @@ namespace EvolutionAlgo
 
     // Delegate for Function call in GUI by manual Calculation.
     public delegate void finishedManual_delegate(Genom myGenom);
-
+    // Delegates for Function calls in GUI by automatic Calculation.
+    public delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
+    public delegate void finishedWCET_delegate(Genom myGenom);
     
     /// <summary>
     /// Author: Andreas Engel
@@ -48,9 +50,7 @@ namespace EvolutionAlgo
         private System.Threading.Thread _calculationThread;
         private bool _automatic;
 
-        // Delegates for Function calls in GUI by automatic Calculation.
-        public delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
-        public delegate void finishedWCET_delegate(Genom myGenom);
+        
 
 
         // Constructor for automatic calculation of WCET. 
