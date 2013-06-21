@@ -46,6 +46,17 @@ namespace Gui
             //sele.Items.Add(aL);
 
 
+            popu.Minimum = 10;
+            popu.Maximum = 1000;
+            popu.IsSnapToTickEnabled = true;
+            popu.TickFrequency = 1;
+            muta.Minimum = 0;
+            muta.Maximum = 1;
+            muta.IsSnapToTickEnabled = true;
+            muta.TickFrequency=0.01;
+
+
+
             //Load
             dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "Document";
@@ -159,7 +170,15 @@ namespace Gui
         public void setParameter(AlgoSettings algoSettings)
         {
 
-            sele.SelectedValue = algoSettings.strategy;
+            //sele.SelectedValue = algoSettings.strategy;
+
+            if (algoSettings.strategy is Elitismus)
+                sele.SelectedIndex = 0;
+            else if (algoSettings.strategy is RangSelection)
+                sele.SelectedIndex = 1;
+            else if (algoSettings.strategy is FittPropSelection)
+                sele.SelectedIndex = 2;
+
             popu.Value = algoSettings.populationSize;
             cross.Text = algoSettings.crossoverCount.ToString();
             muta.Value = algoSettings.mutationRate;
@@ -233,6 +252,42 @@ namespace Gui
             return algoSettings;
 
         }
+
+        
+        private void popu_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            popsize.Content= popu.Value;
+        }
+
+        private void muta_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            mutasize.Content = muta.Value;
+        }
+
+        private void NumericOnly(System.Object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = IsTextNumeric(e.Text);
+        }
+
+        private static bool IsTextNumeric(string str)
+        {
+            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9]");
+            return reg.IsMatch(str);
+        }
+
+
+        private void NumericPointOnly(System.Object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = IsTextNumericPoint(e.Text);
+        }
+
+        private static bool IsTextNumericPoint(string str)
+        {
+            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9.]");
+            return reg.IsMatch(str);
+        }
+
+
 
     }
 }
