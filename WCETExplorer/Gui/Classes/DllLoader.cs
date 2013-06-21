@@ -13,11 +13,11 @@ namespace Gui.Classes
     /// <summary>
     /// Loads the xml file describing an ES and after that also loads the dll.
     /// </summary>
-    class DllLoader
+    class DllLoader : IDisposable
     {
         private static string xsdPath = "es_config.xsd";
 
-        private Dictionary<string, esFunction> functions = new Dictionary<string, esFunction>();
+        private Dictionary<string, esFunction> functions;
         private es theEs;
         private bool success;
         private IntPtr hModule = IntPtr.Zero;
@@ -29,6 +29,7 @@ namespace Gui.Classes
         /// <returns>A list of function names available for this ES.</returns>
         public string[] loadDll(string file)
         {
+            functions = new Dictionary<string, esFunction>();
             if (IntPtr.Zero != hModule)
             {
                 unloadDll();
@@ -53,23 +54,22 @@ namespace Gui.Classes
                 { // Might be thrown because of mismatch between application and dll bitness (32 / 64)
                     throw new Exception("Dll-load Error: " + Marshal.GetLastWin32Error().ToString());
                 }
-                string[] ret = new string[theEs.function.Length];
+                string[] fNames = new string[theEs.function.Length];
                 for (int i = 0; i < theEs.function.Length; i++)
                 {
                     string name = theEs.function[i].name;
                     esFunction function = theEs.function[i];
-                    ret[i] = name;
+                    fNames[i] = name;
                     functions.Add(name, function);
                     IntPtr pPtr = GetProcAddress(hModule, name);
                     if (IntPtr.Zero == pPtr)
                     {
                         throw new Exception("Procedure " + name + " doesn't exist.");
                     }
-                    function.f = (esFunction.executeEs) Marshal.GetDelegateForFunctionPointer(pPtr, typeof(esFunction.executeEs));
+                    function.f = (EvolutionAlgo.calculateFitness_delegate) Marshal.GetDelegateForFunctionPointer(pPtr, typeof(EvolutionAlgo.calculateFitness_delegate));
                 }
 
-
-                return ret;
+                return fNames;
             }
         }
 
@@ -95,6 +95,16 @@ namespace Gui.Classes
         }
 
         /// <summary>
+        /// Sets success to false when an xsd violation happens.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void settings_ValidationEventHandler(Object sender, ValidationEventArgs e)
+        {
+            success = false;
+        }
+
+        /// <summary>
         /// May be called to unload the currently loaded dll.
         /// </summary>
         public void unloadDll()
@@ -107,16 +117,6 @@ namespace Gui.Classes
             hModule = IntPtr.Zero;
         }
 
-        /// <summary>
-        /// Sets success to false when an xsd violation happens.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void settings_ValidationEventHandler(Object sender, ValidationEventArgs e)
-        {
-            success = false;
-        }
-
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, ExactSpelling = true)]
         public extern static IntPtr GetProcAddress(IntPtr hModule, string procName);
 
@@ -126,5 +126,35 @@ namespace Gui.Classes
         [DllImport("kernel32.dll")]
         public extern static Int32 FreeLibrary(IntPtr hModule);
 
+        //http://stackoverflow.com/questions/538060/proper-use-of-the-idisposable-interface
+        protected void Dispose(Boolean disposing)
+        {
+            //Free unmanaged resources
+            //Win32.DestroyHandle(this.hModule);
+            unloadDll();
+
+            //Free managed resources too, but only if i'm being called from Dispose
+            //(If i'm being called from Finalize then the objects might not exist
+            //anymore
+            if (disposing)
+            {
+                //if (this.bla != null)
+                //{
+                //    this.bla.Dispose();
+                //    this.bla = null;
+                //}
+            }
+        }
+
+        ~DllLoader()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true); //i am calling you from Dispose, it's safe
+            GC.SuppressFinalize(this); //Hey, GC: don't bother calling finalize later
+        }
     }
 }

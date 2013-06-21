@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using EvolutionAlgo;
 using System.Collections;
+using System.Windows.Threading;
 
 namespace Gui
 {
@@ -61,7 +62,7 @@ namespace Gui
         /// Author Marcus Eiswirt
         /// </summary>
         /// <param name="gn"></param>
-        private void finishedWCET(Genom gn)
+        public void finishedWCET(Genom gn)
         {   // TODO wird zum schluss aufgerufen
             // -> Nach Terminierung 
             fitt.Content = "" + gn.fittness + " ms";
@@ -72,9 +73,18 @@ namespace Gui
         /// Author Marcus Eiswirt
         /// </summary>
         /// <param name="gn"></param>
-        private void finishedManual(Genom gn)
+        public void finishedManual(Genom gn)
         {
-            fitt.Content = "" + gn.fittness + " ms";
+            DispatcherOperation op = Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal,
+                new Action<string>(setStatus),
+                gn.fittness.ToString());
         }
+
+        private void setStatus(string msg)
+        {
+            fitt.Content = msg + " ms";
+        }
+
 	}
 }

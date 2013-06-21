@@ -46,11 +46,11 @@ namespace Gui.Test
             }
         }
 
-        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
-        private extern static bool AllocConsole();
+        //[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        //private extern static bool AllocConsole();
 
-        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
-        private extern static bool AttachConsole(int pid);
+        //[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        //private extern static bool AttachConsole(int pid);
 
     }
 }

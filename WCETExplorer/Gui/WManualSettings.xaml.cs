@@ -32,18 +32,20 @@ namespace Gui
         private static CheckBox[] binaries;
         private static ComboBox[] enums;
 
+        private WDllChooser wdll;
+        esFunction esf;
+
 
         //private static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
 
         /// <summary>
         /// Aufruf von Window
         /// </summary>
-        public WManualSettings()
+        public WManualSettings(WDllChooser wdll)
         {
-
-            
             InitializeComponent();
-            
+            this.wdll = wdll;
+            esf = wdll.getSelectedFunction();
             binaries = new CheckBox[40] { c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40 };
             floats = new Slider[10] { f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 };
             enums = new ComboBox[10] { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 };
@@ -54,6 +56,9 @@ namespace Gui
 
             
         }
+
+        public delegate void finishedManual_delegate(Genom gn);
+
         /// <summary>
         /// Run
         /// Author: Philipp Klein
@@ -64,6 +69,11 @@ namespace Gui
         {
             WResult WR = new WResult();
             WR.Show();
+            EvolutionAlgo.finishedManual_delegate bla = WR.finishedManual;
+
+            Parameter p = this.getParameters();
+            EvolutionAlgo.EvolutionAlgo algo = new EvolutionAlgo.EvolutionAlgo(p, bla, esf.f);
+            algo.go();
         }
 
         /// <summary>
@@ -75,7 +85,7 @@ namespace Gui
         private void Automatic_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            WAlgorithmSettings WAlgo = new WAlgorithmSettings();
+            WAlgorithmSettings WAlgo = new WAlgorithmSettings(wdll);
             WAlgo.Show();
         }
 

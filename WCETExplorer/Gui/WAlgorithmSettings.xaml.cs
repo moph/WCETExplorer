@@ -22,11 +22,12 @@ namespace Gui
     public partial class WAlgorithmSettings : RibbonWindow
     {
 
-        
-        public WAlgorithmSettings()
+        private WDllChooser wdll;
+        public WAlgorithmSettings(WDllChooser wdll)
         {
             InitializeComponent();
 			// Insert code required on object creation below this point.
+            this.wdll = wdll;
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Gui
         private void Manual_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            WManualSettings WManual = new WManualSettings();
+            WManualSettings WManual = new WManualSettings(wdll);
             WManual.Show();
         }
 

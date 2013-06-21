@@ -19,9 +19,11 @@ namespace Gui
     /// </summary>
 	public partial class WDllChooser : Window
 	{
-        string xmlPath = null;
-        TextBox showXmlPath;
-        string selectedFunction = null;
+        private string xmlPath = null;
+        private TextBox showXmlPath;
+        private string selectedFunction = null;
+        private Classes.DllChooser chooser = new Classes.DllChooser();
+        private Classes.FunctionChooser fc = new Classes.FunctionChooser();
 
         /// <summary>
         /// constructor
@@ -46,9 +48,9 @@ namespace Gui
         /// returns selected funktion
         /// </summary>
         /// <returns>string</returns>
-        public string getSelectedFunction()
+        public Classes.esFunction getSelectedFunction()
         {
-            return selectedFunction;
+            return fc.getFunction(selectedFunction);
         }
 
         /// <summary>
@@ -60,8 +62,6 @@ namespace Gui
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             string[] functions;
-            Classes.DllChooser chooser = new Classes.DllChooser();
-            Classes.FunctionChooser fc = new Classes.FunctionChooser();
 
             xmlPath = chooser.openFileDialog();
             showXmlPath.Text = xmlPath;
@@ -82,7 +82,7 @@ namespace Gui
         /// <param name="e">EventListener</param>
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            WAlgorithmSettings ws = new WAlgorithmSettings();
+            WManualSettings ws = new WManualSettings(this);
             ws.Show();
             this.Close();
         }
