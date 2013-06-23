@@ -21,6 +21,13 @@ namespace EvolutionAlgo
         private double _EMax;
         private double _EMin;
         private double _newPopSize;
+        private String name = "RangSelection";
+
+        public String toString()
+        {
+            return this.name;
+        }
+
 
         public RangSelection()
         {
