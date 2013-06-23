@@ -74,7 +74,7 @@ namespace Gui
         {
             double temp = gn.fittness;
             if (temp >= dayborder)
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "Terminierung fehlgeschlagen");
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
                 temp = Math.Round(temp, 6);
@@ -89,8 +89,8 @@ namespace Gui
         public void finishedManual(Genom gn)
         {
             double temp = gn.fittness;
-            if (temp >= dayborder)
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "Terminierung fehlgeschlagen");
+            if (temp >= dayborder && temp < 0)
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
                 temp = Math.Round(temp, 6);
@@ -104,7 +104,7 @@ namespace Gui
         /// <param name="msg"></param>
         private void setStatus(string msg)
         {
-            string stemp = "Terminierung fehlgeschlagen";
+            string stemp = "termination failed";
             if (msg.Equals(stemp))
                 fitt.Content = msg;
             else
