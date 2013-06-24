@@ -108,14 +108,14 @@ namespace EvolutionAlgo
         {
             Random rand = new Random();
            
-            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
-            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
-            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
+            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length-1); // Where the crossover will take place
+            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length-1);
+            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length-1);
             int testJ;
             for (int k = 0; k < maxCrossover; k++)
             {
                 Random test = new Random();
-                testJ = test.Next(0, _genomArray.Length);
+                testJ = test.Next(0, _genomArray.Length-1);
                 for (; abgra < _genomArray[0]._param.analog.Length; abgra++)
                 {
                     _genomArray[testJ+1]._param.analog[abgra] = _genomArray[testJ]._param.analog[abgra]; 
@@ -167,7 +167,12 @@ namespace EvolutionAlgo
         private bool rndBoolean()
         {
             Random rand = new Random();
-            return rand.Next(0, 2) == 0;
+            if (rand.Next(0, 1) == 0)
+            {
+
+                return true;
+            }
+            return false;
         }
 
 
