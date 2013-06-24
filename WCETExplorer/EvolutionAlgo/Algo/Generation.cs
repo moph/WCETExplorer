@@ -35,7 +35,7 @@ namespace EvolutionAlgo
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
             gen.CopyTo(this._genomArray, 0);
-            //createGenes((uint)gen.Count - size);
+            createGenes((uint)gen.Count - size);
         }
 
         public Genom getBestGenom()
