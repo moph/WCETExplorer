@@ -73,6 +73,7 @@ namespace EvolutionAlgo
         {
             Parameter genomParameter;
             Random ran;
+            //
             int countAnalog = _blaram.analog.Length;
             int countDigital = _blaram.digital.Length;
             int countEnums = _blaram.enums.Length;
