@@ -33,12 +33,14 @@ namespace EvolutionAlgo
         // Create new Generation but use existing genoms.
         public Generation(ArrayList gen, uint size, double mutateRate, uint maxCrossover, EvolutionAlgo ea)
         {
+            
             // create (size - gen._size) new genes.
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
             //this._genomArray[] = new Genom[size];
             this._genomArray = new Genom[size];
             gen.CopyTo(this._genomArray, 0);
+            this._blaram = _genomArray[0]._param;
             createGenes((uint)gen.Count);
         }
 
