@@ -58,6 +58,8 @@ namespace Gui
             {
                 f.Minimum = 0;
                 f.Maximum = 1;
+                f.IsSnapToTickEnabled = true;
+                f.TickFrequency = 0.01;
             }
 
             setPreconfig(wdll.getSelectedFunction());
@@ -117,6 +119,7 @@ namespace Gui
             loadPath = WAlgo.dlg.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
             loadsave.load(loadPath, out dllPath, out funcName, out param, out sa);
+            
             DllLoader dllLoad = new DllLoader();
             String[] funcs = dllLoad.loadDll(dllPath);
             esFunction esf = dllLoad.loadFunction(funcName);
@@ -124,6 +127,9 @@ namespace Gui
             this.setPreconfig(esf);
             WAlgo.setParameter(sa);
             this.setParamter(param);
+
+            funcname.Content = funcName;
+            WAlgo.funcname.Content = funcName;
         }
 
         
@@ -194,6 +200,11 @@ namespace Gui
             sizeE = func.enums.Length;
             sizeF = func.floats.Length;
 
+            //Beschreibt label mit function Name für WAlgo und WManual
+            //da es von WDLL chooser aufgerufen wird
+            funcname.Content = wdll.getSelectedFunction().name;
+            WAlgo.funcname.Content = wdll.getSelectedFunction().name;
+
             int i;
             for (i = 0; i < sizeB; i++)
             {
@@ -247,7 +258,7 @@ namespace Gui
             savePath = WAlgo.sfd.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
             loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), WAlgo.getParameter());
-        
+
         }
     }
 }
