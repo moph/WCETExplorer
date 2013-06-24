@@ -24,6 +24,8 @@ namespace EvolutionAlgo
             this._size = size;
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
+            //this._genomArray[] = new Genom[size];
+            this._genomArray = new Genom[size];
             this.createGenes(0);
             this._ea = ea;
         }
@@ -34,8 +36,10 @@ namespace EvolutionAlgo
             // create (size - gen._size) new genes.
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
+            //this._genomArray[] = new Genom[size];
+            this._genomArray = new Genom[size];
             gen.CopyTo(this._genomArray, 0);
-            createGenes((uint)gen.Count - size);
+            createGenes((uint)gen.Count);
         }
 
         public Genom getBestGenom()
