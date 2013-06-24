@@ -89,7 +89,7 @@ namespace Gui
         public void finishedManual(Genom gn)
         {
             double temp = gn.fittness;
-            if (temp >= dayborder && temp < 0)
+            if (temp >= dayborder || temp < 0)
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
