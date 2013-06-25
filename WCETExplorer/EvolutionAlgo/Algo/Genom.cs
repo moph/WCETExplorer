@@ -20,6 +20,7 @@ namespace EvolutionAlgo
         {
             this._param = param;
             this._ea = ea;
+            
             if ((_param != null) && (ea != null))
             {
                 calculateFitness();

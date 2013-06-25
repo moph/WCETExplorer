@@ -37,11 +37,12 @@ namespace EvolutionAlgo
             // create (size - gen._size) new genes.
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
+            this._size = size;
             //this._genomArray[] = new Genom[size];
             this._genomArray = new Genom[size];
             gen.CopyTo(this._genomArray, 0);
             this._blaram = _genomArray[0]._param;
-            createGenes((uint)gen.Count);
+            this.createGenes((uint)gen.Count);
         }
 
         public Genom getBestGenom()
@@ -98,6 +99,7 @@ namespace EvolutionAlgo
                 {
                     enumVal[i] = ran.Next(10);
                 }
+                
                 genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
                 _genomArray[k] = new Genom(genomParameter,_ea);
                 //Calculate Fittness.
