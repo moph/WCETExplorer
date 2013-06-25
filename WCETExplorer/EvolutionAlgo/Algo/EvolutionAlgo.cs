@@ -113,8 +113,10 @@ namespace EvolutionAlgo
                         _bestGenom = myGeneration.getBestGenom();
                     }
                 } while (again());
+
+                _printResult(myGeneration, _bestGenom);
                 // Finish and return Genom with WCET.
-                _finishedWCET(_bestGenom);
+                _finishedWCET(brutforce(_bestGenom));
             } 
             // Do Manual calculation.
             //Andi ist doof :)
@@ -146,13 +148,36 @@ namespace EvolutionAlgo
             return arrayGeneration;
         }
 
+        private Genom brutforce(Genom myGenom) {
 
-        /*
-         * ToDo:
-         * - Maybe delte private constructor and make calculation static :/
-         * - Add correct parameters to delegate calculate Fitness.
-         * - Genom needs Function _calculateFitness to call DLL.
-         * - Add genomeComparer to compare bestGonom tih others.
-         */
+            //Check  analog array.
+            for (int i = 0; i < myGenom._param.analog.Length; i++)
+            {
+                float analogValue = myGenom._param.analog[i];
+                double beforeFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+                myGenom._param.analog[i] = 0;
+                double afterFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+
+                if (beforeFittnes != afterFittnes)
+                {
+                    myGenom._param.analog[i] = analogValue;
+                }
+            }
+
+            //Check digital array.
+            for (int i = 0; i < myGenom._param.digital.Length; i++)
+            {
+                bool digitalValue = myGenom._param.digital[i];
+                double beforeFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+                myGenom._param.digital[i] = false;
+                double afterFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+
+                if (beforeFittnes != afterFittnes)
+                {
+                    myGenom._param.digital[i] = digitalValue;
+                }
+            }
+            return myGenom;
+        }
     }
 }
