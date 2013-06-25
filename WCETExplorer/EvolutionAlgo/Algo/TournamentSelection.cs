@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace EvolutionAlgo
 {
-    class TournamentSelection : SelectionStrategy
+    public class TournamentSelection : SelectionStrategy
     {
         private double _newPopSize;
         private int _nrOfParticipants;

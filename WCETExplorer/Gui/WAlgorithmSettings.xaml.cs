@@ -43,8 +43,9 @@ namespace Gui
             sele.Items.Add(new Elitismus().toString());
             sele.Items.Add(new RangSelection().toString());
             sele.Items.Add(new FittPropSelection().toString());
+            sele.Items.Add(new TournamentSelection().toString());
             
-
+            
             funcname.Content = functionName;
 
             popu.Minimum = 10;
@@ -190,6 +191,8 @@ namespace Gui
                 sele.SelectedIndex = 1;
             else if (algoSettings.strategy is FittPropSelection)
                 sele.SelectedIndex = 2;
+            else if (algoSettings.strategy is TournamentSelection)
+                sele.SelectedIndex = 3;
 
             popu.Value = algoSettings.populationSize;
             cross.Text = algoSettings.crossoverCount.ToString();
@@ -240,7 +243,8 @@ namespace Gui
                     algoSettings.strategy = (SelectionStrategy)new RangSelection();
                 else if (sele.SelectedValue.Equals(new FittPropSelection().toString()))
                     algoSettings.strategy = (SelectionStrategy)new FittPropSelection();
-
+                else if (sele.SelectedValue.Equals(new TournamentSelection().toString()))
+                    algoSettings.strategy = (SelectionStrategy)new TournamentSelection();
 
                 algoSettings.populationSize = (uint)popu.Value;
                 algoSettings.crossoverCount = Convert.ToUInt32(cross.Text);
