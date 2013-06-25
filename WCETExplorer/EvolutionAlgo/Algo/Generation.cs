@@ -37,18 +37,19 @@ namespace EvolutionAlgo
             // create (size - gen._size) new genes.
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
+            this._size = size;
             //this._genomArray[] = new Genom[size];
             this._genomArray = new Genom[size];
             gen.CopyTo(this._genomArray, 0);
             this._blaram = _genomArray[0]._param;
-            createGenes((uint)gen.Count);
+            this.createGenes((uint)gen.Count);
         }
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(null,null);
-            dummy.fittness = 0;
-            for (int k = 0; k < _genomArray.Length; k++)
+            Genom dummy = this._genomArray[0];
+            
+            for (int k = 1; k < _genomArray.Length; k++)
             {
                 if (_genomArray[k].fittness > dummy.fittness)
                 {
@@ -62,13 +63,12 @@ namespace EvolutionAlgo
         {
             int lenght = _genomArray.Length;
             double avg = 0;
-            for (int k = 0; k < lenght; k++)
-                _ea._calculateFitness(_genomArray[k]._param.analog.Length, _genomArray[k]._param.analog, _genomArray[k]._param.digital.Length, _genomArray[k]._param.digital, _genomArray[k]._param.enums.Length, _genomArray[k]._param.enums);
+            
             for (int k = 0; k < lenght; k++)
                 avg = avg + _genomArray[k].fittness;
 
 
-            return avg/lenght;
+            return (avg/lenght);
         }
 
         private void createGenes(uint givenGenes)
@@ -98,21 +98,27 @@ namespace EvolutionAlgo
                 {
                     enumVal[i] = ran.Next(10);
                 }
+                
                 genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
-                _genomArray[k] = new Genom(genomParameter,_ea);
+                _genomArray[k] = new Genom(genomParameter, _ea);
                 //Calculate Fittness.
                 
             }
-
+            /*
+            for (int u = 0; u < _genomArray.Length; u++)
+            {
+                _genomArray[u].fittness = _ea._calculateFitness(_genomArray[u]._param.analog.Length, _genomArray[u]._param.analog, _genomArray[u]._param.digital.Length, _genomArray[u]._param.digital, _genomArray[u]._param.enums.Length, _genomArray[u]._param.enums);
+            }
+             * */
         }
 
         public void crossover()
         {
             Random rand = new Random();
            
-            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length-1); // Where the crossover will take place
-            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length-1);
-            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length-1);
+            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
+            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
+            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
             int testJ;
             for (int k = 0; k < maxCrossover; k++)
             {
