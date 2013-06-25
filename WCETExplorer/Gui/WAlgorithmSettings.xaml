@@ -71,7 +71,8 @@
         		<CheckBox x:Name="Fitness__ms_" Content="Fitness (ms)" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,0,0,37.96"/>
                 <TextBox Name="fitness" HorizontalAlignment="Left" Height="25" Margin="26,196,0,0" TextWrapping="Wrap" Text="258.5" VerticalAlignment="Top" Width="108" TextAlignment="Right" PreviewTextInput="NumericPointOnly"/>
         	</Grid>
-        </GroupBox> 
-        
+        </GroupBox>
+        <Label Content="Function name: " Height="24" HorizontalAlignment="Left" Margin="297,81,0,0" VerticalAlignment="Top" Width="97" />
+        <Label Content="" Height="24" HorizontalAlignment="Left" Margin="400,81,0,0" Name="funcname" VerticalAlignment="Top" Width="126" />
     </Grid>
 </ribbon:RibbonWindow>

@@ -212,5 +212,7 @@
 				</GroupBox>
 			</StackPanel>
 		</ScrollViewer>
-	</Grid>
+        <Label Content="Function name: " HorizontalAlignment="Left" Margin="298,80,0,0" VerticalAlignment="Top" Height="24" Width="97" />
+        <Label Name="funcname" Content="" Height="24" HorizontalAlignment="Left" Margin="401,80,0,0" VerticalAlignment="Top" Width="126" />
+    </Grid>
 </ribbon:RibbonWindow>

@@ -39,12 +39,13 @@ namespace Gui
             functionName = wdll.getSelectedFunction().name;
             WManual = new WManualSettings(wdll, this);
 
-            //ArrayList aL = new ArrayList();
-            sele.Items.Add(new Elitismus());
-            sele.Items.Add(new RangSelection());
-            sele.Items.Add(new FittPropSelection());
-            //sele.Items.Add(aL);
+            //Selection Strategien Auswählen
+            sele.Items.Add(new Elitismus().toString());
+            sele.Items.Add(new RangSelection().toString());
+            sele.Items.Add(new FittPropSelection().toString());
+            
 
+            funcname.Content = functionName;
 
             popu.Minimum = 10;
             popu.Maximum = 1000;
@@ -54,7 +55,6 @@ namespace Gui
             muta.Maximum = 1;
             muta.IsSnapToTickEnabled = true;
             muta.TickFrequency=0.01;
-
 
 
             //Load
@@ -87,6 +87,7 @@ namespace Gui
             savePath = sfd.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
             loadsave.save(savePath, dllPath, functionName, WManual.getParameter(), getParameter());
+
         }
 
         /// <summary>
@@ -110,6 +111,7 @@ namespace Gui
             loadPath = dlg.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
             loadsave.load(loadPath, out dllPath, out funcName, out param, out sa);
+
             DllLoader dllLoad = new DllLoader();
             String[] funcs = dllLoad.loadDll(dllPath);
             esFunction esf = dllLoad.loadFunction(funcName);
@@ -122,6 +124,9 @@ namespace Gui
 
             setParameter(sa);
             WManual.setParamter(param);
+
+            funcname.Content = funcName;
+            WManual.funcname.Content = funcName;
         }
 
         /// <summary>
@@ -148,8 +153,11 @@ namespace Gui
             WRun.Show();
             EvolutionAlgo.printResult_delegate pR = WRun.printResult;
             EvolutionAlgo.finishedWCET_delegate fW = WRun.finishedWCET;
-            EvolutionAlgo.EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(),getParameter(), pR, fW, wdll.getSelectedFunction().f);
+            EvolutionAlgo.EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(), getParameter(), pR, fW, wdll.getSelectedFunction().f);
             evo.go();
+            
+
+            
         }
 
         /// <summary>
@@ -216,45 +224,59 @@ namespace Gui
         /// </summary>
         public AlgoSettings getParameter()
         {
-            int count = 0;
-
-
-            StopCriterion[] stop = new StopCriterion[3];
-            AlgoSettings algoSettings = new AlgoSettings();
-
-            algoSettings.strategy = (SelectionStrategy)sele.SelectedValue;
-            algoSettings.populationSize = (uint)popu.Value;
-            algoSettings.crossoverCount = Convert.ToUInt32(cross.Text);
-            algoSettings.mutationRate = (float)muta.Value;
-
-
-            if (Number_of_generations.IsChecked == true)
+            try
             {
-                maxGeneration gen = new maxGeneration(Convert.ToUInt32(numGen.Text));
-                stop[count] = gen;
-                count++;
-            }
-            if (Runtime__s_.IsChecked == true)
-            {
-                Runtime run = new Runtime(Convert.ToDouble(runTime.Text));
-                stop[count] = run;
-                count++;
-            }
-            if (Fitness__ms_.IsChecked == true)
-            {
-                Fitness fit = new Fitness(Convert.ToDouble(fitness.Text));
-                stop[count] = fit;
-                count++;
-            }
-            StopCriterion[] s = new StopCriterion[count];
+                int count = 0;
+                StopCriterion[] stop = new StopCriterion[3];
+                AlgoSettings algoSettings = new AlgoSettings();
 
-            for (int i = 0; i < count; i++)
-                s[i] = stop[i];
+                //wenn sele items direkt objekte bekommt
+                //algoSettings.strategy = (SelectionStrategy)sele.SelectedValue;
 
-            algoSettings.stop = s;
+                //sele to string test
+                if (sele.SelectedValue.Equals(new Elitismus().toString()))
+                    algoSettings.strategy = (SelectionStrategy)new Elitismus();
+                else if (sele.SelectedValue.Equals(new RangSelection().toString()))
+                    algoSettings.strategy = (SelectionStrategy)new RangSelection();
+                else if (sele.SelectedValue.Equals(new FittPropSelection().toString()))
+                    algoSettings.strategy = (SelectionStrategy)new FittPropSelection();
+
+
+                algoSettings.populationSize = (uint)popu.Value;
+                algoSettings.crossoverCount = Convert.ToUInt32(cross.Text);
+                algoSettings.mutationRate = (float)muta.Value;
+
+
+                if (Number_of_generations.IsChecked == true)
+                {
+                    maxGeneration gen = new maxGeneration(Convert.ToUInt32(numGen.Text));
+                    stop[count] = gen;
+                    count++;
+                }
+                if (Runtime__s_.IsChecked == true)
+                {
+                    Runtime run = new Runtime(Convert.ToDouble(runTime.Text));
+                    stop[count] = run;
+                    count++;
+                }
+                if (Fitness__ms_.IsChecked == true)
+                {
+                    Fitness fit = new Fitness(Convert.ToDouble(fitness.Text));
+                    stop[count] = fit;
+                    count++;
+                }
+                StopCriterion[] s = new StopCriterion[count];
+
+                for (int i = 0; i < count; i++)
+                    s[i] = stop[i];
+
+                algoSettings.stop = s;
+                return algoSettings;
+            }catch(ArgumentException ex){
+                throw ex;
+            }
             
-            return algoSettings;
-
+            
         }
 
         
