@@ -99,8 +99,13 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /E /I "$(SolutionDir)ES\$(Platform)\$(Configuration)\*" "$(SolutionDir)Gui\bin\$(Configuration)\"</Command>
+      <Command>xcopy /Y /E /I "$(SolutionDir)ES\$(Platform)\$(Configuration)\*" "$(SolutionDir)Gui\bin\$(Configuration)\"
+</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
