@@ -24,20 +24,20 @@ namespace EvolutionAlgo
     /// <param name="typ">Array of int.</param>
     /// <returns>The fitness of the current Parameter set.</returns>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public volatile delegate double calculateFitness_delegate(int sizeAnalogXML, float[] analog, int sizeDigitalXML, bool[] digital, int sizeSignalXML, int[] typ);
+    public delegate double calculateFitness_delegate(int sizeAnalogXML, float[] analog, int sizeDigitalXML, bool[] digital, int sizeSignalXML, int[] typ);
 
 
     // Delegate for Function call in GUI by manual Calculation.
     public delegate void finishedManual_delegate(Genom myGenom);
     // Delegates for Function calls in GUI by automatic Calculation.
-    public volatile delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
-    public volatile delegate void finishedWCET_delegate(Genom myGenom);
+    public delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
+    public delegate void finishedWCET_delegate(Genom myGenom);
     
     /// <summary>
     /// Author: Andreas Engel
     /// Date: 16.05.2013
     /// </summary>
-    public volatile class EvolutionAlgo
+    public class EvolutionAlgo
     {
         private uint _startSize;
         private AlgoSettings _aSettings;
@@ -123,7 +123,7 @@ namespace EvolutionAlgo
             else {
 
                 // Create Genom.
-                Genom myGenom = new Genom(_param,this);
+                Genom myGenom = new Genom(_param, this);
                 // Return Genom to GUI.
                 _finishedManual(myGenom);
             }
