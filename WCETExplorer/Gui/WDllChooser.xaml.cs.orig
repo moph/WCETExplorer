@@ -69,7 +69,13 @@ namespace Gui
         /// <param name="e">RoutedEventArgs</param>
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             string[] functions = null;
+            Classes.DllChooser chooser = new Classes.DllChooser();
+            Classes.FunctionChooser fc = new Classes.FunctionChooser();
+=======
+            string[] functions;
+>>>>>>> 3e3be38a489ba1baf2287306ffb3a840a6a0949e
 
             xmlPath = chooser.openFileDialog();
 
@@ -77,8 +83,6 @@ namespace Gui
             {
                 return;
             }
-
-            combobox.Items.Clear();
 
             if ("".Equals(xmlPath))
             {
@@ -97,11 +101,13 @@ namespace Gui
             }
 
 
+            combobox.Items.Clear();
+            
             for (int i = 0; i < functions.Length; i++)
             {
                 combobox.Items.Add(functions[i]);
             }
-            combobox.SelectedIndex = 0;
+            
         }
 
         /// <summary>
@@ -112,23 +118,26 @@ namespace Gui
         /// <param name="e">EventListener</param>
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            if (combobox.Items.IsEmpty)
+<<<<<<< HEAD
+            if (String.IsNullOrEmpty(xmlPath))
             {
-                MessageBox.Show("No valid .xml-File selected");
+                MessageBox.Show("Please select a valid .xml-File");
+            }else{
+                WAlgorithmSettings ws = new WAlgorithmSettings();
+                ws.Show();
+                this.Close();
             }
-            else
-            {
-                if (ws == null)
-                {
-                    ws = new WAlgorithmSettings(this);
-                    ws.Show();
-                }
-                ws.WManual.setPreconfig(getSelectedFunction());
-                this.Hide();
-            }
-        }
-
             
+=======
+            if (ws == null)
+            {
+                ws = new WAlgorithmSettings(this);
+                ws.Show();
+            }
+            this.Hide();
+            ws.WManual.setPreconfig(getSelectedFunction());
+>>>>>>> 3e3be38a489ba1baf2287306ffb3a840a6a0949e
+        }
 
         /// <summary>
         /// logic of textbox

@@ -24,7 +24,7 @@
            </ribbon:Ribbon.ApplicationMenu>
             <ribbon:RibbonTab x:Name="HomeTab" Header="Settings">
                 <ribbon:RibbonGroup x:Name="Load" Header="">
-                    <ribbon:RibbonButton x:Name="SaveConf" LargeImageSource="Images/save.png"  Label="Save Config" Background="#00CDCDCD" />
+                    <ribbon:RibbonButton x:Name="SaveConf" LargeImageSource="Images/save.png"  Label="Save Config" Background="#00CDCDCD" Click="SaveConf_Click_1" />
                     <ribbon:RibbonButton x:Name="LoadConf" LargeImageSource="Images/load2.png" Label="Load Config" Background="#00CDCDCD" Click="LoadConf_Click" />
                     <ribbon:RibbonButton x:Name="LoadES" LargeImageSource="Images/add.png"   Label="Load ES" Click="LoadES_Click" />                   
                 </ribbon:RibbonGroup>
@@ -189,28 +189,30 @@
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						<Label   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float1"/>
-						<Slider Name="f1" Grid.Row="0" Grid.Column="1" />
+						<Slider Name="f1" Grid.Row="0" Grid.Column="1" ValueChanged="f1_ValueChanged" />
 						<Label   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float2"/>
-                        <Slider Name="f2" Grid.Row="1" Grid.Column="1" />
+                        <Slider Name="f2" Grid.Row="1" Grid.Column="1" ValueChanged="f1_ValueChanged" />
 						<Label   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float3"/>
-                        <Slider Name="f3" Grid.Row="2" Grid.Column="1" />
+                        <Slider Name="f3" Grid.Row="2" Grid.Column="1" ValueChanged="f1_ValueChanged"/>
 						<Label   Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float4"/>
-                        <Slider Name="f4" Grid.Row="0" Grid.Column="3" />
+                        <Slider Name="f4" Grid.Row="0" Grid.Column="3" ValueChanged="f1_ValueChanged" />
 						<Label   Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float5"/>
-                        <Slider Name="f5" Grid.Row="1" Grid.Column="3" />
+                        <Slider Name="f5" Grid.Row="1" Grid.Column="3" ValueChanged="f1_ValueChanged"/>
 						<Label   Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float6"/>
-                        <Slider Name="f6" Grid.Row="2" Grid.Column="3" />
+                        <Slider Name="f6" Grid.Row="2" Grid.Column="3" ValueChanged="f1_ValueChanged"/>
 						<Label   Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float7"/>
-                        <Slider Name="f7" Grid.Row="0" Grid.Column="5" />
+                        <Slider Name="f7" Grid.Row="0" Grid.Column="5" ValueChanged="f1_ValueChanged"/>
 						<Label   Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float8"/>
-                        <Slider Name="f8" Grid.Row="1" Grid.Column="5" />
+                        <Slider Name="f8" Grid.Row="1" Grid.Column="5" ValueChanged="f1_ValueChanged"/>
 						<Label   Grid.Row="0" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float9"/>
-                        <Slider Name="f9" Grid.Row="0" Grid.Column="7" />
+                        <Slider Name="f9" Grid.Row="0" Grid.Column="7" ValueChanged="f1_ValueChanged"/>
 						<Label   Grid.Row="1" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Float10"/>
-                        <Slider Name="f10" Grid.Row="1" Grid.Column="7" />
+                        <Slider Name="f10" Grid.Row="1" Grid.Column="7" ValueChanged="f1_ValueChanged"/>
 					</Grid>
 				</GroupBox>
 			</StackPanel>
 		</ScrollViewer>
-	</Grid>
+        <Label Content="Function name: " HorizontalAlignment="Left" Margin="298,80,0,0" VerticalAlignment="Top" Height="24" Width="97" />
+        <Label Name="funcname" Content="" Height="24" HorizontalAlignment="Left" Margin="401,80,0,0" VerticalAlignment="Top" Width="126" />
+    </Grid>
 </ribbon:RibbonWindow>

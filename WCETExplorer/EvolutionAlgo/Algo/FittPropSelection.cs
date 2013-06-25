@@ -16,9 +16,15 @@ namespace EvolutionAlgo
         public double p;
     }
 
-    class FittPropSelection : SelectionStrategy
+    public class FittPropSelection : SelectionStrategy
     {
         private double _newPopSize;
+        private String name = "FittPropSelection";
+
+        public String toString()
+        {
+            return this.name;
+        }
 
         public FittPropSelection()
         {

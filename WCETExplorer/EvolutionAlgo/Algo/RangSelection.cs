@@ -16,11 +16,18 @@ namespace EvolutionAlgo
         public double p;
     }
 
-    class RangSelection : SelectionStrategy
+    public class RangSelection : SelectionStrategy
     {
         private double _EMax;
         private double _EMin;
         private double _newPopSize;
+        private String name = "RangSelection";
+
+        public String toString()
+        {
+            return this.name;
+        }
+
 
         public RangSelection()
         {

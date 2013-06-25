@@ -8,7 +8,7 @@ namespace EvolutionAlgo
     /// <summary>
     /// Author: David Schreiner
     /// </summary>
-    class Generation
+    public class Generation
     {
         // 21.5.13 Note to David: Constructor of Class Genom calculates Fitness.
         EvolutionAlgo _ea;
@@ -24,6 +24,8 @@ namespace EvolutionAlgo
             this._size = size;
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
+            //this._genomArray[] = new Genom[size];
+            this._genomArray = new Genom[size];
             this.createGenes(0);
             this._ea = ea;
         }
@@ -31,18 +33,23 @@ namespace EvolutionAlgo
         // Create new Generation but use existing genoms.
         public Generation(ArrayList gen, uint size, double mutateRate, uint maxCrossover, EvolutionAlgo ea)
         {
+            
             // create (size - gen._size) new genes.
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
+            this._size = size;
+            //this._genomArray[] = new Genom[size];
+            this._genomArray = new Genom[size];
             gen.CopyTo(this._genomArray, 0);
-            createGenes((uint)gen.Count - size);
+            this._blaram = _genomArray[0]._param;
+            this.createGenes((uint)gen.Count);
         }
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(null,null);
-            dummy.fittness = 0;
-            for (int k = 0; k < _genomArray.Length; k++)
+            Genom dummy = this._genomArray[0];
+            
+            for (int k = 1; k < _genomArray.Length; k++)
             {
                 if (_genomArray[k].fittness > dummy.fittness)
                 {
@@ -56,19 +63,19 @@ namespace EvolutionAlgo
         {
             int lenght = _genomArray.Length;
             double avg = 0;
-            for (int k = 0; k < lenght; k++)
-                _ea._calculateFitness(_genomArray[k]._param.analog, _genomArray[k]._param.digital, _genomArray[k]._param.enums);
+            
             for (int k = 0; k < lenght; k++)
                 avg = avg + _genomArray[k].fittness;
 
 
-            return avg/lenght;
+            return (avg/lenght);
         }
 
         private void createGenes(uint givenGenes)
         {
             Parameter genomParameter;
             Random ran;
+            //
             int countAnalog = _blaram.analog.Length;
             int countDigital = _blaram.digital.Length;
             int countEnums = _blaram.enums.Length;
@@ -91,6 +98,7 @@ namespace EvolutionAlgo
                 {
                     enumVal[i] = ran.Next(10);
                 }
+                
                 genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
                 _genomArray[k] = new Genom(genomParameter,_ea);
                 //Calculate Fittness.
@@ -103,14 +111,14 @@ namespace EvolutionAlgo
         {
             Random rand = new Random();
            
-            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
-            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
-            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
+            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length-1); // Where the crossover will take place
+            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length-1);
+            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length-1);
             int testJ;
             for (int k = 0; k < maxCrossover; k++)
             {
                 Random test = new Random();
-                testJ = test.Next(0, _genomArray.Length);
+                testJ = test.Next(0, _genomArray.Length-1);
                 for (; abgra < _genomArray[0]._param.analog.Length; abgra++)
                 {
                     _genomArray[testJ+1]._param.analog[abgra] = _genomArray[testJ]._param.analog[abgra]; 
@@ -162,7 +170,12 @@ namespace EvolutionAlgo
         private bool rndBoolean()
         {
             Random rand = new Random();
-            return rand.Next(0, 2) == 0;
+            if (rand.Next(0, 1) == 0)
+            {
+
+                return true;
+            }
+            return false;
         }
 
 

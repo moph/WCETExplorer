@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+    <dll>D:\Documents\es_config.xml</dll>
+    <function name="executeES0">
+        <manual>
+            <enums>
+                <enum>5</enum>
+                <enum>0</enum>
+                <enum>5</enum>
+                <enum>0</enum>
+            </enums>
+            <floats>
+                <float>0.548</float>
+                <float>0.878</float>
+                <float>0.548</float>
+                <float>0.878</float>
+                <float>0.878</float>
+            </floats>
+            <binaries>
+                <binary>true</binary>
+                <binary>false</binary>
+                <binary>true</binary>
+            </binaries>
+        </manual>
+        <algorithm>
+            <selection>1</selection>
+            <population>200</population>
+            <mutation>0.05</mutation>
+            <crossover>5</crossover>
+            <generations selected="True">111</generations>
+            <runtime selected="False">10</runtime>
+            <fitness selected="True">0.5</fitness>
+        </algorithm>
+    </function>
+</settings>

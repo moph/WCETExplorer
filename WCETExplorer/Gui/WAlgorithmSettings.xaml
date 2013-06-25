@@ -38,40 +38,41 @@
         </ribbon:Ribbon>
         <GroupBox Header="Selection Procedure" HorizontalAlignment="Left" Margin="8,8,0,0" Grid.Row="1" Width="304" Height="58" VerticalAlignment="Top">
         	<ComboBox Name ="sele" Margin="57,8,65,0" SelectedIndex="0" Height="25" VerticalAlignment="Top" Width="170">
-        		<ComboBoxItem Content="Elitism" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsSelected="True"/>
+        		<!--<ComboBoxItem Content="Elitism" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsSelected="True"/>
         		<ComboBoxItem Content="Fitness proportionate selection"/>
-        		<ComboBoxItem Content="Tournament selection"/>
+        		<ComboBoxItem Content="Tournament selection"/>-->
         	</ComboBox>
         </GroupBox>
         <GroupBox Header="Population" HorizontalAlignment="Left" Margin="8,70,0,0" Grid.Row="1" Width="304" VerticalAlignment="Top">
         	<Grid Margin="8,0,-4,-4.96">
-        		<Slider Name="popu" Margin="48,8,70,0" RenderTransformOrigin="1.235,0.44" Height="26.92" VerticalAlignment="Top"/>
+        		<Slider Name="popu" Margin="48,8,70,0" RenderTransformOrigin="1.235,0.44" Height="26.92" VerticalAlignment="Top" ValueChanged="popu_ValueChanged" />
         		<Label Content="Size" HorizontalAlignment="Left" Margin="8,8,0,0" Width="36" Height="26.92" VerticalAlignment="Top"/>
-        		<Label Content="10" HorizontalAlignment="Right" Height="25" Margin="0,8,16,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.58,-0.198"/>
+        		<Label Name ="popsize" Content="10" HorizontalAlignment="Right" Height="25" Margin="0,8,16,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.58,-0.198"/>
         	</Grid>
         </GroupBox>
         <GroupBox Header="Mutation degree" HorizontalAlignment="Left" Margin="8,126.92,0,0" Grid.Row="1" VerticalAlignment="Top" Width="304">
         	<Grid Margin="0,0,-4,-3.92">
-        		<Slider Name="muta" Margin="57,8,69,12" RenderTransformOrigin="1.235,0.44" Width="170" Height="25"/>
-        		<Label Content="0" HorizontalAlignment="Right" Margin="0,8,17,12" Width="48"/>
+                <Slider Name="muta" Margin="57,8,69,12" RenderTransformOrigin="1.235,0.44" Width="170" Height="25" ValueChanged="muta_ValueChanged" />
+        		<Label Name="mutasize" Content="0" HorizontalAlignment="Right" Margin="0,8,17,12" Width="48"/>
         	</Grid>
         </GroupBox>
         <GroupBox Header="Crossover" HorizontalAlignment="Left" Margin="8,195.92,0,0" Grid.Row="1" Width="304" VerticalAlignment="Top">
         	<Grid Margin="0,0,-4,0">
         		<Label Content="Amount" Margin="18,8,0,0" HorizontalAlignment="Left" Width="57" Height="25" VerticalAlignment="Top"/>
-        		<TextBox Name="cross" Margin="71,8,104,8" TextWrapping="Wrap" Text="2" TextAlignment="Right" Height="25" VerticalAlignment="Top"/>
+                <TextBox Name="cross" Margin="71,8,104,8" TextWrapping="Wrap" Text="2" TextAlignment="Right" Height="25" VerticalAlignment="Top" PreviewTextInput="NumericOnly" />
         	</Grid>
         </GroupBox>
         <GroupBox Header="Truncation condition" HorizontalAlignment="Right" Margin="0,8,8,0" Grid.Row="1" Width="300" Height="251.88" VerticalAlignment="Top">
         	<Grid Margin="0,0,-4,-1.04">
         		<CheckBox x:Name="Number_of_generations" Content="Number of generations" VerticalAlignment="Top" Margin="8,13.901,140.481,0" d:LayoutOverrides="Width"  />
-        		<TextBox Name="numGen" HorizontalAlignment="Left" Height="25" Margin="26,33,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="108" TextAlignment="Right" />
+                <TextBox Name="numGen" HorizontalAlignment="Left" Height="25" Margin="26,33,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="108" TextAlignment="Right" PreviewTextInput="NumericOnly" />
         		<CheckBox x:Name="Runtime__s_" Content="Runtime (s)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,93.901,0,0"/>
-        		<TextBox Name="runTime" HorizontalAlignment="Left" Margin="26,113,0,0" TextWrapping="Wrap" Text="7.5" Width="108" TextAlignment="Right" Height="25" VerticalAlignment="Top"/>
+                <TextBox Name="runTime" HorizontalAlignment="Left" Margin="26,113,0,0" TextWrapping="Wrap" Text="7.5" Width="108" TextAlignment="Right" Height="25" VerticalAlignment="Top" PreviewTextInput="NumericPointOnly"/>
         		<CheckBox x:Name="Fitness__ms_" Content="Fitness (ms)" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,0,0,37.96"/>
-        		<TextBox Name="fitness" HorizontalAlignment="Left" Height="25" Margin="26,196,0,0" TextWrapping="Wrap" Text="258.5" VerticalAlignment="Top" Width="108" TextAlignment="Right"/>
+                <TextBox Name="fitness" HorizontalAlignment="Left" Height="25" Margin="26,196,0,0" TextWrapping="Wrap" Text="258.5" VerticalAlignment="Top" Width="108" TextAlignment="Right" PreviewTextInput="NumericPointOnly"/>
         	</Grid>
-        </GroupBox> 
-        
+        </GroupBox>
+        <Label Content="Function name: " Height="24" HorizontalAlignment="Left" Margin="297,81,0,0" VerticalAlignment="Top" Width="97" />
+        <Label Content="" Height="24" HorizontalAlignment="Left" Margin="400,81,0,0" Name="funcname" VerticalAlignment="Top" Width="126" />
     </Grid>
 </ribbon:RibbonWindow>

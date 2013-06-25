@@ -25,7 +25,12 @@ namespace Gui.Classes
         /// <returns>List<string> of function-names</string></returns>
         public string[] getFunctions(string filePath)
         {
+<<<<<<< HEAD
             string[] functions = null;
+            DllLoader dl = new DllLoader();
+=======
+            string[] functions;
+>>>>>>> 3e3be38a489ba1baf2287306ffb3a840a6a0949e
 
             try
             {

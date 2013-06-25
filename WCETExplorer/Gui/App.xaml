@@ -8,7 +8,7 @@
 			 xmlns:SampleData2="clr-namespace:Expression.Blend.SampleData.FunctionNames" 
 			 mc:Ignorable="d" 
 			 x:Class="Gui.App"
-             StartupUri="WAlgorithmSettings.xaml">
+             StartupUri="WDllChooser.xaml">
     <Application.Resources>
     	<ResourceDictionary>
     		<ResourceDictionary.MergedDictionaries>

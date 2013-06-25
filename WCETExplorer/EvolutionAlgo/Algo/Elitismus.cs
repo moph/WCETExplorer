@@ -10,9 +10,14 @@ using System.Collections;
 /// </summary>
 namespace EvolutionAlgo
 {
-    class Elitismus : SelectionStrategy
+    public class Elitismus : SelectionStrategy
     {
         private double _newPopSize;
+        private String name = "Elitismus";
+
+        public String toString(){
+            return this.name;
+        }
 
         public Elitismus()
         {

@@ -32,21 +32,37 @@ namespace Gui
         private static CheckBox[] binaries;
         private static ComboBox[] enums;
 
+        
+
+        private WDllChooser wdll;
+        private WAlgorithmSettings WAlgo;
+        esFunction esf;
+
 
         //private static WAlgorithmSettings WAlgo = new WAlgorithmSettings();
 
         /// <summary>
         /// Aufruf von Window
         /// </summary>
-        public WManualSettings()
+        public WManualSettings(WDllChooser wdll, WAlgorithmSettings WAlgo)
         {
-
-            
             InitializeComponent();
-            
+            this.WAlgo = WAlgo;
+            this.wdll = wdll;
+            //esf = wdll.getSelectedFunction();
             binaries = new CheckBox[40] { c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40 };
             floats = new Slider[10] { f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 };
             enums = new ComboBox[10] { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 };
+
+            foreach (Slider f in floats)
+            {
+                f.Minimum = 0;
+                f.Maximum = 1;
+                f.IsSnapToTickEnabled = true;
+                f.TickFrequency = 0.01;
+            }
+
+            setPreconfig(wdll.getSelectedFunction());
 
             // Insert code required on object creation below this point.
             //esFunction func;
@@ -54,6 +70,9 @@ namespace Gui
 
             
         }
+
+        public delegate void finishedManual_delegate(Genom gn);
+
         /// <summary>
         /// Run
         /// Author: Philipp Klein
@@ -64,8 +83,14 @@ namespace Gui
         {
             WResult WR = new WResult();
             WR.Show();
+            EvolutionAlgo.finishedManual_delegate bla = WR.finishedManual;
+
+            Parameter p = this.getParameter();
+            EvolutionAlgo.EvolutionAlgo algo = new EvolutionAlgo.EvolutionAlgo(p, bla, esf.f);
+            algo.go();
         }
 
+        
         /// <summary>
         /// Switch to Automatic
         /// Author: Philipp Klein
@@ -75,19 +100,39 @@ namespace Gui
         private void Automatic_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            WAlgorithmSettings WAlgo = new WAlgorithmSettings();
             WAlgo.Show();
         }
 
         private void LoadConf_Click(object sender, RoutedEventArgs e)
         {
+            string loadPath;
+            Parameter param;
+            AlgoSettings sa;
+            string funcName;
+            string dllPath;
 
-        }
-
-        private void SaveConf_Click(object sender, RoutedEventArgs e)
-        {
+            Nullable<bool> result = WAlgo.dlg.ShowDialog();
+            if (result != true)
+            {
+                return;
+            }
+            loadPath = WAlgo.dlg.FileName;
+            LoadSaveSettings loadsave = new LoadSaveSettings();
+            loadsave.load(loadPath, out dllPath, out funcName, out param, out sa);
             
+            DllLoader dllLoad = new DllLoader();
+            String[] funcs = dllLoad.loadDll(dllPath);
+            esFunction esf = dllLoad.loadFunction(funcName);
+            WAlgo.dllPath = dllPath;
+            this.setPreconfig(esf);
+            WAlgo.setParameter(sa);
+            this.setParamter(param);
+
+            funcname.Content = funcName;
+            WAlgo.funcname.Content = funcName;
         }
+
+        
 
         /// <summary>
         /// LoadES
@@ -97,31 +142,28 @@ namespace Gui
         /// <param name="e"></param>
         private void LoadES_Click(object sender, RoutedEventArgs e)
         {
-            Gui.WDllChooser WDll = new Gui.WDllChooser();
-            WDll.Show();
+            wdll.Show();
+            setPreconfig(wdll.getSelectedFunction());
         }
 
         /// <summary>
         /// Author: Philipp Klein
         /// </summary>
-        private Parameter getParameters()
+        public Parameter getParameter()
         {
 
-            float[] analog = new float[floats.Length];
-            bool[] digital = new bool[binaries.Length];
-            int[] enumses = new int[enums.Length];
+            float[] analog = new float[esf.floats.Length];
+            bool[] digital = new bool[esf.binaries.Length];
+            int[] enumses = new int[esf.enums.Length];
 
-            for (int i = 0; i < binaries.Length; i++)
-                if (binaries[i].IsEnabled == true)
-                    digital[i] = binaries[i].IsChecked.Value;
+            for (int i = 0; i < digital.Length; i++)
+                digital[i] = binaries[i].IsChecked.Value;
 
-            for (int i = 0; i < floats.Length; i++)
-                if (floats[i].IsEnabled == true)
-                    analog[i] = (float)floats[i].Value;
+            for (int i = 0; i < analog.Length; i++)
+                analog[i] = (float)floats[i].Value;
 
-            for (int i = 0; i < enums.Length; i++)
-                if (enums[i].IsEnabled == true)
-                    enumses[i] = enums[i].SelectedIndex;
+            for (int i = 0; i < enumses.Length; i++)
+                enumses[i] = enums[i].SelectedIndex;
 
             Parameter param = new Parameter(analog, digital, enumses);
             return param;
@@ -130,7 +172,7 @@ namespace Gui
         /// <summary>
         /// Author: Philipp Klein
         /// </summary>
-        private void setParamters(Parameter param)
+        public void setParamter(Parameter param)
         {
 
             for (int i = 0; i < binaries.Length; i++)
@@ -150,13 +192,18 @@ namespace Gui
         /// <summary>
         /// Authos: Philipp Klein
         /// </summary>
-        private void setPreconfig(esFunction func)
+        public void setPreconfig(esFunction func)
         {
             int sizeB, sizeE, sizeF;
-
+            esf = func;
             sizeB = func.binaries.Length;
             sizeE = func.enums.Length;
             sizeF = func.floats.Length;
+
+            //Beschreibt label mit function Name für WAlgo und WManual
+            //da es von WDLL chooser aufgerufen wird
+            funcname.Content = wdll.getSelectedFunction().name;
+            WAlgo.funcname.Content = wdll.getSelectedFunction().name;
 
             int i;
             for (i = 0; i < sizeB; i++)
@@ -171,14 +218,17 @@ namespace Gui
 
             for (i = 0; i < sizeE; i++)
             {
+                enums[i].Items.Clear();
                 enums[i].IsEnabled = true;
                 for (int j = 0; j < func.enums[i].value.Length; j++)
                 {
                     enums[i].Items.Add(func.enums[i].value[j]);
                 }
+                enums[i].SelectedIndex = 0;
             }
             for (; i < enums.Length; i++)
             {
+                enums[i].Items.Clear();
                 enums[i].IsEnabled = false;
             }
             for (i = 0; i < sizeF; i++)
@@ -192,5 +242,23 @@ namespace Gui
 
         }
 
+        private void f1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            ((Slider)sender).ToolTip = ((Slider)sender).Value;
+        }
+
+        private void SaveConf_Click_1(object sender, RoutedEventArgs e)
+        {
+            string savePath;
+            Nullable<bool> result = WAlgo.sfd.ShowDialog();
+            if (result != true)
+            {
+                return;
+            }
+            savePath = WAlgo.sfd.FileName;
+            LoadSaveSettings loadsave = new LoadSaveSettings();
+            loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), WAlgo.getParameter());
+
+        }
     }
 }

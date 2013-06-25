@@ -10,6 +10,13 @@ namespace EvolutionAlgo
     {
         private double _newPopSize;
         private int _nrOfParticipants;
+        private String name = "TournamentSelection";
+
+        public String toString()
+        {
+            return this.name;
+        }
+
 
         public TournamentSelection()
         {

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="settings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="dll"/>
+        <xs:element name="function">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="manual">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="enums">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:int" name="enum" maxOccurs="10" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="floats">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:float" name="float" maxOccurs="10" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="binaries">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:boolean" name="binary" maxOccurs="40" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="algorithm">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:unsignedByte" name="selection"/>
+                    <xs:element type="xs:unsignedInt" name="population"/>
+                    <xs:element type="xs:float" name="mutation"/>
+                    <xs:element type="xs:unsignedInt" name="crossover"/>
+                    <xs:element name="generations">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:unsignedInt">
+                            <xs:attribute type="xs:boolean" name="selected" use="required"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="runtime">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:double">
+                            <xs:attribute type="xs:boolean" name="selected" use="required"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="fitness">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:double">
+                            <xs:attribute type="xs:boolean" name="selected" use="required"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="name"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -48,3 +48,14 @@
 
 #define ES2_MAX_D 3
 #define ES2_MIN_D 1
+
+
+//********************************************
+//Defines for executeES3 functions
+//
+//********************************************
+#define ES3_MAX_ANALOG  60
+#define ES3_MIN_ANALOG -60
+
+#define ES3_MAX_SIGNAL  9
+#define ES3_MIN_SIGNAL  0

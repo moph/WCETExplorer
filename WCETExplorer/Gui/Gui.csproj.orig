@@ -41,6 +41,9 @@
   <PropertyGroup>
     <StartupObject>Gui.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -174,9 +177,14 @@
   <PropertyGroup>
     <PreBuildEvent>copy "$(SolutionDir)..\ES\Es_config.xml" "$(ProjectDir)$(OutDir)"
 
-copy "$(SolutionDir)..\ES\Es_config.xsd" "$(ProjectDir)$(OutDir)"
 
-copy "$(ProjectDir)\settings.xsd" "$(ProjectDir)$(OutDir)"</PreBuildEvent>
+copy "$(ProjectDir)\settings.xsd" "$(ProjectDir)$(OutDir)"
+copy "$(SolutionDir)..\ES\Es_config.xsd" "$(ProjectDir)$(OutDir)"
+</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.

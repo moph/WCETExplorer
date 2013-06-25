@@ -8,7 +8,7 @@ namespace EvolutionAlgo
     /// <summary>
     /// Author:David Schreiner
     /// </summary>
-    class Genom
+    public class Genom
     {
 
         public Parameter _param;
@@ -20,6 +20,7 @@ namespace EvolutionAlgo
         {
             this._param = param;
             this._ea = ea;
+            
             if ((_param != null) && (ea != null))
             {
                 calculateFitness();
@@ -36,7 +37,7 @@ namespace EvolutionAlgo
         }
 
         private void calculateFitness(){
-           this._fittness= _ea._calculateFitness(_param.analog, _param.digital, _param.enums);
+            this._fittness = _ea._calculateFitness(_param.analog.Length, _param.analog, _param.digital.Length, _param.digital, _param.enums.Length, _param.enums);
         }
     }
 }
