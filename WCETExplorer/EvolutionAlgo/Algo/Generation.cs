@@ -100,11 +100,14 @@ namespace EvolutionAlgo
                 }
                 
                 genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
-                _genomArray[k] = new Genom(genomParameter,_ea);
+                _genomArray[k] = new Genom(genomParameter);
                 //Calculate Fittness.
                 
             }
-
+            for (int u = 0; u < _genomArray.Length; u++)
+            {
+                _genomArray[u].fittness = _ea._calculateFitness(_genomArray[u]._param.analog.Length, _genomArray[u]._param.analog, _genomArray[u]._param.digital.Length, _genomArray[u]._param.digital, _genomArray[u]._param.enums.Length, _genomArray[u]._param.enums);
+            }
         }
 
         public void crossover()
