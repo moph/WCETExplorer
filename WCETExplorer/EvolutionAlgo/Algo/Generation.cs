@@ -47,9 +47,9 @@ namespace EvolutionAlgo
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(null,null);
-            dummy.fittness = 0;
-            for (int k = 0; k < _genomArray.Length; k++)
+            Genom dummy = this._genomArray[0];
+            
+            for (int k = 1; k < _genomArray.Length; k++)
             {
                 if (_genomArray[k].fittness > dummy.fittness)
                 {
