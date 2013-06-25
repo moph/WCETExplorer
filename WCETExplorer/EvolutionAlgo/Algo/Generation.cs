@@ -63,13 +63,12 @@ namespace EvolutionAlgo
         {
             int lenght = _genomArray.Length;
             double avg = 0;
-            for (int k = 0; k < lenght; k++)
-                _ea._calculateFitness(_genomArray[k]._param.analog.Length, _genomArray[k]._param.analog, _genomArray[k]._param.digital.Length, _genomArray[k]._param.digital, _genomArray[k]._param.enums.Length, _genomArray[k]._param.enums);
+            
             for (int k = 0; k < lenght; k++)
                 avg = avg + _genomArray[k].fittness;
 
 
-            return avg/lenght;
+            return (avg/lenght);
         }
 
         private void createGenes(uint givenGenes)
