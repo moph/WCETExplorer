@@ -111,9 +111,9 @@ namespace EvolutionAlgo
         {
             Random rand = new Random();
            
-            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length-1); // Where the crossover will take place
-            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length-1);
-            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length-1);
+            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
+            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
+            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
             int testJ;
             for (int k = 0; k < maxCrossover; k++)
             {
