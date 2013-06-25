@@ -59,19 +59,41 @@ namespace Gui
         /// <param name="e">RoutedEventArgs</param>
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            string[] functions;
+            string[] functions = null;
             Classes.DllChooser chooser = new Classes.DllChooser();
             Classes.FunctionChooser fc = new Classes.FunctionChooser();
 
             xmlPath = chooser.openFileDialog();
-            showXmlPath.Text = xmlPath;
-            functions = fc.getFunctions(xmlPath);
 
+            if (xmlPath == null)
+            {
+                return;
+            }
+
+            if ("".Equals(xmlPath))
+            {
+                MessageBox.Show("Please select a valid .xml-File");
+                return;
+            }
+            else
+            {
+                showXmlPath.Text = xmlPath;
+                functions = fc.getFunctions(xmlPath);
+                if (null == functions)
+                {
+
+                    return;
+                }
+            }
+
+
+            combobox.Items.Clear();
+            
             for (int i = 0; i < functions.Length; i++)
             {
                 combobox.Items.Add(functions[i]);
             }
-
+            
         }
 
         /// <summary>
@@ -82,9 +104,15 @@ namespace Gui
         /// <param name="e">EventListener</param>
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            WAlgorithmSettings ws = new WAlgorithmSettings();
-            ws.Show();
-            this.Close();
+            if (String.IsNullOrEmpty(xmlPath))
+            {
+                MessageBox.Show("Please select a valid .xml-File");
+            }else{
+                WAlgorithmSettings ws = new WAlgorithmSettings();
+                ws.Show();
+                this.Close();
+            }
+            
         }
 
         /// <summary>
