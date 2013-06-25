@@ -47,9 +47,9 @@ namespace EvolutionAlgo
 
         public Genom getBestGenom()
         {
-            Genom dummy = new Genom(null,null);
-            dummy.fittness = 0;
-            for (int k = 0; k < _genomArray.Length; k++)
+            Genom dummy = this._genomArray[0];
+            
+            for (int k = 1; k < _genomArray.Length; k++)
             {
                 if (_genomArray[k].fittness > dummy.fittness)
                 {
@@ -111,9 +111,9 @@ namespace EvolutionAlgo
         {
             Random rand = new Random();
            
-            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length-1); // Where the crossover will take place
-            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length-1);
-            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length-1);
+            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
+            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
+            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
             int testJ;
             for (int k = 0; k < maxCrossover; k++)
             {
