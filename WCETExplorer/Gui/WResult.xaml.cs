@@ -45,15 +45,17 @@ namespace Gui
         /// <param name="g2"></param>
         public void printResult(Generation g1, Genom g2)
         {
-            Genom dummy = new Genom(null, null);
+            /*Genom dummy = new Genom(null, null);
             //get best Genom from one Generation
             dummy = g1.getBestGenom();
-
+            
             //ADD AVG and WCET from GENERATION to List for print
-            i = WCETValue.Capacity + 1;
+            i = WCETValue.Count;
+            if( WCETValue.Count > 10)
+                return;
             WCETValue.Add(new KeyValuePair<int, double>(i, dummy.fittness));
 
-            i = AVGValue.Capacity + 1;
+            i = AVGValue.Count;
             AVGValue.Add(new KeyValuePair<int,double>(i, g1.getAverageFitness()));
 
             //Print absolut WCET
@@ -63,7 +65,7 @@ namespace Gui
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
 
-            i = 0;
+            i = 0;*/
         }
 
         /// <summary>
@@ -72,14 +74,14 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedWCET(Genom gn)
         {
-            double temp = gn.fittness;
+            /*double temp = gn.fittness;
             if (temp >= dayborder)
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
                 temp = Math.Round(temp, 6);
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
-            }
+            }*/
         }
 
         /// <summary>
@@ -88,14 +90,14 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedManual(Genom gn)
         {
-            double temp = gn.fittness;
+            /*double temp = gn.fittness;
             if (temp >= dayborder || temp < 0)
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
                 temp = Math.Round(temp, 6);
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
-            }
+            }*/
         }
 
         /// <summary>
@@ -104,14 +106,14 @@ namespace Gui
         /// <param name="msg"></param>
         private void setStatus(string msg)
         {
-            string stemp = "termination failed";
+            /*string stemp = "termination failed";
             if (msg.Equals(stemp))
                 fitt.Content = msg;
             else
             {
                 fitt.FontSize = 22;
                 fitt.Content = msg + " ms";
-            }
+            }*/
         }
 
         /// <summary>
@@ -120,7 +122,7 @@ namespace Gui
         /// <param name="tmp"></param>
         private void printWCET(List<KeyValuePair<int, double>> tmp)
         {
-            WCET.DataContext = tmp;
+            //WCET.DataContext = tmp;
         }
 
 
@@ -130,7 +132,7 @@ namespace Gui
         /// <param name="tmp"></param>
         private void printAVG(List<KeyValuePair<int, double>> tmp)
         {
-            AVG.DataContext = tmp;
+            //AVG.DataContext = tmp;
         }
 	}
 }

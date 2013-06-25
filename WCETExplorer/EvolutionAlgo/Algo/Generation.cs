@@ -25,9 +25,9 @@ namespace EvolutionAlgo
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
             //this._genomArray[] = new Genom[size];
-            this._genomArray = new Genom[size];
-            this.createGenes(0);
             this._ea = ea;
+            this._genomArray = new Genom[size];
+            this.createGenes(0);    
         }
 
         // Create new Generation but use existing genoms.
@@ -35,13 +35,15 @@ namespace EvolutionAlgo
         {
             
             // create (size - gen._size) new genes.
+            this._genomArray = new Genom[size];
+            this._ea = ea;
+            this._blaram = ((Genom)gen[0])._param;
             this.mutateRate = mutateRate;
             this.maxCrossover = maxCrossover;
             this._size = size;
             //this._genomArray[] = new Genom[size];
             this._genomArray = new Genom[size];
             gen.CopyTo(this._genomArray, 0);
-            this._blaram = _genomArray[0]._param;
             this.createGenes((uint)gen.Count);
         }
 
@@ -81,7 +83,9 @@ namespace EvolutionAlgo
             int countEnums = _blaram.enums.Length;
             float[] analogVal = new float[countAnalog];
             bool[] digitalVal = new bool[countDigital];
-            int[] enumVal = new int[countEnums];
+            int[] enumVal = new int[1];
+            if(countEnums > 0)
+                enumVal = new int[countEnums];
             for (uint k = givenGenes; k < this._size; k++)
             {
                 ran = new Random();
@@ -104,12 +108,12 @@ namespace EvolutionAlgo
                 //Calculate Fittness.
                 
             }
-            /*
+            
             for (int u = 0; u < _genomArray.Length; u++)
             {
                 _genomArray[u].fittness = _ea._calculateFitness(_genomArray[u]._param.analog.Length, _genomArray[u]._param.analog, _genomArray[u]._param.digital.Length, _genomArray[u]._param.digital, _genomArray[u]._param.enums.Length, _genomArray[u]._param.enums);
             }
-             * */
+             
         }
 
         public void crossover()
