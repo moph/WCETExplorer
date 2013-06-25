@@ -69,17 +69,39 @@ namespace Gui
         /// <param name="e">RoutedEventArgs</param>
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            string[] functions;
+            string[] functions = null;
 
             xmlPath = chooser.openFileDialog();
-            showXmlPath.Text = xmlPath;
-            functions = fc.getFunctions(xmlPath);
+
+            if (xmlPath == null)
+            {
+                return;
+            }
+
+            combobox.Items.Clear();
+
+            if ("".Equals(xmlPath))
+            {
+                MessageBox.Show("Please select a valid .xml-File");
+                return;
+            }
+            else
+            {
+                showXmlPath.Text = xmlPath;
+                functions = fc.getFunctions(xmlPath);
+                if (null == functions)
+                {
+
+                    return;
+                }
+            }
+
 
             for (int i = 0; i < functions.Length; i++)
             {
                 combobox.Items.Add(functions[i]);
             }
-
+            combobox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -90,14 +112,23 @@ namespace Gui
         /// <param name="e">EventListener</param>
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            if (ws == null)
+            if (combobox.Items.IsEmpty)
             {
-                ws = new WAlgorithmSettings(this);
-                ws.Show();
+                MessageBox.Show("No valid .xml-File selected");
             }
-            this.Hide();
-            ws.WManual.setPreconfig(getSelectedFunction());
+            else
+            {
+                if (ws == null)
+                {
+                    ws = new WAlgorithmSettings(this);
+                    ws.Show();
+                }
+                ws.WManual.setPreconfig(getSelectedFunction());
+                this.Hide();
+            }
         }
+
+            
 
         /// <summary>
         /// logic of textbox

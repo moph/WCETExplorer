@@ -33,6 +33,10 @@ namespace Gui.Classes
             {
                 xmlPath = dlg.FileName;
             }
+            else
+            {
+                xmlPath = null;
+            }
 
             return xmlPath;
         }
