@@ -272,7 +272,7 @@ namespace Gui
 
                 algoSettings.stop = s;
                 return algoSettings;
-            }catch(ArgumentException ex){
+            }catch(FormatException ex){
                 throw ex;
             }
             
