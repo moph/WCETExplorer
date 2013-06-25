@@ -150,6 +150,10 @@ namespace Gui
         /// <param name="e"></param>
         private void Run_Click(object sender, RoutedEventArgs e)
         {
+
+            if (getParameter() == null)
+                return;
+
             Gui.WResult WRun = new Gui.WResult();
             WRun.Show();
             EvolutionAlgo.printResult_delegate pR = WRun.printResult;
@@ -277,9 +281,9 @@ namespace Gui
                 algoSettings.stop = s;
                 return algoSettings;
             }catch(FormatException ex){
-                throw ex;
-                //MessageBox.Show(ex.Message);
-                //return null;
+                //throw ex;
+                MessageBox.Show(ex.Message);
+                return null;
             }
             
             
