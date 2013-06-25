@@ -134,19 +134,192 @@
         <binaries />
     </function>
 
-<!--    #########################################################   -->
+<!--    #########################################################   --> 
     <function name="executeES3">
         <enums>
-            <enum name="var1">
-                <value>0</value>
-                <value>1</value>
+            <enum name="e00">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e01">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e02">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e03">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e04">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e05">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e06">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e07">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e08">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
+            </enum>
+			
+			<enum name="e09">
+                <value>RECHTECK</value>
+                <value>DREIECK</value>
+				<value>SAEGEZAHN</value>
+				<value>BAUD19200</value>
+				<value>BAUD9600</value>
+				<value>SINUS</value>
+				<value>AM</value>
+				<value>FM</value>
+				<value>PM</value>
+				<value>PWM</value>
             </enum>
         </enums>
         <floats>
-            <float name="var2" />
+            <float name="f00" />
+			<float name="f01" />
+			<float name="f02" />
+			<float name="f03" />
+			<float name="f04" />
+			<float name="f05" />
+			<float name="f06" />
+			<float name="f07" />
+			<float name="f08" />
+			<float name="f09" />
         </floats>
         <binaries>
-            <binary name="var3" />
+			<binary name="b00" />
+            <binary name="b01" />
+			<binary name="b02" />
+			<binary name="b03" />
+			<binary name="b04" />
+			<binary name="b05" />
+			<binary name="b06" />
+			<binary name="b07" />
+			<binary name="b08" />
+			<binary name="b09" />
+			<binary name="b10" />
+			<binary name="b11" />
+			<binary name="b12" />
+			<binary name="b13" />
+			<binary name="b14" />
+			<binary name="b15" />
+			<binary name="b16" />
+			<binary name="b17" />
+			<binary name="b18" />
+			<binary name="b19" />
+			<binary name="b20" />
+			<binary name="b21" />
+			<binary name="b22" />
+			<binary name="b23" />
+			<binary name="b24" />
+			<binary name="b25" />
+			<binary name="b26" />
+			<binary name="b27" />
+			<binary name="b28" />
+			<binary name="b29" />
+			<binary name="b30" />
+			<binary name="b31" />
+			<binary name="b32" />
+			<binary name="b33" />
+			<binary name="b34" />
+			<binary name="b35" />
+			<binary name="b36" />
+			<binary name="b37" />
+			<binary name="b38" />
+			<binary name="b39" />
         </binaries>
     </function>
 </es>
