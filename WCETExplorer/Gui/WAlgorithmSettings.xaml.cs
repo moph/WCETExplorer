@@ -79,6 +79,10 @@ namespace Gui
         /// <param name="e"></param>
         private void SaveConf_Click(object sender, RoutedEventArgs e)
         {
+
+            if (getParameter() == null)
+                return;
+
             string savePath;
             Nullable<bool> result = sfd.ShowDialog();
             if (result != true)

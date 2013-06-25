@@ -249,6 +249,9 @@ namespace Gui
 
         private void SaveConf_Click_1(object sender, RoutedEventArgs e)
         {
+            if (WAlgo.getParameter() == null)
+                return;
+
             string savePath;
             Nullable<bool> result = WAlgo.sfd.ShowDialog();
             if (result != true)
