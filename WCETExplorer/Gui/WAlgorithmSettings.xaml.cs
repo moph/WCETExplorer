@@ -278,6 +278,8 @@ namespace Gui
                 return algoSettings;
             }catch(FormatException ex){
                 throw ex;
+                //MessageBox.Show(ex.Message);
+                //return null;
             }
             
             
@@ -313,7 +315,7 @@ namespace Gui
 
         private static bool IsTextNumericPoint(string str)
         {
-            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9.]");
+            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9](\\.){1,1}[^0-9]");
             return reg.IsMatch(str);
         }
 
