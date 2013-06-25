@@ -13,14 +13,14 @@ namespace EvolutionAlgo
 
         public Parameter _param;
         private double _fittness;
-        
+        private EvolutionAlgo _ea;
 
         //Create Genom and Calucalte Fitness.
-        public Genom(Parameter param)
+        public Genom(Parameter param, EvolutionAlgo ea)
         {
             this._param = param;
             
-            
+            this._ea = ea;
          
                 
             
@@ -33,6 +33,11 @@ namespace EvolutionAlgo
             set {
                 _fittness = value;
             }
+        }
+
+        public void calculateFitnes()
+        {
+            this._fittness = _ea._calculateFitness(_param.analog.Length, _param.analog, _param.digital.Length, _param.digital, _param.enums.Length, _param.enums);
         }
 
         

@@ -24,20 +24,20 @@ namespace EvolutionAlgo
     /// <param name="typ">Array of int.</param>
     /// <returns>The fitness of the current Parameter set.</returns>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public volatile delegate double calculateFitness_delegate(int sizeAnalogXML, float[] analog, int sizeDigitalXML, bool[] digital, int sizeSignalXML, int[] typ);
+    public delegate double calculateFitness_delegate(int sizeAnalogXML, float[] analog, int sizeDigitalXML, bool[] digital, int sizeSignalXML, int[] typ);
 
 
     // Delegate for Function call in GUI by manual Calculation.
     public delegate void finishedManual_delegate(Genom myGenom);
     // Delegates for Function calls in GUI by automatic Calculation.
-    public volatile delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
-    public volatile delegate void finishedWCET_delegate(Genom myGenom);
+    public delegate void printResult_delegate(Generation myGeneration, Genom myGenom);
+    public delegate void finishedWCET_delegate(Genom myGenom);
     
     /// <summary>
     /// Author: Andreas Engel
     /// Date: 16.05.2013
     /// </summary>
-    public volatile class EvolutionAlgo
+    public class EvolutionAlgo
     {
         private uint _startSize;
         private AlgoSettings _aSettings;
@@ -113,15 +113,17 @@ namespace EvolutionAlgo
                         _bestGenom = myGeneration.getBestGenom();
                     }
                 } while (again());
+
+                _printResult(myGeneration, _bestGenom);
                 // Finish and return Genom with WCET.
-                _finishedWCET(_bestGenom);
+                _finishedWCET(brutforce(_bestGenom));
             } 
             // Do Manual calculation.
             //Andi ist doof :)
             else {
 
                 // Create Genom.
-                Genom myGenom = new Genom(_param,this);
+                Genom myGenom = new Genom(_param, this);
                 // Return Genom to GUI.
                 _finishedManual(myGenom);
             }
@@ -147,13 +149,36 @@ namespace EvolutionAlgo
             return arrayGeneration;
         }
 
+        private Genom brutforce(Genom myGenom) {
 
-        /*
-         * ToDo:
-         * - Maybe delte private constructor and make calculation static :/
-         * - Add correct parameters to delegate calculate Fitness.
-         * - Genom needs Function _calculateFitness to call DLL.
-         * - Add genomeComparer to compare bestGonom tih others.
-         */
+            //Check  analog array.
+            for (int i = 0; i < myGenom._param.analog.Length; i++)
+            {
+                float analogValue = myGenom._param.analog[i];
+                double beforeFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+                myGenom._param.analog[i] = 0;
+                double afterFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+
+                if (beforeFittnes != afterFittnes)
+                {
+                    myGenom._param.analog[i] = analogValue;
+                }
+            }
+
+            //Check digital array.
+            for (int i = 0; i < myGenom._param.digital.Length; i++)
+            {
+                bool digitalValue = myGenom._param.digital[i];
+                double beforeFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+                myGenom._param.digital[i] = false;
+                double afterFittnes = _calculateFitness(myGenom._param.analog.Length, myGenom._param.analog, myGenom._param.digital.Length, myGenom._param.digital, myGenom._param.enums.Length, myGenom._param.enums);
+
+                if (beforeFittnes != afterFittnes)
+                {
+                    myGenom._param.digital[i] = digitalValue;
+                }
+            }
+            return myGenom;
+        }
     }
 }
