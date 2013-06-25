@@ -21,7 +21,8 @@ namespace EvolutionAlgo
             this._param = param;
             
             this._ea = ea;
-         
+
+            calculateFitnes();
                 
             
         }
