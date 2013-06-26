@@ -15,12 +15,12 @@ using System.Windows.Threading;
 
 namespace Gui
 {
-	/// <summary>
-	/// Interaktionslogik für WResult.xaml
+    /// <summary>
+    /// Interaktionslogik für WResult.xaml
     /// Author: Marcus Eiswirt
-	/// </summary>
-	public partial class WResult : Window
-	{
+    /// </summary>
+    public partial class WResult : Window
+    {
         List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
         List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
 
@@ -29,14 +29,14 @@ namespace Gui
         //falls WCET unrealistisch
         double dayborder = 86400000;
 
-		public WResult()
-		{
+        public WResult()
+        {
             i = 0;
 
-			this.InitializeComponent();
+            this.InitializeComponent();
 
             //showColumnChart(null, null);
-		}
+        }
         /// <summary>
         /// Wird einzeln aufgerufen liste erstellen
         /// </summary>
@@ -45,18 +45,16 @@ namespace Gui
         /// <param name="g2"></param>
         public void printResult(Generation g1, Genom g2)
         {
-            /*Genom dummy = new Genom(null, null);
+            Genom dummy = new Genom(null, null);
             //get best Genom from one Generation
             dummy = g1.getBestGenom();
-            
+
             //ADD AVG and WCET from GENERATION to List for print
-            i = WCETValue.Count;
-            if( WCETValue.Count > 10)
-                return;
+            i = WCETValue.Capacity + 1;
             WCETValue.Add(new KeyValuePair<int, double>(i, dummy.fittness));
 
-            i = AVGValue.Count;
-            AVGValue.Add(new KeyValuePair<int,double>(i, g1.getAverageFitness()));
+            i = AVGValue.Capacity + 1;
+            AVGValue.Add(new KeyValuePair<int, double>(i, g1.getAverageFitness()));
 
             //Print absolut WCET
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), g2.fittness.ToString());
@@ -65,7 +63,7 @@ namespace Gui
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
 
-            i = 0;*/
+            i = 0;
         }
 
         /// <summary>
@@ -74,14 +72,14 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedWCET(Genom gn)
         {
-            /*double temp = gn.fittness;
+            double temp = gn.fittness;
             if (temp >= dayborder)
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
                 temp = Math.Round(temp, 6);
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
-            }*/
+            }
         }
 
         /// <summary>
@@ -90,14 +88,14 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedManual(Genom gn)
         {
-            /*double temp = gn.fittness;
+            double temp = gn.fittness;
             if (temp >= dayborder || temp < 0)
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
                 temp = Math.Round(temp, 6);
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
-            }*/
+            }
         }
 
         /// <summary>
@@ -106,14 +104,14 @@ namespace Gui
         /// <param name="msg"></param>
         private void setStatus(string msg)
         {
-            /*string stemp = "termination failed";
+            string stemp = "termination failed";
             if (msg.Equals(stemp))
                 fitt.Content = msg;
             else
             {
                 fitt.FontSize = 22;
                 fitt.Content = msg + " ms";
-            }*/
+            }
         }
 
         /// <summary>
@@ -122,7 +120,7 @@ namespace Gui
         /// <param name="tmp"></param>
         private void printWCET(List<KeyValuePair<int, double>> tmp)
         {
-            //WCET.DataContext = tmp;
+            WCET.DataContext = tmp;
         }
 
 
@@ -132,7 +130,7 @@ namespace Gui
         /// <param name="tmp"></param>
         private void printAVG(List<KeyValuePair<int, double>> tmp)
         {
-            //AVG.DataContext = tmp;
+            AVG.DataContext = tmp;
         }
-	}
+    }
 }
