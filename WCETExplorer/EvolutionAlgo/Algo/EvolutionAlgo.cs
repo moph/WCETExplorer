@@ -50,7 +50,7 @@ namespace EvolutionAlgo
         private System.Threading.Thread _calculationThread;
         private bool _automatic;
         private double generationCount=1, Fittness=1000000, Runtime=1000000;
-
+        private DateTime startTime;
         
 
 
@@ -79,6 +79,7 @@ namespace EvolutionAlgo
         // Private Constructor for optional initialisation.
         private EvolutionAlgo() {
             this._calculationThread = new System.Threading.Thread(calculation);
+            this.startTime = DateTime.Now;
         }
 
         // Starts calculation of WCET.
@@ -147,7 +148,7 @@ namespace EvolutionAlgo
 
                 if (i == 1 && _aSettings.stop[1] != null)
                 {
-                    if (_aSettings.stop[i].fulfilled(Runtime))
+                    if (_aSettings.stop[i].fulfilled((DateTime.Now.Second + DateTime.Now.Minute * 60) - (startTime.Second + startTime.Minute *60)))
                     {
                         return false;
                     }
