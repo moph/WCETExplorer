@@ -55,8 +55,9 @@ extern "C" __declspec(dllexport) int __cdecl checkSizeOfParameter(const int IsSi
 /// <param name="analog">The analog.</param>
 /// <param name="Min">The min.</param>
 /// <param name="Max">The max.</param>
+/// <param name="returnValue">The denormed value</param>
 /// <returns>RealValue or errorcode</returns>
-extern "C" __declspec(dllexport) float __cdecl setAnalogValue(float &analog, const float Min, const float Max);
+extern "C" __declspec(dllexport) float __cdecl setAnalogValue(float analog, const float Min, const float Max, double &returnValue);
 
 /// <summary>
 /// calculate the normed value into die area of MAX MIN

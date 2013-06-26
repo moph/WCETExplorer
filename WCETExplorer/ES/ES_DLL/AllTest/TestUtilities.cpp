@@ -109,24 +109,22 @@ TEST_GROUP(setAnalogValue)
 TEST(setAnalogValue, ERROR_CODE_NOT_NORMED)
 {
 	analog[0] = 1.1f;
-	float actual = setAnalogValue(analog[0], -10, 10);
+	double dummy = 0;
+	float actual = setAnalogValue(analog[0], -10, 10, dummy);
 	DOUBLES_EQUAL(ERROR_CODE_NOT_NORMED, actual, 0.01f);
 };
 
 TEST(setAnalogValue, ERROR_CODE_MIN_MAX_DISTORTED)
 {
-	float actual = setAnalogValue(analog[0], 10, -10);
+	double dummy = 0;
+	float actual = setAnalogValue(analog[0], 10, -10, dummy);
 	DOUBLES_EQUAL(ERROR_CODE_MIN_MAX_DISTORTED, actual, 0.01f);
 };
 
 TEST(setAnalogValue, NORMAL_USE)
 {
-	float actual;
-	actual = setAnalogValue(analog[0], -5, 5);
-	if(actual == 0)
-	{
-		actual = analog[0];
-	}
+	double actual;
+	setAnalogValue(analog[0], -5, 5, actual);
 	
 	DOUBLES_EQUAL(2.0f, actual, 0.01f);
 };

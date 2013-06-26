@@ -36,10 +36,8 @@ double executeES3(int sizeAnalogXML,
       }
       enums[i] = (int)typ[i];
       
-      ret = setAnalogValue(analog[i], ES3_MIN_ANALOG, ES3_MAX_ANALOG);
-      if(ret == 0){
-         doubles[i] = analog[i];
-      } else {
+      ret = setAnalogValue(analog[i], ES3_MIN_ANALOG, ES3_MAX_ANALOG, doubles[i]);
+      if(ret != 0){
          return ret;
       }
    }

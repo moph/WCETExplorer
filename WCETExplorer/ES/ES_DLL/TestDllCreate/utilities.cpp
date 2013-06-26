@@ -51,11 +51,11 @@ float calculateFunctionValue(const float value,const float Min, const float Max)
 	return res;
 }
 
-float setAnalogValue(float &analog, const float Min, const float Max)
+float setAnalogValue(float analog, const float Min, const float Max, double &returnValue)
 {
 	float ret = 0.0;
 	if(isValueBetween_0_1(analog)){
-			analog = calculateFunctionValue(analog, Min, Max);
+			returnValue = calculateFunctionValue(analog, Min, Max);
 			if(ret > Max)
 			{ //error 
 				ret = ERROR_CODE_MIN_MAX_DISTORTED;

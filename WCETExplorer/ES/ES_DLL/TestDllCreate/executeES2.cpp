@@ -35,23 +35,11 @@ double executeES2(int sizeAnalogXML,
 	}
 	p = (double) (typ[0] + ES2_MIN_P );
 
-	ret = setAnalogValue(analog[0], ES2_MIN_X, ES2_MAX_X);
-	if(ret == 0)
-	{
-		x = analog[0];
-	}
+	ret = setAnalogValue(analog[0], ES2_MIN_X, ES2_MAX_X, x);
 	
-	ret = setAnalogValue(analog[1], ES2_MIN_Y, ES2_MAX_Y);
-	if(ret == 0)
-	{
-		y = analog[1];
-	}
+	ret = setAnalogValue(analog[1], ES2_MIN_Y, ES2_MAX_Y, y);
 
-	ret = setAnalogValue(analog[2], ES2_MIN_D, ES2_MAX_D);
-	if(ret == 0)
-	{
-		d = analog[2];
-	}
+	ret = setAnalogValue(analog[2], ES2_MIN_D, ES2_MAX_D, d);
 
 	if (ret == 0)
 	{
