@@ -114,7 +114,7 @@ namespace EvolutionAlgo
                     if (_bestGenom.fittness < myGeneration.getBestGenom().fittness) {
                         _bestGenom = myGeneration.getBestGenom();
                     }
-                } while (again(generationCount, Runtime, Fittness));
+                } while (again(generationCount, Runtime, _bestGenom.fittness));
 
                 _printResult(myGeneration, _bestGenom);
                 // Finish and return Genom with WCET.
@@ -137,7 +137,7 @@ namespace EvolutionAlgo
             for (int i = 0; i < _aSettings.stop.Length; i++) {
                 // if any is false -> return false and terminate algorithm.
 
-                if (i == 0)
+                if (i == 0 && _aSettings.stop[0] != null)
                 {
                     if (_aSettings.stop[i].fulfilled(generationCount))
                     {
@@ -145,7 +145,7 @@ namespace EvolutionAlgo
                     }
                 }
 
-                if (i == 1)
+                if (i == 1 && _aSettings.stop[1] != null)
                 {
                     if (_aSettings.stop[i].fulfilled(Runtime))
                     {
@@ -153,9 +153,9 @@ namespace EvolutionAlgo
                     }
                 }
 
-                if (i == 2)
+                if (i == 2 && _aSettings.stop[2] != null)
                 {
-                    if (_aSettings.stop[i].fulfilled(Fittness))
+                    if (_aSettings.stop[i].fulfilled(Fittnes))
                     {
                         return false;
                     }
