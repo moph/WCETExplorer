@@ -265,10 +265,20 @@ namespace Gui
                     stop[count] = gen;
                     count++;
                 }
+                else
+                {
+                    stop[count] = null;
+                    count++;
+                }
                 if (Runtime__s_.IsChecked == true)
                 {
                     Runtime run = new Runtime(Convert.ToDouble(runTime.Text));
                     stop[count] = run;
+                    count++;
+                }
+                else
+                {
+                    stop[count] = null;
                     count++;
                 }
                 if (Fitness__ms_.IsChecked == true)
@@ -277,12 +287,13 @@ namespace Gui
                     stop[count] = fit;
                     count++;
                 }
-                StopCriterion[] s = new StopCriterion[count];
-
-                for (int i = 0; i < count; i++)
-                    s[i] = stop[i];
-
-                algoSettings.stop = s;
+                else
+                {
+                    stop[count] = null;
+                    count++;
+                }
+                
+                algoSettings.stop = stop;
                 return algoSettings;
             }catch(FormatException ex){
                 //throw ex;
