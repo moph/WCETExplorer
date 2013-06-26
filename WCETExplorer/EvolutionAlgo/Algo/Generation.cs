@@ -17,6 +17,7 @@ namespace EvolutionAlgo
         private Parameter _blaram;
         private double mutateRate;
         private uint maxCrossover;
+        private int generationCount;
       
         public Generation(uint size, Parameter param, double mutateRate, uint maxCrossover, EvolutionAlgo ea)
         {
@@ -108,21 +109,15 @@ namespace EvolutionAlgo
                 //Calculate Fittness.
                 
             }
-            
-            for (int u = 0; u < _genomArray.Length; u++)
-            {
-                _genomArray[u].fittness = _ea._calculateFitness(_genomArray[u]._param.analog.Length, _genomArray[u]._param.analog, _genomArray[u]._param.digital.Length, _genomArray[u]._param.digital, _genomArray[u]._param.enums.Length, _genomArray[u]._param.enums);
-            }
-             
         }
 
         public void crossover()
         {
             Random rand = new Random();
            
-            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length-1); // Where the crossover will take place
-            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length-1);
-            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length-1);
+            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
+            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
+            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
             int testJ;
             for (int k = 0; k < maxCrossover; k++)
             {

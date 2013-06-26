@@ -11,16 +11,14 @@ namespace EvolutionAlgo
 {
     public class maxGeneration : StopCriterion
     {
-        public uint maxGen { get; set; }
+        public double maxGen { get; set; }
 
-        public maxGeneration(uint maxGen)
+        public maxGeneration(double maxGen)
         {
             this.maxGen = maxGen;
         }
 
-        public override bool fulfilled() { return false; }
-
-        public bool fulfilled(uint gen)
+        public override bool fulfilled(double gen)
         {
             if (gen < this.maxGen)
                 return false;

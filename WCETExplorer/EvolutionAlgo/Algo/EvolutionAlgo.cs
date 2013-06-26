@@ -49,6 +49,7 @@ namespace EvolutionAlgo
         public calculateFitness_delegate _calculateFitness;
         private System.Threading.Thread _calculationThread;
         private bool _automatic;
+        private double generationCount=1, Fittness=1000000, Runtime=1000000;
 
         
 
@@ -101,6 +102,7 @@ namespace EvolutionAlgo
                 _bestGenom = myGeneration.getBestGenom();
                 do
                 {
+                    generationCount++;
                     // Call Functions in GUI to show results.
                     _printResult(myGeneration, myGeneration.getBestGenom());
                     // Crossover and Mutate Generation.
@@ -112,7 +114,7 @@ namespace EvolutionAlgo
                     if (_bestGenom.fittness < myGeneration.getBestGenom().fittness) {
                         _bestGenom = myGeneration.getBestGenom();
                     }
-                } while (again());
+                } while (again(generationCount, Runtime, Fittness));
 
                 _printResult(myGeneration, _bestGenom);
                 // Finish and return Genom with WCET.
@@ -130,13 +132,36 @@ namespace EvolutionAlgo
         }
 
         // Checks if Stop Criterions are fulfilled.
-        private bool again() {
+        private bool again(double generationCount, double Runtime, double Fittnes) {
             // Checks all Stop Criterions in array _aSettings.stop.
             for (int i = 0; i < _aSettings.stop.Length; i++) {
                 // if any is false -> return false and terminate algorithm.
-                if (_aSettings.stop[i].fulfilled()) {
-                    return false;
+
+                if (i == 0)
+                {
+                    if (_aSettings.stop[i].fulfilled(generationCount))
+                    {
+                        return false;
+                    }
                 }
+
+                if (i == 1)
+                {
+                    if (_aSettings.stop[i].fulfilled(Runtime))
+                    {
+                        return false;
+                    }
+                }
+
+                if (i == 2)
+                {
+                    if (_aSettings.stop[i].fulfilled(Fittness))
+                    {
+                        return false;
+                    }
+                }
+
+                
             }
             return true;
         }

@@ -18,9 +18,7 @@ namespace EvolutionAlgo
             this.runtime = runtime;
         }
 
-        public override bool fulfilled() { return false; }
-
-        public bool fulfilled(double runtime)
+        public override bool fulfilled(double runtime)
         {
             if (runtime < this.runtime)
                 return false;

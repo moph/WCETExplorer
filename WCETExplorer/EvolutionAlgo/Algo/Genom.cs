@@ -38,9 +38,6 @@ namespace EvolutionAlgo
 
         public void calculateFitnes()
         {
-            if(_param.enums == null)
-                this._fittness = _ea._calculateFitness(_param.analog.Length, _param.analog, _param.digital.Length, _param.digital, 0, _param.enums);
-            else
                 this._fittness = _ea._calculateFitness(_param.analog.Length, _param.analog, _param.digital.Length, _param.digital, _param.enums.Length, _param.enums);
         }
 

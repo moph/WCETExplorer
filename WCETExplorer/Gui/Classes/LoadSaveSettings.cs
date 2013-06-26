@@ -130,7 +130,7 @@ namespace Gui.Classes
                 else if (s is maxGeneration)
                 {
                     a.generations.selected = true;
-                    a.generations.Value = ((maxGeneration) s).maxGen;
+                    a.generations.Value = (uint) ((maxGeneration) s).maxGen;
                 }
                 else if (s is Fitness)
                 {

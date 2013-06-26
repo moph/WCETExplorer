@@ -18,9 +18,8 @@ namespace EvolutionAlgo
             this.fitness = fitness;
         }
 
-        public override bool fulfilled() { return false; }
 
-        public bool fulfilled(double fitness)
+        public override bool fulfilled(double fitness)
         {
             if (fitness < this.fitness)
                 return false;

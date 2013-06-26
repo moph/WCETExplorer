@@ -9,6 +9,6 @@ namespace EvolutionAlgo
     public abstract class StopCriterion
     {
         // Returns true if Stop Criterion is reached.
-        public abstract bool fulfilled();
+        public abstract bool fulfilled(double var);
     }
 }
