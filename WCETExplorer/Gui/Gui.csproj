@@ -172,14 +172,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy "$(SolutionDir)ES\Win32\Debug\Simulated_ES.dll" "$(ProjectDir)$(OutDir)" 
-copy "$(SolutionDir)..\ES\ES_Config.xml" "$(ProjectDir)$(OutDir)"
+    <PreBuildEvent>copy "$(ProjectDir)..\ES\ES_Config.xml" "$(ProjectDir)$(OutDir)"
 
 
-copy "$(SolutionDir)..\ES\Es_config.xsd" "$(ProjectDir)$(OutDir)"
+copy "$(ProjectDir)..\ES\es_config.xsd" "$(ProjectDir)$(OutDir)"
 
 
-copy "$(ProjectDir)\settings.xsd" "$(ProjectDir)$(OutDir)"</PreBuildEvent>
+copy "$(ProjectDir)settings.xsd" "$(ProjectDir)$(OutDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.

@@ -120,7 +120,7 @@ namespace Gui.Classes
         [DllImport("kernel32.dll", CharSet = CharSet.Ansi, ExactSpelling = true)]
         public extern static IntPtr GetProcAddress(IntPtr hModule, string procName);
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", SetLastError = true)]
         public extern static IntPtr LoadLibrary(string lpLibFileName);
 
         [DllImport("kernel32.dll")]
