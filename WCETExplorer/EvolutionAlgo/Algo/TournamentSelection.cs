@@ -31,7 +31,7 @@ namespace EvolutionAlgo
             ArrayList participants = new ArrayList();
             int i;
 
-            for (i = 0; i < this._nrOfParticipants; i++)
+            for (i = 0; (i < this._nrOfParticipants) && (i < l.Count); i++)
             {
                 participants.Add((Genom)l[random.Next(l.Count - 1)]);
             }
