@@ -33,6 +33,9 @@ namespace Gui
         {
             i = 0;
 
+            WCETValue.Clear();
+            AVGValue.Clear();
+
             this.InitializeComponent();
 
             //showColumnChart(null, null);
@@ -45,23 +48,16 @@ namespace Gui
         /// <param name="g2"></param>
         public void printResult(Generation g1, Genom g2)
         {
-            Genom dummy = new Genom(null, null);
             //get best Genom from one Generation
-            dummy = g1.getBestGenom();
+            Genom dummy = g1.getBestGenom();
 
             //ADD AVG and WCET from GENERATION to List for print
-            i = WCETValue.Capacity + 1;
+            i = WCETValue.Count;
+
             WCETValue.Add(new KeyValuePair<int, double>(i, dummy.fittness));
 
-            i = AVGValue.Capacity + 1;
+            i = AVGValue.Count;
             AVGValue.Add(new KeyValuePair<int, double>(i, g1.getAverageFitness()));
-
-            //Print absolut WCET
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), g2.fittness.ToString());
-
-            //print <WCET/AVG line
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
 
             i = 0;
         }
@@ -80,6 +76,10 @@ namespace Gui
                 temp = Math.Round(temp, 6);
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
             }
+
+            //print <WCET/AVG line
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
         }
 
         /// <summary>
