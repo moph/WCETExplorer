@@ -18,9 +18,9 @@
 		</Grid.RowDefinitions>
 		<GroupBox Header="Worst Case Execution Time" Margin="8,8,8,0" VerticalAlignment="Top">
 			<Grid Grid.Row="0">
-				<Image Margin="8,16,0,8" Source="Images/es.png" HorizontalAlignment="Left" Width="218"/>
-				<Rectangle Fill="#FFF4F4F5" Margin="226,25.13,118,26.87" Stroke="Black" RadiusX="2" RadiusY="2" Opacity="0.5"/>
-				<Label Name="fitt" Margin="0,38,130,36" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"/>
+                <Image Margin="8,16,0,8" Source="Images/es.png" HorizontalAlignment="Left" Width="218"/>
+                <Rectangle Fill="#FFF4F4F5" Margin="226,25.13,118,26.87" Stroke="Black" RadiusX="2" RadiusY="2" Opacity="0.5"/>
+				<Label Name="fitt" Margin="0,38,130,36" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" MouseDoubleClick="labeltrans"/>
 				<Button HorizontalAlignment="Right" d:LayoutOverrides="Height" Margin="0,24.26,8,26.87" Click="Save_Result">
 		            <Grid>
 		                <Grid.RowDefinitions>

@@ -71,6 +71,7 @@
       <SubType>code</SubType>
     </Compile>
     <Compile Include="Classes\FunctionChooser.cs" />
+    <Compile Include="Classes\FunctionResult.cs" />
     <Compile Include="Classes\LoadSaveSettings.cs" />
     <Compile Include="Classes\settings.cs" />
     <Compile Include="Test\DllLoaderTest.cs" />

@@ -12,15 +12,20 @@ using System.Windows.Shapes;
 using EvolutionAlgo;
 using System.Collections;
 using System.Windows.Threading;
+using Gui.Classes;
 
 namespace Gui
 {
     /// <summary>
-    /// Interaktionslogik für WResult.xaml
+    /// logic for WResult.xaml
     /// Author: Marcus Eiswirt
     /// </summary>
     public partial class WResult : Window
     {
+        private FunctionResult fr = new FunctionResult();
+
+        public bool manual_mod, sms = false;
+
         private List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
         private List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
 
@@ -28,15 +33,20 @@ namespace Gui
 
         private Microsoft.Win32.SaveFileDialog sfd { get; set; }
 
+        private Genom Manual_Genom = null;
+
         private WCETInfo wi = null;
 
         private int i = 0;
 
         //falls WCET unrealistisch :: 12h
         private double dayborder = 86400000 / 2;
+        private double fittness = 0;
 
         public WResult()
         {
+            this.InitializeComponent();
+
             i = 0;
 
             WCETValue.Clear();
@@ -45,15 +55,12 @@ namespace Gui
             sfd = new Microsoft.Win32.SaveFileDialog();
             sfd.FileName = "Result";
             sfd.DefaultExt = ".txt";
-
-            this.InitializeComponent();
         }
         /// <summary>
-        /// Wird einzeln aufgerufen liste erstellen
         /// </summary>
         /// Author Marcus Eiswirt
         /// <param name="g1"></param>
-        /// <param name="g2"></param>
+        /// <param name="g2">best Genom</param>
         public void printResult(Generation g1, Genom g2)
         {
             //get best Genom from one Generation
@@ -78,13 +85,13 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedWCET(Genom gn)
         {
-            double temp = gn.fittness;
-            if (temp >= dayborder)
+            fittness = gn.fittness;
+            if (fittness >= dayborder)
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
-                temp = Math.Round(temp, 6);
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
+                fittness = Math.Round(fittness, 6);
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), fittness.ToString());
             }
 
             //print <WCET/AVG line
@@ -98,20 +105,22 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedManual(Genom gn)
         {
-            double temp = gn.fittness;
-            if (temp >= dayborder || temp < 0)
+            Manual_Genom = gn;
+            fittness = gn.fittness;
+            if (fittness >= dayborder || fittness < 0)
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
             else
             {
-                temp = Math.Round(temp, 6);
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), temp.ToString());
+                fittness = Math.Round(fittness, 6);
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), fittness.ToString());
+                
             }
         }
 
         /// <summary>
         /// Author Marcus Eiswirt
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="msg">WCET value</param>
         private void setStatus(string msg)
         {
             string stemp = "termination failed";
@@ -119,7 +128,7 @@ namespace Gui
                 fitt.Content = msg;
             else
             {
-                fitt.FontSize = 22;
+                fitt.FontSize = 23;
                 fitt.Content = msg + " ms";
             }
         }
@@ -127,7 +136,7 @@ namespace Gui
         /// <summary>
         /// Author Marcus Eiswirt
         /// </summary>
-        /// <param name="tmp"></param>
+        /// <param name="tmp">LineSeries List</param>
         private void printWCET(List<KeyValuePair<int, double>> tmp)
         {
             WCET.DataContext = tmp;
@@ -137,7 +146,7 @@ namespace Gui
         /// <summary>
         /// Author Marcus Eiswirt
         /// </summary>
-        /// <param name="tmp"></param>
+        /// <param name="tmp">LineSeries List</param>
         private void printAVG(List<KeyValuePair<int, double>> tmp)
         {
             AVG.DataContext = tmp;
@@ -174,7 +183,7 @@ namespace Gui
         private void Save_Result(object sender, RoutedEventArgs e)
         {
             string savePath;
-            int i = 1;
+
             Nullable<bool> result = sfd.ShowDialog();
             
             if (result != true)
@@ -183,50 +192,24 @@ namespace Gui
             }
 
             savePath = sfd.FileName;
+            if (manual_mod == false)
+                fr.Save_Result(savePath, GWCETList, null);
+            else
+                fr.Save_Result(savePath, null, Manual_Genom); 
+        }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(savePath, true))
+        private void labeltrans(object sender, MouseButtonEventArgs e)
+        {
+            if (sms)
             {
-                foreach (Genom tmp in GWCETList)
-                {
-                    file.WriteLine();
-                    file.WriteLine(i + ". Genom");
-                    file.WriteLine();
-                    file.Write("WCET :");
-                    file.Write(" "+ tmp.fittness);
-
-                    file.WriteLine(" ");
-                    file.WriteLine("Parameter:");
-                    file.WriteLine(" ");
-
-                    file.Write("Analog :");
-                    
-                    for(int j = 0; j < tmp._param.analog.Length; j++)
-                    {
-                        file.Write(" "+tmp._param.analog[j]);
-                    }
-
-                    file.WriteLine();
-                    file.Write("Digital :");
-                    for (int j = 0; j < tmp._param.digital.Length; j++)
-                    {
-                        file.Write(" " + tmp._param.digital[j]);
-                    }
-
-                    file.WriteLine();
-
-                    file.Write("Enum :");
-                    for (int j = 0; j < tmp._param.enums.Length; j++)
-                    {
-                        file.Write(" " + tmp._param.enums[j]);
-                    }
-                    file.WriteLine();
-                    file.WriteLine();
-
-                    i++;
-                }
-                
+                fitt.Content = fittness / 1000 + " s";
+                sms = false;
             }
-
+            else if (!sms)
+            {
+                fitt.Content = fittness * 1000 + " ms";
+                sms = true;
+            }
         }
     }
 }

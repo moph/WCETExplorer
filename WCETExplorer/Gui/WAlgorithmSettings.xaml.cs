@@ -160,6 +160,7 @@ namespace Gui
 
             Gui.WResult WRun = new Gui.WResult();
             WRun.Show();
+            WRun.manual_mod = false;
             EvolutionAlgo.printResult_delegate pR = WRun.printResult;
             EvolutionAlgo.finishedWCET_delegate fW = WRun.finishedWCET;
             EvolutionAlgo.EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(), getParameter(), pR, fW, wdll.getSelectedFunction().f);
@@ -341,12 +342,6 @@ namespace Gui
         {
             System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9.]");
             return reg.IsMatch(str);
-        }
-
-        //Test kann wahrscheins gelöscht werden
-        public WAlgorithmSettings SaveResultObj()
-        {
-            return this;
         }
     }
 }
