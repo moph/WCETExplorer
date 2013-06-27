@@ -15,29 +15,23 @@ using EvolutionAlgo;
 namespace Gui
 {
     /// <summary>
-    /// Interaktionslogik für Window1.xaml
+    /// Author Marcus Eiswirt
     /// </summary>
     public partial class WCETInfo : Window
     {
         private WResult wResult;
 
-        List<float> _lfloat = new List<float>();
-        List<bool> _lbool = new List<bool>();
-        List<int> _lstring = new List<int>();
+        private List<float> _lfloat = new List<float>();
+        private List<bool> _lbool = new List<bool>();
+        private List<int> _lstring = new List<int>();
 
         public WCETInfo()
         {
             InitializeComponent();
-            
-            listBox_a.Items.Clear();
-            listBox_d.Items.Clear();
-            listBox_e.Items.Clear();
-
         }
 
         public WCETInfo(WResult wResult)
         {
-            // TODO: Complete member initialization
             this.wResult = wResult;
         }
 

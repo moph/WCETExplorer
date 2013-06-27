@@ -1,0 +1,1000 @@
+
+1. Genom
+
+WCET : 128,937008841489 
+Parameter:
+ 
+Analog : 0,4602433 0,5433024
+Digital : True
+Enum : 1
+
+
+2. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+3. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+4. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+5. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+6. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+7. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+8. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+9. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+10. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+11. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+12. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+13. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+14. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+15. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+16. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+17. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+18. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+19. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+20. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+21. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+22. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+23. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+24. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+25. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+26. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+27. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+28. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+29. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+30. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+31. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+32. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+33. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+34. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+35. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+36. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+37. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+38. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+39. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+40. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+41. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+42. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+43. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+44. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+45. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+46. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+47. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+48. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+49. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+50. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+51. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+52. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+53. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+54. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+55. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+56. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+57. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+58. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+59. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+60. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+61. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+62. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+63. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+64. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+65. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+66. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+67. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+68. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+69. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+70. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+71. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+72. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+73. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+74. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+75. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+76. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+77. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+78. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+79. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+80. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+81. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+82. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+83. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+84. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+85. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+86. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+87. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+88. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+89. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+90. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+91. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+92. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+93. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+94. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+95. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+96. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+97. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+98. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+99. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+
+
+100. Genom
+
+WCET : 35096,5237824396 
+Parameter:
+ 
+Analog : 0,8190483 0,2380003
+Digital : True
+Enum : 3
+

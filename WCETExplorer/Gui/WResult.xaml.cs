@@ -21,19 +21,19 @@ namespace Gui
     /// </summary>
     public partial class WResult : Window
     {
-        List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
-        List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
+        private List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
+        private List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
 
-        List<Genom> GWCETList = new List<Genom>();
+        private List<Genom> GWCETList = new List<Genom>();
 
-        public Microsoft.Win32.SaveFileDialog sfd { get; set; }
+        private Microsoft.Win32.SaveFileDialog sfd { get; set; }
 
         private WCETInfo wi = null;
 
-        int i = 0;
+        private int i = 0;
 
-        //falls WCET unrealistisch
-        double dayborder = 86400000;
+        //falls WCET unrealistisch :: 12h
+        private double dayborder = 86400000 / 2;
 
         public WResult()
         {
@@ -47,8 +47,6 @@ namespace Gui
             sfd.DefaultExt = ".txt";
 
             this.InitializeComponent();
-
-            //showColumnChart(null, null);
         }
         /// <summary>
         /// Wird einzeln aufgerufen liste erstellen
