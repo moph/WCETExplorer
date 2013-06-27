@@ -22,7 +22,7 @@ namespace EvolutionAlgo
         public TournamentSelection()
         {
             this._newPopSize = 0.75;
-            this._nrOfParticipants = 10;
+            this._nrOfParticipants = 2;
             this._random = new Random();
         }
 
