@@ -15,7 +15,7 @@ namespace EvolutionAlgo
         private double _newPopSize;
         private String name = "Elitismus";
 
-        public String toString(){
+        public override String ToString(){
             return this.name;
         }
 

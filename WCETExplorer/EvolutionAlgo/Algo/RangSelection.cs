@@ -21,11 +21,12 @@ namespace EvolutionAlgo
         private double _EMax;
         private double _EMin;
         private double _newPopSize;
-        private String name = "RangSelection";
+        private Random _random;
+        private String _name = "RangSelection";
 
-        public String toString()
+        public override String ToString()
         {
-            return this.name;
+            return this._name;
         }
 
 
@@ -33,6 +34,7 @@ namespace EvolutionAlgo
         {
             this._EMax = 1.9;
             this._EMin = 2.0 - this._EMax;
+            this._random = new Random();
             this._newPopSize = 0.75;
         }
 
@@ -50,7 +52,7 @@ namespace EvolutionAlgo
             if (index == 0)
                 index++;
 
-            return (index - 1);
+            return (--index);
         }
 
         public override ArrayList select(ArrayList gens)
@@ -58,7 +60,6 @@ namespace EvolutionAlgo
             int nr, i;
             RangSelectionStruct tempStruct;
             ArrayList temp = new ArrayList(), sel = new ArrayList();
-            Random random = new Random();
 
 
             if (gens.Count >= this._newPopSize)
@@ -78,7 +79,7 @@ namespace EvolutionAlgo
 
             for (i = 0; i < nr; i++)
             {
-                sel.Add(((RangSelectionStruct)temp[this.roulette(temp, random.NextDouble())]).gen);
+                sel.Add(((RangSelectionStruct)temp[this.roulette(temp, this._random.NextDouble())]).gen);
             }
 
             return sel;

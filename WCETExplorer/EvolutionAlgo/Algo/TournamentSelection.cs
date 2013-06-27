@@ -9,12 +9,13 @@ namespace EvolutionAlgo
     public class TournamentSelection : SelectionStrategy
     {
         private double _newPopSize;
+        private Random _random;
         private int _nrOfParticipants;
-        private String name = "TournamentSelection";
+        private String _name = "TournamentSelection";
 
-        public String toString()
+        public override String ToString()
         {
-            return this.name;
+            return this._name;
         }
 
 
@@ -22,6 +23,7 @@ namespace EvolutionAlgo
         {
             this._newPopSize = 0.75;
             this._nrOfParticipants = 10;
+            this._random = new Random();
         }
 
         private ArrayList selectParticipants(ArrayList l, Random random)
@@ -55,7 +57,7 @@ namespace EvolutionAlgo
         {
             int nr, i;
             ArrayList l = new ArrayList(), participants;
-            Random random = new Random();
+
 
             if (gens.Count >= this._newPopSize)
                 nr = (int)(gens.Count * this._newPopSize);
@@ -64,7 +66,7 @@ namespace EvolutionAlgo
 
             for (i = 0; i < nr; i++)
             {
-                participants = this.selectParticipants(gens, random);
+                participants = this.selectParticipants(gens, this._random);
                 l.Add(tournamentWinner(participants));
             }
 

@@ -19,16 +19,18 @@ namespace EvolutionAlgo
     public class FittPropSelection : SelectionStrategy
     {
         private double _newPopSize;
-        private String name = "FittPropSelection";
+        private Random _random;
+        private String _name = "FittPropSelection";
 
-        public String toString()
+        public override String ToString()
         {
-            return this.name;
+            return this._name;
         }
 
         public FittPropSelection()
         {
             this._newPopSize = 0.75;
+            this._random = new Random();
         }
 
         private int roulette(ArrayList l, double nr)
@@ -45,7 +47,7 @@ namespace EvolutionAlgo
             if (index == 0)
                 index++;
 
-            return (index - 1);
+            return (--index);
         }
 
         public override ArrayList select(ArrayList gens)
@@ -54,7 +56,6 @@ namespace EvolutionAlgo
             double sum = 0.0;
             FittPropSelectionStruct tempStruct;
             ArrayList sel = new ArrayList(), temp = new ArrayList();
-            Random random = new Random();
 
 
             if ((this._newPopSize * gens.Count) > 0)
@@ -77,7 +78,7 @@ namespace EvolutionAlgo
 
             for (i = 0; i < nr; i++)
             {
-                sel.Add(((FittPropSelectionStruct)temp[this.roulette(temp, random.NextDouble())]).gen);
+                sel.Add(((FittPropSelectionStruct)temp[this.roulette(temp, this._random.NextDouble())]).gen);
             }
 
             return sel;
