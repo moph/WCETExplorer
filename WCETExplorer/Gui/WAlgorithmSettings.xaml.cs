@@ -257,6 +257,12 @@ namespace Gui
                 algoSettings.crossoverCount = Convert.ToUInt32(cross.Text);
                 algoSettings.mutationRate = (float)muta.Value;
 
+                //Abbruchkriterium muss ausgewählt sein
+                if (Number_of_generations.IsChecked == false && Runtime__s_.IsChecked == false && Fitness__ms_.IsChecked == false)
+                {
+                    MessageBox.Show("Mindestens ein Abbruchkriterium Markieren!");
+                    return null;
+                }
 
                 if (Number_of_generations.IsChecked == true)
                 {
@@ -337,13 +343,9 @@ namespace Gui
             return reg.IsMatch(str);
         }
 
-
         public WAlgorithmSettings SaveResultObj()
         {
             return this;
         }
-
-
-
     }
 }
