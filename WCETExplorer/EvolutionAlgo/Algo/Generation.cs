@@ -18,9 +18,11 @@ namespace EvolutionAlgo
         private double mutateRate;
         private uint maxCrossover;
         private int generationCount;
+        private Random rand;
       
         public Generation(uint size, Parameter param, double mutateRate, uint maxCrossover, EvolutionAlgo ea)
         {
+            this.rand = new Random();
             this._blaram = param;
             this._size = size;
             this.mutateRate = mutateRate;
@@ -34,7 +36,7 @@ namespace EvolutionAlgo
         // Create new Generation but use existing genoms.
         public Generation(ArrayList gen, uint size, double mutateRate, uint maxCrossover, EvolutionAlgo ea)
         {
-            
+            this.rand = new Random();
             // create (size - gen._size) new genes.
             this._genomArray = new Genom[size];
             this._ea = ea;
@@ -173,12 +175,11 @@ namespace EvolutionAlgo
         }
         private bool rndBoolean()
         {
-            Random rand = new Random();
-            if (rand.Next(0, 1) == 0)
+            if (this.rand.Next(0, 2) == 0)
             {
-
                 return true;
             }
+
             return false;
         }
 
