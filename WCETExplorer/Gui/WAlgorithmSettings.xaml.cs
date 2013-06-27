@@ -91,7 +91,7 @@ namespace Gui
             }
             savePath = sfd.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
-            loadsave.save(savePath, dllPath, functionName, WManual.getParameter(), getParameter());
+            loadsave.save(savePath, dllPath, functionName, WManual.getParameter(), getParameter(), 0);
 
         }
 

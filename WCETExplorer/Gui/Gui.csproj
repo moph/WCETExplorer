@@ -72,7 +72,6 @@
     </Compile>
     <Compile Include="Classes\FunctionChooser.cs" />
     <Compile Include="Classes\LoadSaveSettings.cs" />
-    <Compile Include="Classes\SaveResult.cs" />
     <Compile Include="Classes\settings.cs" />
     <Compile Include="Test\DllLoaderTest.cs" />
     <Compile Include="Test\LoadSaveSettingsTest.cs" />

@@ -25,6 +25,7 @@ namespace Gui.Classes {
     public partial class settings {
         
         private string dllField;
+        private double wcetField;
         
         private settingsFunction functionField;
         
@@ -35,6 +36,19 @@ namespace Gui.Classes {
             }
             set {
                 this.dllField = value;
+            }
+        }
+
+        /// Wurde hinzugefügt von Marcus Eiswirt<remarks/>
+        public double wcet
+        {
+            get
+            {
+                return this.wcetField;
+            }
+            set
+            {
+                this.wcetField = value;
             }
         }
         
@@ -338,5 +352,5 @@ namespace Gui.Classes {
                 this.valueField = value;
             }
         }
-    }
+    }    
 }

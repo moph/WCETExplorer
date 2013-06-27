@@ -30,7 +30,7 @@ namespace Gui.Test
             string outfile = "testconf.xml";
             string dllconfig = @"D:\Documents\bla\bla\es_config.xml";
             string functionname = "execute_ES0";
-            lss.save(outfile, dllconfig, functionname, p, sa);
+            lss.save(outfile, dllconfig, functionname, p, sa, 0);
 
             string infile = outfile;
 

@@ -260,7 +260,7 @@ namespace Gui
             }
             savePath = WAlgo.sfd.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
-            loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), WAlgo.getParameter());
+            loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), WAlgo.getParameter(), 0);
 
         }
     }

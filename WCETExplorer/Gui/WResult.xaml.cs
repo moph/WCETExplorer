@@ -25,7 +25,6 @@ namespace Gui
         List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
 
         List<Genom> GWCETList = new List<Genom>();
-        List<Genom> GAVGList = new List<Genom>();
 
         private WCETInfo wi = null;
 
@@ -166,6 +165,11 @@ namespace Gui
                 h++;
             }
 
+        }
+
+        private void Save_Result(object sender, RoutedEventArgs e)
+        {
+                // Aufrufen Save funktion
         }
     }
 }

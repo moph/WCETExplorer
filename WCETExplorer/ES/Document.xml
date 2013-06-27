@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dll>C:\Users\Marcus\WCETExplorer\WCETExplorer\ES\ES_Config.xml</dll>
+    <wcet>0</wcet>
+    <function name="executeES0">
+        <manual>
+            <enums>
+                <enum>0</enum>
+            </enums>
+            <floats>
+                <float>0</float>
+                <float>0</float>
+            </floats>
+            <binaries>
+                <binary>false</binary>
+            </binaries>
+        </manual>
+        <algorithm>
+            <selection>0</selection>
+            <population>10</population>
+            <mutation>0</mutation>
+            <crossover>2</crossover>
+            <generations selected="true">10</generations>
+            <runtime selected="true">75</runtime>
+            <fitness selected="false">0</fitness>
+        </algorithm>
+    </function>
+</settings>

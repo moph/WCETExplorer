@@ -69,7 +69,7 @@ namespace Gui.Classes
         /// <param name="functionname">Name of currently selected function.</param>
         /// <param name="sp">Parameter object for all manual settings.</param>
         /// <param name="sa">AlgoSettings object for all algorithm settings.</param>
-        public void save(string file, string dllconfigfile, string functionname, Parameter sp, AlgoSettings sa)
+        public void save(string file, string dllconfigfile, string functionname, Parameter sp, AlgoSettings sa, double wcet)
         {
             settings set = new settings();
             set.dll = dllconfigfile;
@@ -77,7 +77,8 @@ namespace Gui.Classes
             set.function.name = functionname;
             set.function.algorithm = fromAlgo(sa);
             set.function.manual = fromParam(sp);
-
+            set.wcet = wcet;
+            
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Encoding = Encoding.UTF8;
             settings.Indent = true;
@@ -182,7 +183,7 @@ namespace Gui.Classes
             return sp;
         }
 
-        private settingsFunctionManual fromParam(Parameter p)
+       private settingsFunctionManual fromParam(Parameter p)
         {
             settingsFunctionManual m = new settingsFunctionManual();
             m.binaries = p.digital;
