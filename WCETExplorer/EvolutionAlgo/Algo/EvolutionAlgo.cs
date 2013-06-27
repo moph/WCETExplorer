@@ -50,7 +50,7 @@ namespace EvolutionAlgo
         private System.Threading.Thread _calculationThread;
         private bool _automatic;
         private double generationCount=1, Fittness=1000000, Runtime=1000000;
-        private DateTime startTime;
+        private DateTime startTime; 
         
 
 
