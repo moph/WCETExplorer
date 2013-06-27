@@ -72,11 +72,6 @@ namespace Gui
  
         }
 
-        public WAlgorithmSettings()
-        {
-            // TODO: Complete member initialization
-        }
-
         /// <summary>
         /// Author: Philipp Klein
         /// </summary>
@@ -348,6 +343,7 @@ namespace Gui
             return reg.IsMatch(str);
         }
 
+        //Test kann wahrscheins gelöscht werden
         public WAlgorithmSettings SaveResultObj()
         {
             return this;
