@@ -45,8 +45,7 @@ namespace EvolutionAlgo
 
             while (sum < nr)
             {
-                sum += ((RangSelectionStruct)l[index]).p;
-                index++;
+                sum += ((RangSelectionStruct)l[index++]).p;
             }
 
             if (index == 0)

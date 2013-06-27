@@ -40,8 +40,7 @@ namespace EvolutionAlgo
 
             while (sum < nr)
             {
-                sum += ((FittPropSelectionStruct)l[index]).p;
-                index++;
+                sum += ((FittPropSelectionStruct)l[index++]).p;
             }
 
             if (index == 0)
