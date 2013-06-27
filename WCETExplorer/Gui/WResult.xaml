@@ -39,14 +39,23 @@
                     ItemsSource="{Binding}"
  					DependentValuePath="Value" 
 					IndependentValuePath="Key" Title="WCET"
-                    IsSelectionEnabled="True"
-                />
-			<chartingToolkit:LineSeries
+                    IsSelectionEnabled="True">
+                
+                <chartingToolkit:LineSeries.DataPointStyle>
+                    <Style>
+                        <EventSetter Event="Control.MouseDoubleClick" Handler="line"/>
+                    </Style>
+                </chartingToolkit:LineSeries.DataPointStyle>
+            
+            </chartingToolkit:LineSeries>
+            
+            <chartingToolkit:LineSeries
                     Name="AVG" 
  					ItemsSource="{Binding}"
  					DependentValuePath="Value" 
 					IndependentValuePath="Key" Title="Avg"
                     IsSelectionEnabled="True"/>
+            
         </chartingToolkit:Chart>
 	</Grid>
 </Window>

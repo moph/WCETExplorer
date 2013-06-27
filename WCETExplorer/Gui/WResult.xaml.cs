@@ -24,6 +24,11 @@ namespace Gui
         List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
         List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
 
+        List<Genom> GWCETList = new List<Genom>();
+        List<Genom> GAVGList = new List<Genom>();
+
+        private WCETInfo wi = null;
+
         int i = 0;
 
         //falls WCET unrealistisch
@@ -50,6 +55,8 @@ namespace Gui
         {
             //get best Genom from one Generation
             Genom dummy = g1.getBestGenom();
+
+            GWCETList.Add(dummy);
 
             //ADD AVG and WCET from GENERATION to List for print
             i = WCETValue.Count;
@@ -131,6 +138,34 @@ namespace Gui
         private void printAVG(List<KeyValuePair<int, double>> tmp)
         {
             AVG.DataContext = tmp;
+        }
+
+
+        /// <summary>
+        /// Author Marcus Eiswirt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void line(object sender, MouseEventArgs e)
+        {
+            System.Windows.Controls.DataVisualization.Charting.DataPoint temp = sender as System.Windows.Controls.DataVisualization.Charting.DataPoint;
+            String i = temp.ActualIndependentValue.ToString();
+            int j = Convert.ToInt32(i);
+
+            int h = 0;
+
+            foreach (Genom b in GWCETList)
+            {
+                
+                if (h == j)
+                {
+                    wi = new WCETInfo();
+                    wi.Show();
+                    wi.setListbox(b);
+                }
+                h++;
+            }
+
         }
     }
 }

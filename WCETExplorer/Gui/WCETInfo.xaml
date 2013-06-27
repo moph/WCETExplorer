@@ -1,0 +1,13 @@
+﻿<Window x:Class="Gui.WCETInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Information" Height="273" Width="449">
+    <Grid>
+        <ListBox Height="183" HorizontalAlignment="Left" Margin="12,39,0,0" Name="listBox_d" VerticalAlignment="Top" Width="120" />
+        <ListBox Height="183" HorizontalAlignment="Left" Margin="154,39,0,0" Name="listBox_a" VerticalAlignment="Top" Width="120" />
+        <ListBox Height="183" HorizontalAlignment="Left" Margin="295,39,0,0" Name="listBox_e" VerticalAlignment="Top" Width="120" />
+        <Label Content="Digit" Height="28" HorizontalAlignment="Left" Name="label_d" VerticalAlignment="Top" Width="103" Margin="12,12,0,0" />
+        <Label Content="Analog" Height="28" HorizontalAlignment="Left" Margin="154,12,0,0" Name="label_a" VerticalAlignment="Top" Width="103" />
+        <Label Content="Enum" Height="28" HorizontalAlignment="Left" Margin="295,12,0,0" Name="label3_e" VerticalAlignment="Top" Width="103" />
+    </Grid>
+</Window>

@@ -76,6 +76,9 @@
     <Compile Include="Classes\settings.cs" />
     <Compile Include="Test\DllLoaderTest.cs" />
     <Compile Include="Test\LoadSaveSettingsTest.cs" />
+    <Compile Include="WCETInfo.xaml.cs">
+      <DependentUpon>WCETInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WManualSettings.xaml.cs">
       <DependentUpon>WManualSettings.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <DependentUpon>WAlgorithmSettings.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WCETInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WManualSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
