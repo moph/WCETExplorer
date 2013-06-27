@@ -72,6 +72,11 @@ namespace Gui
  
         }
 
+        public WAlgorithmSettings()
+        {
+            // TODO: Complete member initialization
+        }
+
         /// <summary>
         /// Author: Philipp Klein
         /// </summary>

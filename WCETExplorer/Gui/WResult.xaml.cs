@@ -26,6 +26,8 @@ namespace Gui
 
         List<Genom> GWCETList = new List<Genom>();
 
+        public Microsoft.Win32.SaveFileDialog sfd { get; set; }
+
         private WCETInfo wi = null;
 
         int i = 0;
@@ -39,6 +41,10 @@ namespace Gui
 
             WCETValue.Clear();
             AVGValue.Clear();
+
+            sfd = new Microsoft.Win32.SaveFileDialog();
+            sfd.FileName = "Result";
+            sfd.DefaultExt = ".txt";
 
             this.InitializeComponent();
 
@@ -169,7 +175,60 @@ namespace Gui
 
         private void Save_Result(object sender, RoutedEventArgs e)
         {
-                // Aufrufen Save funktion
+            string savePath;
+            int i = 1;
+            Nullable<bool> result = sfd.ShowDialog();
+            
+            if (result != true)
+            {
+                return;
+            }
+
+            savePath = sfd.FileName;
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(savePath, true))
+            {
+                foreach (Genom tmp in GWCETList)
+                {
+                    file.WriteLine();
+                    file.WriteLine(i + ". Genom");
+                    file.WriteLine();
+                    file.Write("WCET :");
+                    file.Write(" "+ tmp.fittness);
+
+                    file.WriteLine(" ");
+                    file.WriteLine("Parameter:");
+                    file.WriteLine(" ");
+
+                    file.Write("Analog :");
+                    
+                    for(int j = 0; j < tmp._param.analog.Length; j++)
+                    {
+                        file.Write(" "+tmp._param.analog[j]);
+                    }
+
+                    file.WriteLine();
+                    file.Write("Digital :");
+                    for (int j = 0; j < tmp._param.digital.Length; j++)
+                    {
+                        file.Write(" " + tmp._param.digital[j]);
+                    }
+
+                    file.WriteLine();
+
+                    file.Write("Enum :");
+                    for (int j = 0; j < tmp._param.enums.Length; j++)
+                    {
+                        file.Write(" " + tmp._param.enums[j]);
+                    }
+                    file.WriteLine();
+                    file.WriteLine();
+
+                    i++;
+                }
+                
+            }
+
         }
     }
 }
