@@ -79,8 +79,8 @@ namespace Gui
         /// <param name="e"></param>
         private void SaveConf_Click(object sender, RoutedEventArgs e)
         {
-
-            if (getParameter() == null)
+            AlgoSettings param;
+            if ((param = getParameter()) == null)
                 return;
 
             string savePath;
@@ -91,7 +91,7 @@ namespace Gui
             }
             savePath = sfd.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
-            loadsave.save(savePath, dllPath, functionName, WManual.getParameter(), getParameter(), 0);
+            loadsave.save(savePath, dllPath, functionName, WManual.getParameter(), param, 0);
 
         }
 
@@ -154,8 +154,8 @@ namespace Gui
         /// <param name="e"></param>
         private void Run_Click(object sender, RoutedEventArgs e)
         {
-
-            if (getParameter() == null)
+            AlgoSettings param;
+            if ((param = getParameter()) == null)
                 return;
 
             Gui.WResult WRun = new Gui.WResult();
@@ -163,7 +163,7 @@ namespace Gui
             WRun.manual_mod = false;
             EvolutionAlgo.printResult_delegate pR = WRun.printResult;
             EvolutionAlgo.finishedWCET_delegate fW = WRun.finishedWCET;
-            EvolutionAlgo.EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(), getParameter(), pR, fW, wdll.getSelectedFunction().f);
+            EvolutionAlgo.EvolutionAlgo evo = new EvolutionAlgo.EvolutionAlgo(WManual.getParameter(), param, pR, fW, wdll.getSelectedFunction().f);
             evo.go();
             
 
