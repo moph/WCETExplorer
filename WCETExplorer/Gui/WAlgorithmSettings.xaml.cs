@@ -40,10 +40,10 @@ namespace Gui
             WManual = new WManualSettings(wdll, this);
 
             //Selection Strategien Auswählen
-            sele.Items.Add(new Elitismus().toString());
-            sele.Items.Add(new RangSelection().toString());
-            sele.Items.Add(new FittPropSelection().toString());
-            sele.Items.Add(new TournamentSelection().toString());
+            sele.Items.Add(new Elitismus().ToString());
+            sele.Items.Add(new RangSelection().ToString());
+            sele.Items.Add(new FittPropSelection().ToString());
+            sele.Items.Add(new TournamentSelection().ToString());
             
             
             funcname.Content = functionName;
@@ -245,13 +245,13 @@ namespace Gui
                 //algoSettings.strategy = (SelectionStrategy)sele.SelectedValue;
 
                 //sele to string test
-                if (sele.SelectedValue.Equals(new Elitismus().toString()))
+                if (sele.SelectedValue.Equals(new Elitismus().ToString()))
                     algoSettings.strategy = (SelectionStrategy)new Elitismus();
-                else if (sele.SelectedValue.Equals(new RangSelection().toString()))
+                else if (sele.SelectedValue.Equals(new RangSelection().ToString()))
                     algoSettings.strategy = (SelectionStrategy)new RangSelection();
-                else if (sele.SelectedValue.Equals(new FittPropSelection().toString()))
+                else if (sele.SelectedValue.Equals(new FittPropSelection().ToString()))
                     algoSettings.strategy = (SelectionStrategy)new FittPropSelection();
-                else if (sele.SelectedValue.Equals(new TournamentSelection().toString()))
+                else if (sele.SelectedValue.Equals(new TournamentSelection().ToString()))
                     algoSettings.strategy = (SelectionStrategy)new TournamentSelection();
 
                 algoSettings.populationSize = (uint)popu.Value;
