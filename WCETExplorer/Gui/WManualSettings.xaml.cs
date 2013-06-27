@@ -250,7 +250,8 @@ namespace Gui
 
         private void SaveConf_Click_1(object sender, RoutedEventArgs e)
         {
-            if (WAlgo.getParameter() == null)
+            AlgoSettings param;
+            if ((param = WAlgo.getParameter()) == null)
                 return;
 
             string savePath;
@@ -261,7 +262,7 @@ namespace Gui
             }
             savePath = WAlgo.sfd.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
-            loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), WAlgo.getParameter(), 0);
+            loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), param, 0);
         }
     }
 }
