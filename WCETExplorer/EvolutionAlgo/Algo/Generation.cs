@@ -79,7 +79,6 @@ namespace EvolutionAlgo
         private void createGenes(uint givenGenes)
         {
             Parameter genomParameter;
-            Random ran;
             //
             int countAnalog = _blaram.analog.Length;
             int countDigital = _blaram.digital.Length;
@@ -91,11 +90,9 @@ namespace EvolutionAlgo
                 enumVal = new int[countEnums];
             for (uint k = givenGenes; k < this._size; k++)
             {
-                ran = new Random();
                 for (int i = 0; i < countAnalog; i++) // Erzeugung Random Analogwerte
                 {
-
-                    analogVal[i] = (float)ran.NextDouble();
+                    analogVal[i] = (float)this.rand.NextDouble();
                 }
                 for (int i = 0; i < countDigital; i++) // Erzeugung Random Digitalwerte
                 {
@@ -103,7 +100,7 @@ namespace EvolutionAlgo
                 }
                 for (int i = 0; i < countEnums; i++) // Erzeugung Random Enum werte
                 {
-                    enumVal[i] = ran.Next(10);
+                    enumVal[i] = this.rand.Next(10);
                 }
                 
                 genomParameter = new Parameter(analogVal, digitalVal, enumVal); //Parameter und Genomerzeugung
@@ -115,11 +112,9 @@ namespace EvolutionAlgo
 
         public void crossover()
         {
-            Random rand = new Random();
-           
-            int abgra = rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
-            int abgrd = rand.Next(0, _genomArray[0]._param.digital.Length);
-            int abgre = rand.Next(0, _genomArray[0]._param.enums.Length);
+            int abgra = this.rand.Next(0, _genomArray[0]._param.analog.Length); // Where the crossover will take place
+            int abgrd = this.rand.Next(0, _genomArray[0]._param.digital.Length);
+            int abgre = this.rand.Next(0, _genomArray[0]._param.enums.Length);
             int testJ;
             for (int k = 0; k < maxCrossover; k++)
             {
@@ -143,32 +138,30 @@ namespace EvolutionAlgo
 
         public void mutate()
         {
-            Random rand = new Random();
-
             int countAnalog;
             int countDigital;
             int countEnums;
             int k;
             for (k = 0; k < this._genomArray.Length; k++)
             {
-                if (rand.NextDouble() == mutateRate)
+                if (this.rand.NextDouble() == mutateRate)
                 {
                     countAnalog = this._genomArray[k]._param.analog.Length;
                     countDigital = this._genomArray[k]._param.digital.Length;
                     countEnums = this._genomArray[k]._param.enums.Length;
-                    for (k = 0; k < rand.Next(countAnalog); k++)
+                    for (k = 0; k < this.rand.Next(countAnalog); k++)
                     {
-                        this._genomArray[k]._param.analog[rand.Next(countAnalog - 1)] = (float)rand.NextDouble();
+                        this._genomArray[k]._param.analog[this.rand.Next(countAnalog)] = (float)this.rand.NextDouble();
                     }
 
-                    for (k = 0; k < rand.Next(countDigital); k++)
+                    for (k = 0; k < this.rand.Next(countDigital); k++)
                     {
-                        this._genomArray[k]._param.digital[rand.Next(countDigital - 1)] = rndBoolean();
+                        this._genomArray[k]._param.digital[this.rand.Next(countDigital)] = rndBoolean();
                     }
 
-                    for (k = 0; k < rand.Next(countEnums); k++)
+                    for (k = 0; k < this.rand.Next(countEnums); k++)
                     {
-                        this._genomArray[k]._param.enums[rand.Next(countEnums - 1)] = rand.Next(10);
+                        this._genomArray[k]._param.enums[this.rand.Next(countEnums)] = this.rand.Next(10);
                     }
                 }
             }
