@@ -185,7 +185,8 @@
 copy "$(ProjectDir)..\ES\es_config.xsd" "$(ProjectDir)$(OutDir)"
 
 
-copy "$(ProjectDir)settings.xsd" "$(ProjectDir)$(OutDir)"</PreBuildEvent>
+copy "$(ProjectDir)settings.xsd" "$(ProjectDir)$(OutDir)"
+copy "$(SolutionDir)ES\Win32\Debug\Simulated_ES.dll" "$(SolutionDir)$(OutDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.
