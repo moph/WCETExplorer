@@ -32,6 +32,9 @@ namespace Gui
         private List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
         private List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
 
+        private List<KeyValuePair<int, double>> tempWCETValue = new List<KeyValuePair<int, double>>();
+        private List<KeyValuePair<int, double>> tempAVGValue = new List<KeyValuePair<int, double>>();
+
         private List<Genom> GWCETList = new List<Genom>();
 
         private Microsoft.Win32.SaveFileDialog sfd { get; set; }
@@ -40,7 +43,11 @@ namespace Gui
 
         private WCETInfo wi = null;
 
+        private int[] countpoint = new int[100];
+
         private int i = 0;
+
+        private int forcount = 0;
 
         BackgroundWorker bW = new BackgroundWorker();
 
@@ -53,9 +60,6 @@ namespace Gui
             this.InitializeComponent();
 
             i = 0;
-
-            WCETValue.Clear();
-            AVGValue.Clear();
 
             sfd = new Microsoft.Win32.SaveFileDialog();
             sfd.FileName = "Result";
@@ -112,8 +116,48 @@ namespace Gui
                 }
 
                 //print <WCET/AVG line
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
+                KeyValuePair<int, double> t = new KeyValuePair<int,double>(0,0);
+                
+                int value = 0;
+                int i = 0;
+
+                foreach (KeyValuePair<int, double> tmp in WCETValue)
+                {
+                    if (t.Value != tmp.Value)
+                    {
+                        t = tmp;
+                        tempWCETValue.Add(t);
+                        value = 1;
+                        if (tmp.Key > i + 1)
+                            i = i + 1;
+                        else
+                            i = tmp.Key;
+                        
+                    }
+                    else
+                    {
+                        value++;
+                        countpoint[i] = value;
+                    }
+
+                }
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), tempWCETValue);
+
+                t = new KeyValuePair<int, double>(0, 0);
+
+                foreach (KeyValuePair<int, double> tmp in AVGValue)
+                {
+                    if (t.Value != tmp.Value && t.Key != tmp.Key)
+                    {
+                        t = tmp;
+                        tempAVGValue.Add(t);
+
+                    }
+                }
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), tempAVGValue);
+
             }
             catch (NotSupportedException e)
             {
@@ -199,21 +243,29 @@ namespace Gui
         private void line(object sender, MouseEventArgs e)
         {
             System.Windows.Controls.DataVisualization.Charting.DataPoint temp = sender as System.Windows.Controls.DataVisualization.Charting.DataPoint;
-            String i = temp.ActualIndependentValue.ToString();
-            int j = Convert.ToInt32(i);
+            String i = temp.ActualDependentValue.ToString();
+            double j = Convert.ToDouble(i);
+            //int k = 0;
 
-            int h = 0;
+            foreach (KeyValuePair<int, double> ts in tempWCETValue)
+            {
+                if (ts.Value == j)
+                {
+                    j = ts.Value;
+
+                }
+            }
 
             foreach (Genom b in GWCETList)
             {
 
-                if (h == j)
+                if (Math.Round(b.fittness, 0) == Math.Round(j, 0))
                 {
                     wi = new WCETInfo();
                     wi.Show();
+                    //wi.Title = "Information - " + countpoint[Convert.ToInt32(j)];
                     wi.setListbox(b);
                 }
-                h++;
             }
 
         }
@@ -252,8 +304,9 @@ namespace Gui
 
         void bW_DoWork(object sender, DoWorkEventArgs e)
         {
+            forcount = 0;
             // Your background task goes here
-            for (int i = 0; i <= 100; i++)
+            for (; forcount <= 101; forcount++)
             {
                 if (ptrue == true)
                 {
@@ -262,7 +315,7 @@ namespace Gui
                 }
 
                 // Report progress to 'UI' thread
-                bW.ReportProgress(i);
+                bW.ReportProgress(forcount);
                 // Simulate long task
                 System.Threading.Thread.Sleep(100);
             }
@@ -271,7 +324,13 @@ namespace Gui
         void bW_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             // The progress percentage is a property of e
-            progressBar1.Value = e.ProgressPercentage;
+            if (progressBar1.Value == progressBar1.Maximum)
+            {
+                progressBar1.Value = 0;
+                forcount = 0;
+            }
+            else
+                progressBar1.Value = e.ProgressPercentage;
         }
 
 
