@@ -242,6 +242,8 @@ namespace Gui
         /// <param name="e"></param>
         private void line(object sender, MouseEventArgs e)
         {
+            bool windowop = false;
+
             System.Windows.Controls.DataVisualization.Charting.DataPoint temp = sender as System.Windows.Controls.DataVisualization.Charting.DataPoint;
             String i = temp.ActualDependentValue.ToString();
             double j = Convert.ToDouble(i);
@@ -261,10 +263,14 @@ namespace Gui
 
                 if (Math.Round(b.fittness, 0) == Math.Round(j, 0))
                 {
-                    wi = new WCETInfo();
-                    wi.Show();
-                    //wi.Title = "Information - " + countpoint[Convert.ToInt32(j)];
-                    wi.setListbox(b);
+                    if (windowop == false)
+                    {
+                        wi = new WCETInfo();
+                        wi.Show();
+                        //wi.Title = "Information - " + countpoint[Convert.ToInt32(j)];
+                        wi.setListbox(b);
+                        windowop = true;
+                    }
                 }
             }
 
