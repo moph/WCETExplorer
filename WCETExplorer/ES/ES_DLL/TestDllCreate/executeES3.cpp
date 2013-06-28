@@ -55,10 +55,11 @@ double executeES3(int sizeAnalogXML,
 	 return ret;
 	 }
 
+
 void calcPolyroots(bool switches[40], int start, int* pPolyroots){
 	int i,j;
 	int result = 0;
-	for(i=0; i <= 8; i++){
+	for(i=0; i < 8; i++){
 		for(j=0; j < 5; j++){
 			result += switches[(start+i+5-j)%40]*pow(2.0, j);
 		}
@@ -69,4 +70,4 @@ void calcPolyroots(bool switches[40], int start, int* pPolyroots){
          pPolyroots[i] = result;
       }
 	}
-}	
+}
