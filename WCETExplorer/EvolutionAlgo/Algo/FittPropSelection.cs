@@ -38,7 +38,7 @@ namespace EvolutionAlgo
             double sum = 0;
             int index = 0;
 
-            while (sum < nr)
+            while ((sum < nr) && (index < l.Count))
             {
                 sum += ((FittPropSelectionStruct)l[index++]).p;
             }
