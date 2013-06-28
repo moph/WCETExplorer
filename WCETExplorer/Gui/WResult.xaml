@@ -11,51 +11,52 @@
 	Title="RunWindow"
 	Width="640" Height="480">
 
-	<Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource WCETLine}}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<GroupBox Header="Worst Case Execution Time" Margin="8,8,8,0" VerticalAlignment="Top">
-			<Grid Grid.Row="0">
+    <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource WCETLine}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Worst Case Execution Time" Margin="8,8,8,0" VerticalAlignment="Top">
+            <Grid Grid.Row="0">
                 <Image Margin="8,16,0,8" Source="Images/es.png" HorizontalAlignment="Left" Width="218"/>
                 <Rectangle Fill="#FFF4F4F5" Margin="226,25.13,118,26.87" Stroke="Black" RadiusX="2" RadiusY="2" Opacity="0.5"/>
-				<Label Name="fitt" Margin="0,38,130,36" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" MouseDoubleClick="labeltrans"/>
-				<Button HorizontalAlignment="Right" d:LayoutOverrides="Height" Margin="0,24.26,8,26.87" Click="Save_Result">
-		            <Grid>
-		                <Grid.RowDefinitions>
-		                    <RowDefinition Height="40"/>
-		                    <RowDefinition Height="*"/>
-		                </Grid.RowDefinitions>
-		                <Image Source="Images/save.png" VerticalAlignment="Top" Margin="0,0,0,0"  Grid.Row="0"/>
-		                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Save" Grid.Row="1"/>
-		            </Grid>
-				</Button>
-			</Grid>
-		</GroupBox>
-		<chartingToolkit:Chart Grid.Row="1" Title="Generations">
-			<chartingToolkit:LineSeries 
+                <Label Name="fitt" Margin="0,38,130,36" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" MouseDoubleClick="labeltrans"/>
+                <Button HorizontalAlignment="Right" d:LayoutOverrides="Height" Margin="0,24.26,8,26.87" Click="Save_Result">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="Images/save.png" VerticalAlignment="Top" Margin="0,0,0,0"  Grid.Row="0"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Save" Grid.Row="1"/>
+                    </Grid>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <chartingToolkit:Chart Grid.Row="1" Title="Generations">
+            <chartingToolkit:LineSeries 
 					Name="WCET" 
                     ItemsSource="{Binding}"
  					DependentValuePath="Value" 
 					IndependentValuePath="Key" Title="WCET"
                     IsSelectionEnabled="True">
-                
+
                 <chartingToolkit:LineSeries.DataPointStyle>
                     <Style>
                         <EventSetter Event="Control.MouseDoubleClick" Handler="line"/>
                     </Style>
                 </chartingToolkit:LineSeries.DataPointStyle>
-            
+
             </chartingToolkit:LineSeries>
-            
+
             <chartingToolkit:LineSeries
                     Name="AVG" 
  					ItemsSource="{Binding}"
  					DependentValuePath="Value" 
 					IndependentValuePath="Key" Title="Avg"
                     IsSelectionEnabled="True"/>
-            
+
         </chartingToolkit:Chart>
-	</Grid>
+        <ProgressBar Grid.Row="1" Height="18" HorizontalAlignment="Left" Margin="532,200,0,0" Name="progressBar1" VerticalAlignment="Top" Width="64"/>
+    </Grid>
 </Window>

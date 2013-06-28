@@ -15,6 +15,7 @@ using Microsoft.Windows.Controls.Ribbon;
 using EvolutionAlgo;
 using Gui.Classes;
 using System.Collections;
+using System.Globalization;
 
 namespace Gui
 {
@@ -23,7 +24,7 @@ namespace Gui
     /// </summary>
     public partial class WAlgorithmSettings : RibbonWindow
     {
-
+        public CultureInfo cult = new CultureInfo("en-us");
         public string dllPath {get;set;}
         public string functionName {get;set;}
         public WDllChooser wdll {get;set;}
@@ -33,6 +34,8 @@ namespace Gui
 
         public WAlgorithmSettings(WDllChooser wdll)
         {
+            this.Closed += closeAll;
+
             InitializeComponent();
             this.wdll = wdll;
             dllPath = wdll.getXmlPath();
@@ -56,6 +59,9 @@ namespace Gui
             muta.Maximum = 1;
             muta.IsSnapToTickEnabled = true;
             muta.TickFrequency=0.01;
+
+
+            
 
 
             //Load
@@ -278,7 +284,7 @@ namespace Gui
                 }
                 if (Runtime__s_.IsChecked == true)
                 {
-                    Runtime run = new Runtime(Convert.ToDouble(runTime.Text));
+                    Runtime run = new Runtime(Convert.ToDouble(runTime.Text, cult));
                     stop[count] = run;
                     count++;
                 }
@@ -289,7 +295,7 @@ namespace Gui
                 }
                 if (Fitness__ms_.IsChecked == true)
                 {
-                    Fitness fit = new Fitness(Convert.ToDouble(fitness.Text));
+                    Fitness fit = new Fitness(Convert.ToDouble(fitness.Text, cult));
                     stop[count] = fit;
                     count++;
                 }
@@ -340,8 +346,14 @@ namespace Gui
 
         private static bool IsTextNumericPoint(string str)
         {
-            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9.,]");
+            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9.]");
             return reg.IsMatch(str);
+        }
+
+        public void closeAll(object sender, System.EventArgs e)
+        {
+            WManual.Close();
+            wdll.Close();
         }
     }
 }
