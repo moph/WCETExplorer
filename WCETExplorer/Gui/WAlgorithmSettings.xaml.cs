@@ -15,6 +15,7 @@ using Microsoft.Windows.Controls.Ribbon;
 using EvolutionAlgo;
 using Gui.Classes;
 using System.Collections;
+using System.Globalization;
 
 namespace Gui
 {
@@ -23,7 +24,7 @@ namespace Gui
     /// </summary>
     public partial class WAlgorithmSettings : RibbonWindow
     {
-
+        public CultureInfo cult = new CultureInfo("en-us");
         public string dllPath {get;set;}
         public string functionName {get;set;}
         public WDllChooser wdll {get;set;}
@@ -58,6 +59,9 @@ namespace Gui
             muta.Maximum = 1;
             muta.IsSnapToTickEnabled = true;
             muta.TickFrequency=0.01;
+
+
+            
 
 
             //Load
@@ -280,7 +284,7 @@ namespace Gui
                 }
                 if (Runtime__s_.IsChecked == true)
                 {
-                    Runtime run = new Runtime(Convert.ToDouble(runTime.Text));
+                    Runtime run = new Runtime(Convert.ToDouble(runTime.Text, cult));
                     stop[count] = run;
                     count++;
                 }
@@ -291,7 +295,7 @@ namespace Gui
                 }
                 if (Fitness__ms_.IsChecked == true)
                 {
-                    Fitness fit = new Fitness(Convert.ToDouble(fitness.Text));
+                    Fitness fit = new Fitness(Convert.ToDouble(fitness.Text, cult));
                     stop[count] = fit;
                     count++;
                 }
