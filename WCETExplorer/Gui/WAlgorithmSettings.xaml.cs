@@ -33,6 +33,8 @@ namespace Gui
 
         public WAlgorithmSettings(WDllChooser wdll)
         {
+            this.Closed += closeAll;
+
             InitializeComponent();
             this.wdll = wdll;
             dllPath = wdll.getXmlPath();
@@ -340,8 +342,14 @@ namespace Gui
 
         private static bool IsTextNumericPoint(string str)
         {
-            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9.,]");
+            System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9.]");
             return reg.IsMatch(str);
+        }
+
+        public void closeAll(object sender, System.EventArgs e)
+        {
+            WManual.Close();
+            wdll.Close();
         }
     }
 }

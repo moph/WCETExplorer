@@ -46,6 +46,8 @@ namespace Gui
         /// </summary>
         public WManualSettings(WDllChooser wdll, WAlgorithmSettings WAlgo)
         {
+            this.Closed += closeAll;
+
             InitializeComponent();
             this.WAlgo = WAlgo;
             this.wdll = wdll;
@@ -263,6 +265,12 @@ namespace Gui
             savePath = WAlgo.sfd.FileName;
             LoadSaveSettings loadsave = new LoadSaveSettings();
             loadsave.save(savePath, WAlgo.dllPath, WAlgo.functionName, getParameter(), param, 0);
+        }
+
+        public void closeAll(object sender, System.EventArgs e)
+        {
+            WAlgo.Close();
+            wdll.Close();
         }
     }
 }
