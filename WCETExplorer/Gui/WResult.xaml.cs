@@ -158,8 +158,16 @@ namespace Gui
                 fitt.Content = msg;
             else
             {
-                fitt.FontSize = 23;
-                fitt.Content = msg + " ms";
+                if (msg.Length > 19)
+                {
+                    fitt.FontSize = 16;
+                    fitt.DataContext = msg + " ms";
+                }
+                else
+                {
+                    fitt.FontSize = 23;
+                    fitt.Content = msg + " ms";
+                }
             }
         }
 
