@@ -13,6 +13,8 @@ using EvolutionAlgo;
 using System.Collections;
 using System.Windows.Threading;
 using Gui.Classes;
+using System.Threading;
+using System.ComponentModel;
 
 namespace Gui
 {
@@ -25,6 +27,7 @@ namespace Gui
         private FunctionResult fr = new FunctionResult();
 
         public bool manual_mod, sms = false;
+        private bool ptrue = false;
 
         private List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
         private List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
@@ -38,6 +41,8 @@ namespace Gui
         private WCETInfo wi = null;
 
         private int i = 0;
+
+        BackgroundWorker bW = new BackgroundWorker();
 
         //falls WCET unrealistisch :: 12h
         private double dayborder = 86400000 / 2;
@@ -55,6 +60,16 @@ namespace Gui
             sfd = new Microsoft.Win32.SaveFileDialog();
             sfd.FileName = "Result";
             sfd.DefaultExt = ".txt";
+            progressBar1.Value = 0;
+
+            // To report progress from the background worker we need to set this property
+            bW.WorkerReportsProgress = true;
+            // This event will be raised on the worker thread when the worker starts
+            bW.DoWork += new DoWorkEventHandler(bW_DoWork);
+            // This event will be raised when we call ReportProgress
+            bW.ProgressChanged += new ProgressChangedEventHandler(bW_ProgressChanged);
+
+            bW.RunWorkerAsync();
         }
         /// <summary>
         /// </summary>
@@ -63,15 +78,14 @@ namespace Gui
         /// <param name="g2">best Genom</param>
         public void printResult(Generation g1, Genom g2)
         {
+
             //get best Genom from one Generation
-            Genom dummy = g2;
-            //Dünner machen
-            GWCETList.Add(dummy);
+            GWCETList.Add(g2);
 
             //ADD AVG and WCET from GENERATION to List for print
             i = WCETValue.Count;
 
-            WCETValue.Add(new KeyValuePair<int, double>(i, dummy.fittness));
+            WCETValue.Add(new KeyValuePair<int, double>(i, g2.fittness));
 
             i = AVGValue.Count;
             AVGValue.Add(new KeyValuePair<int, double>(i, g1.getAverageFitness()));
@@ -85,18 +99,27 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedWCET(Genom gn)
         {
-            fittness = gn.fittness;
-            if (fittness >= dayborder)
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
-            else
+            try
             {
-                fittness = Math.Round(fittness, 6);
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), fittness.ToString());
+                ptrue = true;
+                fittness = gn.fittness;
+                if (fittness >= dayborder)
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
+                else
+                {
+                    fittness = Math.Round(fittness, 6);
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), fittness.ToString());
+                }
+
+                //print <WCET/AVG line
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
+            }
+            catch (NotSupportedException e)
+            {
+                MessageBox.Show(e.ToString());
             }
 
-            //print <WCET/AVG line
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), WCETValue);
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), AVGValue);
         }
 
         /// <summary>
@@ -105,15 +128,22 @@ namespace Gui
         /// <param name="gn"></param>
         public void finishedManual(Genom gn)
         {
-            Manual_Genom = gn;
-            fittness = gn.fittness;
-            if (fittness >= dayborder || fittness < 0)
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
-            else
+            try
             {
-                fittness = Math.Round(fittness, 6);
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), fittness.ToString());
-                
+                Manual_Genom = gn;
+                fittness = gn.fittness;
+                if (fittness < 0)
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
+                else
+                {
+                    fittness = Math.Round(fittness, 6);
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), fittness.ToString());
+
+                }
+            }
+            catch (NotSupportedException e)
+            {
+                MessageBox.Show(e.ToString());
             }
         }
 
@@ -168,7 +198,7 @@ namespace Gui
 
             foreach (Genom b in GWCETList)
             {
-                
+
                 if (h == j)
                 {
                     wi = new WCETInfo();
@@ -185,7 +215,7 @@ namespace Gui
             string savePath;
 
             Nullable<bool> result = sfd.ShowDialog();
-            
+
             if (result != true)
             {
                 return;
@@ -195,22 +225,47 @@ namespace Gui
             if (manual_mod == false)
                 fr.Save_Result(savePath, GWCETList, null);
             else
-                fr.Save_Result(savePath, null, Manual_Genom); 
+                fr.Save_Result(savePath, null, Manual_Genom);
         }
 
         private void labeltrans(object sender, MouseButtonEventArgs e)
         {
-
-            if (sms)
+            if (!sms)
             {
                 fitt.Content = fittness / 1000 + " s";
                 sms = false;
             }
-            else if (!sms)
+            else if (sms)
             {
                 fitt.Content = fittness * 1000 + " ms";
                 sms = true;
             }
         }
+
+        void bW_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // Your background task goes here
+            for (int i = 0; i <= 100; i++)
+            {
+                if (ptrue == true)
+                {
+                    bW.ReportProgress(100);
+                    return;
+                }
+
+                // Report progress to 'UI' thread
+                bW.ReportProgress(i);
+                // Simulate long task
+                System.Threading.Thread.Sleep(100);
+            }
+        }
+        // Back on the 'UI' thread so we can update the progress bar
+        void bW_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // The progress percentage is a property of e
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+
     }
 }
