@@ -99,8 +99,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /E /I "$(SolutionDir)ES\$(Platform)\$(Configuration)\*" "$(SolutionDir)Gui\bin\$(Configuration)\"
-</Command>
+      <Command>xcopy /Y /E /I "$(ProjectDir)..\..\$(Platform)\$(Configuration)\*" "$(ProjectDir)..\..\..\Gui\bin\$(Configuration)\"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -146,7 +145,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /E /I $(SolutionDir)ES\$(Platform)\$(Configuration)\* $(SolutionDir)Gui\bin\$(Configuration)\</Command>
+      <Command>xcopy /Y /E /I "$(ProjectDir)..\..\$(Platform)\$(Configuration)\*" "$(ProjectDir)..\..\..\Gui\bin\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -169,7 +168,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /E /I $(SolutionDir)ES\$(Platform)\$(Configuration)\* $(SolutionDir)Gui\bin\$(Configuration)\</Command>
+      <Command>xcopy /Y /E /I "$(ProjectDir)..\..\$(Platform)\$(Configuration)\*" "$(ProjectDir)..\..\..\Gui\bin\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
