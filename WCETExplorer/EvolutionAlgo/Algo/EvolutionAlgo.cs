@@ -49,7 +49,7 @@ namespace EvolutionAlgo
         public calculateFitness_delegate _calculateFitness;
         private System.Threading.Thread _calculationThread;
         private bool _automatic;
-        private double generationCount=1, Fittness=1000000, Runtime=1000000;
+        private double generationCount=1;//Fittness=1000000, Runtime=1000000;
         private DateTime startTime; 
         
 
@@ -97,7 +97,8 @@ namespace EvolutionAlgo
         // Does calculation of WCET.
         private void calculation() {
             // Check if automatic or manual calculation.
-            if (_automatic) {
+            if (_automatic)
+            {
                 // Start loop and create new Generation.
                 Generation myGeneration = new Generation(_aSettings.populationSize, _param, _aSettings.mutationRate, _aSettings.crossoverCount, this);
                 _bestGenom = myGeneration.getBestGenom();
@@ -115,7 +116,7 @@ namespace EvolutionAlgo
                     if (_bestGenom.fittness < myGeneration.getBestGenom().fittness) {
                         _bestGenom = myGeneration.getBestGenom();
                     }
-                } while (again(generationCount, Runtime, _bestGenom.fittness));
+                } while (again(generationCount, _bestGenom.fittness));
 
                 _printResult(myGeneration, _bestGenom);
                 // Finish and return Genom with WCET.
@@ -133,7 +134,7 @@ namespace EvolutionAlgo
         }
 
         // Checks if Stop Criterions are fulfilled.
-        private bool again(double generationCount, double Runtime, double Fittnes) {
+        private bool again(double generationCount, double Fittnes) {
             // Checks all Stop Criterions in array _aSettings.stop.
             for (int i = 0; i < _aSettings.stop.Length; i++) {
                 // if any is false -> return false and terminate algorithm.

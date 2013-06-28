@@ -64,8 +64,8 @@ namespace Gui
         public void printResult(Generation g1, Genom g2)
         {
             //get best Genom from one Generation
-            Genom dummy = g1.getBestGenom();
-
+            Genom dummy = g2;
+            //Dünner machen
             GWCETList.Add(dummy);
 
             //ADD AVG and WCET from GENERATION to List for print
@@ -200,6 +200,7 @@ namespace Gui
 
         private void labeltrans(object sender, MouseButtonEventArgs e)
         {
+
             if (sms)
             {
                 fitt.Content = fittness / 1000 + " s";
