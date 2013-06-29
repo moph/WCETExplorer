@@ -91,6 +91,7 @@ namespace EvolutionAlgo
             int[] enumVal = new int[1];
             if(countEnums > 0)
                 enumVal = new int[countEnums];
+
             for (uint k = givenGenes; k < this._size; k++)
             {
                 for (int i = 0; i < countAnalog; i++) // Erzeugung Random Analogwerte
