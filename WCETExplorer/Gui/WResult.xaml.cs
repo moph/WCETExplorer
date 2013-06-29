@@ -31,6 +31,7 @@ namespace Gui
 
         private List<KeyValuePair<int, double>> WCETValue = new List<KeyValuePair<int, double>>();
         private List<KeyValuePair<int, double>> AVGValue = new List<KeyValuePair<int, double>>();
+        private List<KeyValuePair<int, double>> CountPointList = new List<KeyValuePair<int, double>>();
 
         private List<KeyValuePair<int, double>> tempWCETValue = new List<KeyValuePair<int, double>>();
         private List<KeyValuePair<int, double>> tempAVGValue = new List<KeyValuePair<int, double>>();
@@ -42,8 +43,6 @@ namespace Gui
         private Genom Manual_Genom = null;
 
         private WCETInfo wi = null;
-
-        private int[] countpoint = new int[100];
 
         private int i = 0;
 
@@ -58,6 +57,11 @@ namespace Gui
         public WResult()
         {
             this.InitializeComponent();
+
+            WCET.DataContext = null;
+
+            tempAVGValue.Clear();
+            tempWCETValue.Clear();
 
             i = 0;
 
@@ -93,6 +97,7 @@ namespace Gui
 
             i = AVGValue.Count;
             AVGValue.Add(new KeyValuePair<int, double>(i, g1.getAverageFitness()));
+            System.Threading.Thread.Sleep(10);
 
             i = 0;
         }
@@ -105,10 +110,11 @@ namespace Gui
         {
             try
             {
-                ptrue = true;
+               ptrue = true;
+
                 fittness = gn.fittness;
-                if (fittness >= dayborder)
-                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
+                if (fittness > dayborder)
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), fittness.ToString());
                 else
                 {
                     fittness = Math.Round(fittness, 6);
@@ -117,46 +123,40 @@ namespace Gui
 
                 //print <WCET/AVG line
                 KeyValuePair<int, double> t = new KeyValuePair<int,double>(0,0);
-                
-                int value = 0;
-                int i = 0;
 
-                foreach (KeyValuePair<int, double> tmp in WCETValue)
+                int size = 0;
+
+                foreach (KeyValuePair<int, double> tmp in AVGValue)
                 {
                     if (t.Value != tmp.Value)
                     {
                         t = tmp;
-                        tempWCETValue.Add(t);
-                        value = 1;
-                        if (tmp.Key > i + 1)
-                            i = i + 1;
-                        else
-                            i = tmp.Key;
-                        
-                    }
-                    else
-                    {
-                        value++;
-                        countpoint[i] = value;
-                    }
-
-                }
-
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), tempWCETValue);
-
-                t = new KeyValuePair<int, double>(0, 0);
-
-                foreach (KeyValuePair<int, double> tmp in AVGValue)
-                {
-                    if (t.Value != tmp.Value && t.Key != tmp.Key)
-                    {
-                        t = tmp;
-                        tempAVGValue.Add(t);
+                        size = tempAVGValue.Count;
+                        tempAVGValue.Add(new KeyValuePair<int, double>(size + 1, t.Value));
 
                     }
                 }
 
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printAVG), tempAVGValue);
+
+                t = new KeyValuePair<int, double>(0, 0);
+                size = 0;
+                foreach (KeyValuePair<int, double> tmp in WCETValue)
+                {
+                    if (t.Value != tmp.Value)
+                    {
+                        t = tmp;
+                        size = tempWCETValue.Count;
+                        tempWCETValue.Add(new KeyValuePair<int, double>(size + 1, t.Value));
+                    }
+
+                }
+
+                KeyValuePair<int, double> templast = new KeyValuePair<int, double>(tempAVGValue[tempAVGValue.Count - 1].Key, tempWCETValue[tempWCETValue.Count - 1].Value);
+
+                tempWCETValue.Insert(tempWCETValue.Count, templast);
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<List<KeyValuePair<int, double>>>(printWCET), tempWCETValue);
 
             }
             catch (NotSupportedException e)
@@ -177,7 +177,7 @@ namespace Gui
                 Manual_Genom = gn;
                 fittness = gn.fittness;
                 if (fittness < 0)
-                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "termination failed");
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<string>(setStatus), "Value < 0");
                 else
                 {
                     fittness = Math.Round(fittness, 6);
@@ -197,19 +197,19 @@ namespace Gui
         /// <param name="msg">WCET value</param>
         private void setStatus(string msg)
         {
-            string stemp = "termination failed";
+            string stemp = "Value < 0";
             if (msg.Equals(stemp))
                 fitt.Content = msg;
             else
             {
                 if (msg.Length > 19)
                 {
-                    fitt.FontSize = 16;
-                    fitt.DataContext = msg + " ms";
+                    fitt.FontSize = 17;
+                    fitt.Content = msg;
                 }
                 else
                 {
-                    fitt.FontSize = 23;
+                    fitt.FontSize = 21;
                     fitt.Content = msg + " ms";
                 }
             }
@@ -222,6 +222,8 @@ namespace Gui
         private void printWCET(List<KeyValuePair<int, double>> tmp)
         {
             WCET.DataContext = tmp;
+            
+            WCETValue.Clear();
         }
 
 
@@ -232,6 +234,8 @@ namespace Gui
         private void printAVG(List<KeyValuePair<int, double>> tmp)
         {
             AVG.DataContext = tmp;
+
+            AVGValue.Clear();
         }
 
 
@@ -247,27 +251,43 @@ namespace Gui
             System.Windows.Controls.DataVisualization.Charting.DataPoint temp = sender as System.Windows.Controls.DataVisualization.Charting.DataPoint;
             String i = temp.ActualDependentValue.ToString();
             double j = Convert.ToDouble(i);
+            int sch = 0;
+            bool zi = true;
             //int k = 0;
 
             foreach (KeyValuePair<int, double> ts in tempWCETValue)
             {
-                if (ts.Value == j)
+                if (ts.Value.ToString() == j.ToString())
                 {
                     j = ts.Value;
 
                 }
             }
 
+            foreach (Genom ts in GWCETList)
+            {
+                if (Math.Round(ts.fittness, 4) == Math.Round(j,4))
+                {
+                    if(zi)
+                    sch++;
+                    else
+                    {
+                        sch++;
+                        zi = false;
+                    }
+                }
+            }
+
             foreach (Genom b in GWCETList)
             {
 
-                if (Math.Round(b.fittness, 0) == Math.Round(j, 0))
+                if (Math.Round(b.fittness, 4) == Math.Round(j, 4))
                 {
-                    if (windowop == false)
+                    if (!windowop)
                     {
                         wi = new WCETInfo();
                         wi.Show();
-                        //wi.Title = "Information - " + countpoint[Convert.ToInt32(j)];
+                        wi.Title = sch.ToString() + " Generation";
                         wi.setListbox(b);
                         windowop = true;
                     }
@@ -323,7 +343,7 @@ namespace Gui
                 // Report progress to 'UI' thread
                 bW.ReportProgress(forcount);
                 // Simulate long task
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(30);
             }
         }
         // Back on the 'UI' thread so we can update the progress bar
