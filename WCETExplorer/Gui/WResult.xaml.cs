@@ -97,7 +97,7 @@ namespace Gui
 
             i = AVGValue.Count;
             AVGValue.Add(new KeyValuePair<int, double>(i, g1.getAverageFitness()));
-            System.Threading.Thread.Sleep(10);
+            System.Threading.Thread.Sleep(15);
 
             i = 0;
         }
@@ -174,6 +174,8 @@ namespace Gui
         {
             try
             {
+                ptrue = true;
+
                 Manual_Genom = gn;
                 fittness = gn.fittness;
                 if (fittness < 0)
