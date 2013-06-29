@@ -97,7 +97,7 @@ namespace Gui
 
             i = AVGValue.Count;
             AVGValue.Add(new KeyValuePair<int, double>(i, g1.getAverageFitness()));
-            System.Threading.Thread.Sleep(15);
+            System.Threading.Thread.Sleep(11);
 
             i = 0;
         }
@@ -125,6 +125,10 @@ namespace Gui
                 KeyValuePair<int, double> t = new KeyValuePair<int,double>(0,0);
 
                 int size = 0;
+
+
+                if (AVGValue[0].Value > dayborder * 2)
+                    return;
 
                 foreach (KeyValuePair<int, double> tmp in AVGValue)
                 {
