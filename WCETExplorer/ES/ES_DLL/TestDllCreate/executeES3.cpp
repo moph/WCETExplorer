@@ -52,7 +52,7 @@ double executeES3(int sizeAnalogXML,
 		ret += tmp;
 	 } 
 	 
-	 return ret;
+	 return abs(ret);
 	 }
 
 
