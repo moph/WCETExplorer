@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D8F3D8CC-1C2A-4D93-A69A-A26C84E36E8B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EvolutionAlgo</RootNamespace>
     <AssemblyName>EvolutionAlgo</AssemblyName>
